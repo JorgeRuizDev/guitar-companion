@@ -9,7 +9,8 @@ import {
 import { formatOptionLabel, formatPromptTitle } from '../domain/dualNotation';
 import { chordDefinitionToFretboardState } from '../domain/fretboardEvaluator';
 import { FretboardDiagram } from './FretboardDiagram';
-import { ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
+import { OptionButton } from '@/core/ui/OptionButton';
+import { ArrowRight } from 'lucide-react';
 
 interface IdentifyChallengeProps {
   challenge: PracticeChallenge;
@@ -60,60 +61,30 @@ export const IdentifyChallenge: React.FC<IdentifyChallengeProps> = ({
         lang={lang}
       />
 
-      {/* 4 Multiple-Choice Options */}
-      <div className="w-full max-w-[320px] grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
+      {/* 4 Multiple-Choice Options in 2x2 Grid */}
+      <div className="w-full max-w-[340px] grid grid-cols-2 gap-2 mt-2.5">
         {challenge.options?.map((option, idx) => {
           const isThisSelected = selectedChordId === option.id;
           const isThisTarget = option.id === targetChord.id;
 
-          let btnStyle =
-            'bg-slate-800/80 hover:bg-slate-700/80 border-slate-700 text-slate-200';
-
-          if (!isPending) {
-            if (isThisTarget) {
-              btnStyle =
-                'bg-emerald-950/60 border-emerald-500 text-emerald-200 font-bold shadow-md shadow-emerald-950/40 ring-1 ring-emerald-500/50';
-            } else if (isThisSelected && !isThisTarget) {
-              btnStyle =
-                'bg-rose-950/60 border-rose-500 text-rose-200 line-through opacity-85';
-            } else {
-              btnStyle = 'bg-slate-900/60 border-slate-800 text-slate-500 opacity-60';
-            }
-          }
-
           return (
-            <button
+            <OptionButton
               key={option.id}
-              type="button"
-              disabled={!isPending}
+              label={formatOptionLabel(option)}
+              index={idx}
+              isCorrect={!isPending && isThisTarget}
+              isIncorrect={!isPending && isThisSelected && !isThisTarget}
+              isDisabled={!isPending && !isThisTarget}
+              compact={compact}
               onClick={() => onSelectOption(option)}
-              className={`relative flex items-center justify-between min-h-[48px] px-3 py-2.5 rounded-xl border text-left transition-all active:scale-98 cursor-pointer select-none ${btnStyle} ${
-                !isPending ? 'cursor-default pointer-events-none' : ''
-              }`}
-            >
-              <div className="flex items-center gap-2 truncate">
-                <span className="w-5 h-5 rounded-md bg-slate-900/70 border border-slate-700/60 text-[11px] font-mono font-bold flex items-center justify-center text-slate-400 shrink-0">
-                  {idx + 1}
-                </span>
-                <span className="text-sm font-semibold truncate">
-                  {formatOptionLabel(option)}
-                </span>
-              </div>
-
-              {!isPending && isThisTarget && (
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 ml-1" />
-              )}
-              {!isPending && isThisSelected && !isThisTarget && (
-                <XCircle className="w-4 h-4 text-rose-400 shrink-0 ml-1" />
-              )}
-            </button>
+            />
           );
         })}
       </div>
 
       {/* Advance Button (shown after answering) */}
       {!isPending && (
-        <div className="w-full max-w-[320px] mt-3 animate-in fade-in slide-in-from-bottom-2">
+        <div className="w-full max-w-[340px] mt-3 animate-in fade-in slide-in-from-bottom-2">
           <button
             type="button"
             onClick={onNext}

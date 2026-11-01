@@ -98,6 +98,18 @@ export const BasicChordTrainerContainer: React.FC<BasicChordTrainerContainerProp
     trainerEl?.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
+  // Embed view (suppresses header & footer, minimal scrollable container)
+  if (initialConfig?.embed) {
+    return (
+      <div className="fixed inset-0 z-50 bg-slate-950 text-slate-100 flex flex-col justify-start items-center p-2 sm:p-3 overflow-y-auto overflow-x-hidden overscroll-y-contain select-none">
+        <ChordTrainerApp
+          config={{ ...activeConfig, embed: true, compact: true }}
+          className="w-full"
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="w-full max-w-6xl mx-auto px-4 py-6 sm:py-8">
       {/* Hero Header */}

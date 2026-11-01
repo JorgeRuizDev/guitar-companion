@@ -25,8 +25,8 @@ export default async function BasicNoteTrainerEmbedPage({ searchParams }: EmbedP
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-neutral-950 text-neutral-100 flex flex-col justify-center items-center p-2 sm:p-3 overflow-hidden select-none">
-      <NoteTrainerApp config={embedConfig} className="w-full my-auto" />
+    <div className="fixed inset-0 z-50 bg-neutral-950 text-neutral-100 flex flex-col justify-start items-center p-2 sm:p-3 overflow-y-auto overflow-x-hidden overscroll-y-contain select-none">
+      <NoteTrainerApp config={embedConfig} className="w-full" />
     </div>
   );
 }

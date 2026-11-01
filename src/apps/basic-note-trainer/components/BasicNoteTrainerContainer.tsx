@@ -15,13 +15,13 @@ export const BasicNoteTrainerContainer: React.FC<BasicNoteTrainerContainerProps>
   const activeLang = config.lang ?? language ?? 'en';
   const isEs = activeLang === 'es';
 
-  // Embed view (suppresses header & footer, minimal compact container)
+  // Embed view (suppresses header & footer, minimal scrollable container)
   if (config.embed) {
     return (
-      <div className="fixed inset-0 z-50 bg-neutral-950 text-neutral-100 flex flex-col justify-center items-center p-2 sm:p-3 overflow-hidden select-none">
+      <div className="fixed inset-0 z-50 bg-neutral-950 text-neutral-100 flex flex-col justify-start items-center p-2 sm:p-3 overflow-y-auto overflow-x-hidden overscroll-y-contain select-none">
         <NoteTrainerApp
           config={{ ...config, embed: true, compact: true, lang: activeLang }}
-          className="w-full my-auto"
+          className="w-full"
         />
       </div>
     );
