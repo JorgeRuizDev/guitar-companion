@@ -1,0 +1,17 @@
+services:
+  guitar-companion:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: guitar-companion:latest
+    container_name: guitar-companion
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+    environment:
+      - NODE_ENV=production
+      - PORT=3100
+      - HOSTNAME=0.0.0.0
+    labels:
+      - "com.docker.compose.project=guitar-companion"
+      - "com.docker.compose.service=guitar-companion"

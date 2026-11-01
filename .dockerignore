@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+.specify
+.agents
+specs
+tests
+*.tsbuildinfo
+.dockerignore
+Dockerfile
+docker-compose.yml

@@ -40,6 +40,13 @@ La arquitectura técnica DEBE adherirse a la máxima economía de recursos y evi
 - Toda comunicación o intercambio de información entre aplicaciones independientes DEBE realizarse mediante interfaces bien documentadas, eventos estandarizados o almacenamiento común, sin acoplamiento de estados en memoria privada.
 *Rationale*: Un ecosistema multi-aplicación corre el riesgo de degradar drásticamente los tiempos de carga y la mantenibilidad si no se controla rigurosamente el presupuesto de peso y la separación de responsabilidades.
 
+### VI. Idioma Inglés Canónico por Defecto (Default English Language)
+Toda la interfaz de usuario, textos informativos, etiquetas, controles interactivos, documentación técnica, identificadores de código y mensajes del sistema DEBEN redactarse e implementarse en inglés por defecto.
+- Toda vista, componente o aplicación dentro del ecosistema DEBE mostrar de forma predeterminada su contenido y microcopia en inglés para garantizar una experiencia consistente, global y unificada.
+- Queda estrictamente PROHIBIDO introducir textos visibles en español u otros idiomas como valores predeterminados en componentes de interfaz o plantillas sin un sistema formal de internacionalización (i18n).
+- Cualquier funcionalidad futura de localización o soporte multi-idioma DEBE mantener el inglés (`en`) como idioma base, canónico y de respaldo (*fallback*).
+*Rationale*: Asegura la homogeneidad estilística y técnica del ecosistema global, eliminando inconsistencias idiomáticas entre herramientas y garantizando accesibilidad universal para músicos de cualquier procedencia.
+
 ## Requisitos Técnicos y Arquitectónicos
 
 - **Estrategia de Renderizado y Framework**: Se DEBE utilizar una tecnología web moderna que soporte SSR/SSG nativo para cumplir simultáneamente con los objetivos de SEO y rendimiento de las múltiples aplicaciones.
@@ -64,4 +71,4 @@ La arquitectura técnica DEBE adherirse a la máxima economía de recursos y evi
   - **PATCH**: Correcciones ortográficas, mejoras de redacción, precisiones terminológicas o refinamientos no semánticos.
 - **Revisiones de Cumplimiento**: Todas las especificaciones, planes y revisiones de código DEBEN validar activamente la conformidad con las directrices aquí ratificadas.
 
-**Version**: 1.0.0 | **Ratified**: 2026-10-31 | **Last Amended**: 2026-10-31
+**Version**: 1.1.0 | **Ratified**: 2026-10-31 | **Last Amended**: 2026-11-01
