@@ -13,7 +13,7 @@
 
 ## Requirement Completeness
 
-- [ ] No [NEEDS CLARIFICATION] markers remain
+- [x] No [NEEDS CLARIFICATION] markers remain
 - [x] Requirements are testable and unambiguous
 - [x] Success criteria are measurable
 - [x] Success criteria are technology-agnostic (no implementation details)
@@ -31,8 +31,8 @@
 
 ## Notes
 
-- 3 `[NEEDS CLARIFICATION]` markers present regarding:
-  1. Initial open chord catalog scope (8 essential open chords vs 8 essentials + open 7ths)
-  2. Interactive finger dot placement & string status toggle mechanics in "Draw" mode
-  3. Submission trigger for answer verification in "Draw" mode (explicit submit button vs automatic validation)
-- Once clarified with the user, these markers will be resolved and this checklist updated to 100% complete.
+- All 3 clarification items have been resolved with the user:
+  1. Initial catalog includes the full extended beginner open chord library (Majors, Minors, 7ths, F beginner, Fmaj7, Cadd9, and Sus chords).
+  2. Touch interaction mechanics: Tap fret toggles dot (clears muting); tap above nut toggles Open (O) / Muted (X); setting Muted clears any dot on that string.
+  3. Answer verification: Explicit "Check" button + dedicated "Skip / Saltar" button that immediately reveals the correct diagram and fingering.
+- The specification is complete and ready for `/speckit-plan`.
