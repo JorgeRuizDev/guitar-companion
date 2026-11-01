@@ -85,6 +85,24 @@ As a rhythm student, I want the metronome to support configurable subdivisions (
 
 ---
 
+### User Story 5 - Shareable URL Configurations & Local Storage Persistence (Priority: P2)
+
+As a guitarist or guitar teacher, I want my active strumming pattern, tempo, and metronome settings to be automatically remembered in local storage, and I want to share or configure any pattern setup via a shareable URL with query parameters using an intuitive "Share / Copy Link" button, so that I can easily distribute exercises to students, switch devices, or bookmark my favorite practice routines.
+
+**Why this priority**: Portability and persistence. Users should never lose their practice configuration upon refreshing or closing the browser, and sharing practice routines with teachers or peers is a key collaborative learning benefit.
+
+**Independent Test**: Can be tested by creating or selecting a pattern, adjusting BPM and metronome settings, verifying that refreshing the page restores the exact configuration from local storage, clicking the "Share Link" button to copy the generated URL to clipboard, and opening the URL in a new window/tab to confirm the exact pattern, tempo, and settings are restored.
+
+**Acceptance Scenarios**:
+
+1. **Given** a customized or preset strumming pattern with specific BPM, subdivision, and metronome settings, **When** the user clicks the "Share Link" (or "Compartir") button, **Then** a shareable URL containing the current configuration as query parameters is copied to the system clipboard, and a visual confirmation notification ("¡Enlace copiado!" / "Link copied!") is briefly displayed.
+2. **Given** an incoming URL with query parameters (e.g. `?preset=preset-island-strum&bpm=95&accent=1&countIn=2`), **When** the page loads, **Then** the application parses the parameters, immediately initializes playback engine and timeline with the specified preset, BPM (95), accent (ON), and count-in (2), and persists this configuration to local storage.
+3. **Given** an incoming URL with a custom stroke pattern (e.g. `?strokes=d,-,d,u,-,u,d,u&sub=8th&bpm=85`), **When** the page loads, **Then** the application reconstructs the custom 8th-note pattern with the designated directional arrows and rests, setting BPM to 85.
+4. **Given** no query parameters are present in the URL, **When** the user visits the page, **Then** the application restores the user's last active pattern and preferences from local storage, or falls back to the default beginner preset if no storage exists.
+5. **Given** any invalid, out-of-range, or corrupted query parameters in the URL, **When** the page loads, **Then** the application gracefully clamps numerical values (BPM between 40 and 240) and falls back to safe defaults without crashing.
+
+---
+
 ### Edge Cases
 
 - **Tempo Extremes**: What happens when the user sets BPM to an extreme value (e.g., 30 BPM or 280 BPM)? The UI restricts tempo input to a musically practical range (40 - 240 BPM) with smooth slider steps and input validation.
@@ -124,6 +142,10 @@ As a rhythm student, I want the metronome to support configurable subdivisions (
 - **FR-024**: System MUST render real-time beat pulse indicators (4 dots in 4/4 time) synchronized with metronome downbeats, highlighting Beat 1 with accent emphasis.
 - **FR-025**: System MUST ensure Web Audio initialization is fully decoupled from SSR hydration, using a shared singleton audio context with synchronous gesture unlocking (silent buffer) to prevent silent playback on mobile/WebKit browsers.
 - **FR-026**: System MUST utilize a Dual Navigation Architecture: on desktop viewports (>= 768px), navigation between platform tools is hosted in the top header (PlatformHeader); on mobile/phone viewports (< 768px), top header navigation links are hidden to prevent horizontal overflow and replaced with a fixed bottom navigation bar (PlatformBottomNav) with thumb-friendly touch targets (>= 44x44px), active route highlighting, and safe-area inset accommodation.
+- **FR-027**: System MUST persist the user's active strumming pattern (preset selection or custom slot edits), tempo (BPM), subdivision unit, accent preference, strict alternation mode, and metronome subdivision in local storage, automatically restoring them upon return visits when no overriding query parameters are provided.
+- **FR-028**: System MUST support URL Query Parameters for configuring and deep-linking strumming setups, supporting parameters: `bpm` (40-240), `subdivision`/`sub` (`eighth`/`8th` or `sixteenth`/`16th`), `preset` (preset identifier), `strokes`/`pattern` (delimited stroke direction sequence `d`, `u`, `-`), `accent` (`1`/`0`), `countIn` (`0`-`3`), `metroSub` (`quarter`, `eighth`, `sixteenth`, `triplet`, `swing`), and `strict` (`1`/`0`).
+- **FR-029**: System MUST provide an accessible "Share / Copy Link" button that serializes the current active configuration into a URL, copies it to the system clipboard, and presents immediate visual confirmation ("¡Enlace copiado!" / "Link copied!") with graceful fallback when clipboard API is unavailable.
+- **FR-030**: When accessed via a URL containing query parameters, the system MUST parse and validate all parameters, apply them to initialize both the playback engine and the visual timeline, and update local storage so that shared practice configurations are preserved.
 
 ### Key Entities *(include if feature involves data)*
 

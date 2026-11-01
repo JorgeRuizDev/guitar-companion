@@ -142,4 +142,41 @@ describe("LookaheadScheduler", () => {
     expect(onBeatTick).toHaveBeenCalled();
     scheduler.dispose();
   });
+
+  it("maintains smooth continuous progress through the final slot without prematurely dropping to 0", async () => {
+    const scheduler = new LookaheadScheduler({
+      bpm: 120, // 120 BPM: quarter = 0.5s, measure = 2.0s, slot = 0.25s (8 slots)
+      pattern,
+      accentFirstBeat: true,
+      countInMeasures: 0,
+    });
+
+    await scheduler.start();
+
+    // @ts-expect-error accessing private property for testing
+    const audioHost = scheduler.audioHost;
+    // @ts-expect-error accessing private property for testing
+    const startTime = scheduler.measureStartTime;
+
+    // Advance time and scheduler in realistic 25ms steps up to slot 7 (1.875s)
+    let currentTime = startTime;
+    while (currentTime <= startTime + 1.875) {
+      currentTime += 0.025;
+      vi.spyOn(audioHost, "getCurrentTime").mockReturnValue(currentTime);
+      // @ts-expect-error accessing private method for testing
+      scheduler.scheduleEvents();
+    }
+
+    // At 1.875s in a 2.0s measure (93.75%), progress should be ~0.9375 (> 0.90) and NOT 0.0
+    const progressAtSlot7 = scheduler.getCurrentProgress();
+    expect(progressAtSlot7).toBeGreaterThan(0.9);
+    expect(progressAtSlot7).toBeLessThan(1.0);
+
+    // When time crosses 2.0s (measure start of measure 2), progress cleanly wraps to beginning
+    vi.spyOn(audioHost, "getCurrentTime").mockReturnValue(startTime + 2.05);
+    const progressMeasure2 = scheduler.getCurrentProgress();
+    expect(progressMeasure2).toBeLessThan(0.1);
+
+    scheduler.dispose();
+  });
 });

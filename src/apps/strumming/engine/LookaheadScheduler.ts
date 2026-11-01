@@ -263,6 +263,7 @@ export class LookaheadScheduler implements IPlaybackEngine {
     // If scheduling fell behind (e.g. background tab or frame lag), catch up smoothly
     if (this.nextEventTime < currentTime - 0.05) {
       this.nextEventTime = currentTime + 0.005;
+      this.measureStartTime = this.nextEventTime - (this.currentSlotIndex * this.getSlotDuration());
     }
 
     while (this.nextEventTime < horizon) {
@@ -286,7 +287,11 @@ export class LookaheadScheduler implements IPlaybackEngine {
           this.currentSlotIndex = (this.currentSlotIndex + 1) % this.pattern.slots.length;
           if (this.currentSlotIndex === 0) {
             this.completedMeasuresCount++;
-            this.measureStartTime = this.nextEventTime;
+            // Note: DO NOT set this.measureStartTime = this.nextEventTime here.
+            // nextEventTime is scheduled ahead of time (lookahead horizon).
+            // Setting measureStartTime into the future causes elapsed time to become negative,
+            // dropping progress to 0 prematurely while the last slot is still playing.
+            // (elapsed % measureDuration) / measureDuration naturally wraps smoothly at 100%.
             this.onMeasureComplete?.(this.completedMeasuresCount);
           }
         }

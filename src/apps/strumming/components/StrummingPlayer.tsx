@@ -18,56 +18,104 @@ import { beginnerPresets } from "../presets/beginnerPatterns";
 import { strummingStorage } from "../storage/strummingStorage";
 import { PresetSelector } from "./PresetSelector";
 import { PracticeTimer } from "./PracticeTimer";
+import { StrummingUrlConfig, parseStrummingParams } from "../domain/queryParams";
 
 export interface StrummingPlayerProps {
   initialPattern?: StrummingPattern;
+  initialConfig?: StrummingUrlConfig;
 }
 
 export const StrummingPlayer: React.FC<StrummingPlayerProps> = ({
   initialPattern = beginnerPresets[0],
+  initialConfig,
 }) => {
   // Pattern state
-  const [pattern, setPattern] = useState<StrummingPattern>(initialPattern);
+  const [pattern, setPattern] = useState<StrummingPattern>(initialConfig?.pattern || initialPattern);
   // Default strict alternating motion UDUD (item 1 from user request)
-  const [strictAlternation, setStrictAlternation] = useState<boolean>(true);
+  const [strictAlternation, setStrictAlternation] = useState<boolean>(
+    initialConfig?.strict !== undefined ? initialConfig.strict : true
+  );
 
   const engine = usePlaybackEngine({
-    initialBpm: 80,
-    initialPattern: pattern,
-    initialAccent: true,
-    initialCountIn: 1,
-    initialSubdivision: "quarter",
+    initialBpm: initialConfig?.bpm || 80,
+    initialPattern: initialConfig?.pattern || pattern,
+    initialAccent: initialConfig?.accent !== undefined ? initialConfig.accent : true,
+    initialCountIn: initialConfig?.countIn !== undefined ? initialConfig.countIn : 1,
+    initialSubdivision: initialConfig?.metroSub || "quarter",
   });
 
-  // Client-side initialization from localStorage after initial hydration
+  // Client-side initialization: Priority given to incoming URL query params, then localStorage fallback
   useEffect(() => {
-    const prefs = strummingStorage.getPreferences();
-    if (prefs.lastBpm) {
-      engine.setBpm(prefs.lastBpm);
-    }
-    if (typeof prefs.lastAccentFirstBeat === "boolean") {
-      engine.setAccentFirstBeat(prefs.lastAccentFirstBeat);
-    }
-    if (prefs.lastMetronomeSubdivision) {
-      engine.setMetronomeSubdivision(prefs.lastMetronomeSubdivision);
-    }
-    if (typeof prefs.strictAlternation === "boolean") {
-      setStrictAlternation(prefs.strictAlternation);
+    // 1. Resolve URL query parameters (from initialConfig or window.location.search)
+    let urlConfig = initialConfig;
+    if ((!urlConfig || Object.keys(urlConfig).length === 0) && typeof window !== "undefined" && window.location.search) {
+      urlConfig = parseStrummingParams(new URLSearchParams(window.location.search));
     }
 
-    // 1. Try restoring the exact last active pattern saved in localStorage
-    const lastActivePattern = strummingStorage.getLastActivePattern();
-    if (lastActivePattern) {
-      setPattern(lastActivePattern);
+    const hasUrlParams = urlConfig && Object.keys(urlConfig).length > 0;
+
+    if (hasUrlParams && urlConfig) {
+      // Apply URL configuration & persist to localStorage so it becomes the user's active setting
+      if (urlConfig.bpm) {
+        engine.setBpm(urlConfig.bpm);
+        strummingStorage.savePreferences({ lastBpm: urlConfig.bpm });
+      }
+      if (typeof urlConfig.accent === "boolean") {
+        engine.setAccentFirstBeat(urlConfig.accent);
+        strummingStorage.savePreferences({ lastAccentFirstBeat: urlConfig.accent });
+      }
+      if (urlConfig.countIn !== undefined) {
+        engine.setCountInMeasures(urlConfig.countIn);
+      }
+      if (urlConfig.metroSub) {
+        engine.setMetronomeSubdivision(urlConfig.metroSub);
+        strummingStorage.savePreferences({ lastMetronomeSubdivision: urlConfig.metroSub });
+      }
+      if (typeof urlConfig.strict === "boolean") {
+        setStrictAlternation(urlConfig.strict);
+        strummingStorage.savePreferences({ strictAlternation: urlConfig.strict });
+      }
+      if (urlConfig.pattern) {
+        setPattern(urlConfig.pattern);
+        strummingStorage.saveLastActivePattern(urlConfig.pattern);
+        if (!urlConfig.pattern.isPreset) {
+          strummingStorage.saveCustomPattern(urlConfig.pattern);
+        }
+        strummingStorage.savePreferences({
+          lastPatternId: urlConfig.pattern.id,
+          lastSubdivision: urlConfig.pattern.subdivision,
+        });
+      }
     } else {
-      // 2. Fallback to custom patterns or beginner presets
-      const customPatterns = strummingStorage.getCustomPatterns();
-      const savedPattern =
-        [...customPatterns, ...beginnerPresets].find((p) => p.id === prefs.lastPatternId) ||
-        beginnerPresets[0];
+      // No URL parameters: restore previous session preferences & last active pattern from localStorage
+      const prefs = strummingStorage.getPreferences();
+      if (prefs.lastBpm) {
+        engine.setBpm(prefs.lastBpm);
+      }
+      if (typeof prefs.lastAccentFirstBeat === "boolean") {
+        engine.setAccentFirstBeat(prefs.lastAccentFirstBeat);
+      }
+      if (prefs.lastMetronomeSubdivision) {
+        engine.setMetronomeSubdivision(prefs.lastMetronomeSubdivision);
+      }
+      if (typeof prefs.strictAlternation === "boolean") {
+        setStrictAlternation(prefs.strictAlternation);
+      }
 
-      if (savedPattern) {
-        setPattern(savedPattern);
+      // Try restoring the exact last active pattern saved in localStorage
+      const lastActivePattern = strummingStorage.getLastActivePattern();
+      if (lastActivePattern) {
+        setPattern(lastActivePattern);
+      } else {
+        // Fallback to custom patterns or beginner presets
+        const customPatterns = strummingStorage.getCustomPatterns();
+        const savedPattern =
+          [...customPatterns, ...beginnerPresets].find((p) => p.id === prefs.lastPatternId) ||
+          beginnerPresets[0];
+
+        if (savedPattern) {
+          setPattern(savedPattern);
+        }
       }
     }
   }, []);
@@ -237,6 +285,14 @@ export const StrummingPlayer: React.FC<StrummingPlayerProps> = ({
         onSelectPreset={handleSelectPreset}
         onSubdivisionChange={handleSubdivisionChange}
         onToggleStrictAlternation={handleToggleStrictAlternation}
+        shareProps={{
+          pattern,
+          bpm: engine.bpm,
+          accent: engine.accentFirstBeat,
+          countIn: engine.countInMeasures,
+          metroSub: engine.metronomeSubdivision,
+          strict: strictAlternation,
+        }}
       />
 
       {/* Visual Timeline with Top-Right Alternation / Free Mode Toggle (US1) */}

@@ -1,7 +1,8 @@
 import React from "react";
-import { StrummingPattern, SubdivisionUnit } from "../types";
+import { StrummingPattern, SubdivisionUnit, MetronomeSubdivision } from "../types";
 import { beginnerPresets } from "../presets/beginnerPatterns";
 import { ListMusic, Layers } from "lucide-react";
+import { ShareConfigButton } from "./ShareConfigButton";
 
 export interface PresetSelectorProps {
   activePatternId: string;
@@ -10,6 +11,14 @@ export interface PresetSelectorProps {
   onSelectPreset: (pattern: StrummingPattern) => void;
   onSubdivisionChange: (subdivision: SubdivisionUnit) => void;
   onToggleStrictAlternation: () => void;
+  shareProps?: {
+    pattern: StrummingPattern;
+    bpm: number;
+    accent: boolean;
+    countIn: 0 | 1 | 2 | 3;
+    metroSub: MetronomeSubdivision;
+    strict: boolean;
+  };
 }
 
 export const PresetSelector: React.FC<PresetSelectorProps> = ({
@@ -19,6 +28,7 @@ export const PresetSelector: React.FC<PresetSelectorProps> = ({
   onSelectPreset,
   onSubdivisionChange,
   onToggleStrictAlternation,
+  shareProps,
 }) => {
   const isCustom = !beginnerPresets.some((p) => p.id === activePatternId);
 
@@ -57,8 +67,8 @@ export const PresetSelector: React.FC<PresetSelectorProps> = ({
         </div>
       </div>
 
-      {/* Right side controls: Alternation toggle & Subdivision selection */}
-      <div className="flex flex-wrap items-center justify-between sm:justify-end gap-3 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-800/80">
+      {/* Right side controls: Alternation toggle, Subdivision selection & Share Button */}
+      <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2.5 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-800/80">
         {/* Discreet toggle: Alternating UDUD vs Free-form */}
         <button
           type="button"
@@ -83,15 +93,11 @@ export const PresetSelector: React.FC<PresetSelectorProps> = ({
         </button>
 
         {/* Subdivision Toggle: 8th vs 16th */}
-        <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-400">
-          <Layers className="w-3.5 h-3.5 text-slate-400" />
-          <span>Division:</span>
-        </div>
         <div className="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800">
           <button
             type="button"
             onClick={() => onSubdivisionChange("eighth")}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all min-h-[38px] flex items-center justify-center cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all min-h-[34px] flex items-center justify-center cursor-pointer ${
               activeSubdivision === "eighth"
                 ? "bg-amber-500 text-slate-950 shadow-md"
                 : "text-slate-400 hover:text-white"
@@ -102,7 +108,7 @@ export const PresetSelector: React.FC<PresetSelectorProps> = ({
           <button
             type="button"
             onClick={() => onSubdivisionChange("sixteenth")}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all min-h-[38px] flex items-center justify-center cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all min-h-[34px] flex items-center justify-center cursor-pointer ${
               activeSubdivision === "sixteenth"
                 ? "bg-amber-500 text-slate-950 shadow-md"
                 : "text-slate-400 hover:text-white"
@@ -111,6 +117,9 @@ export const PresetSelector: React.FC<PresetSelectorProps> = ({
             16th
           </button>
         </div>
+
+        {/* Share / Copy URL Button */}
+        {shareProps && <ShareConfigButton {...shareProps} />}
       </div>
     </div>
   );

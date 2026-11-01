@@ -49,7 +49,6 @@ export const VisualTimeline: React.FC<VisualTimelineProps> = ({
 
   return (
     <div
-      ref={containerRef}
       className="relative w-full rounded-2xl bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 p-3 sm:p-5 pt-7 sm:pt-8 min-h-[148px] sm:min-h-[168px] shadow-2xl overflow-hidden select-none"
     >
       {/* Top-Right Mode Toggle Icon: Alternating D/U vs Free Direction (e.g. DDDU) */}
@@ -97,35 +96,37 @@ export const VisualTimeline: React.FC<VisualTimelineProps> = ({
         <div className="fretboard-string top-[80%]" />
       </div>
 
-      {/* Grid of Beat Slots */}
-      <div
-        className="relative z-10 grid gap-1 sm:gap-2 w-full"
-        style={{
-          gridTemplateColumns: `repeat(${pattern.slots.length}, minmax(0, 1fr))`,
-        }}
-      >
-        {pattern.slots.map((slot) => (
-          <BeatSlotBlock
-            key={slot.index}
-            slot={slot}
-            onClick={onSlotClick}
-            isInteractive={isInteractive}
-          />
-        ))}
-      </div>
+      {/* Grid of Beat Slots with Playhead Track */}
+      <div ref={containerRef} className="relative z-10 w-full">
+        <div
+          className="grid gap-1 sm:gap-2 w-full"
+          style={{
+            gridTemplateColumns: `repeat(${pattern.slots.length}, minmax(0, 1fr))`,
+          }}
+        >
+          {pattern.slots.map((slot) => (
+            <BeatSlotBlock
+              key={slot.index}
+              slot={slot}
+              onClick={onSlotClick}
+              isInteractive={isInteractive}
+            />
+          ))}
+        </div>
 
-      {/* 60/120 FPS GPU Accelerated Playhead Line */}
-      <div
-        ref={playheadRef}
-        aria-hidden="true"
-        className="absolute top-0 bottom-0 left-0 w-1 pointer-events-none z-20 will-change-transform"
-        style={{
-          transform: "translate3d(0px, 0, 0)",
-        }}
-      >
-        <div className="w-full h-full bg-cyan-400 shadow-[0_0_12px_#06b6d4,0_0_24px_#06b6d4]" />
-        <div className="absolute -top-1 -left-1.5 w-4 h-4 rounded-full bg-cyan-300 border-2 border-cyan-500 shadow-md" />
-        <div className="absolute -bottom-1 -left-1.5 w-4 h-4 rounded-full bg-cyan-300 border-2 border-cyan-500 shadow-md" />
+        {/* 60/120 FPS GPU Accelerated Playhead Line */}
+        <div
+          ref={playheadRef}
+          aria-hidden="true"
+          className="absolute -top-3 -bottom-3 left-0 w-1 pointer-events-none z-20 will-change-transform"
+          style={{
+            transform: "translate3d(0px, 0, 0)",
+          }}
+        >
+          <div className="w-full h-full bg-cyan-400 shadow-[0_0_12px_#06b6d4,0_0_24px_#06b6d4]" />
+          <div className="absolute -top-1 -left-1.5 w-4 h-4 rounded-full bg-cyan-300 border-2 border-cyan-500 shadow-md" />
+          <div className="absolute -bottom-1 -left-1.5 w-4 h-4 rounded-full bg-cyan-300 border-2 border-cyan-500 shadow-md" />
+        </div>
       </div>
 
       {/* Count-In Overlay */}

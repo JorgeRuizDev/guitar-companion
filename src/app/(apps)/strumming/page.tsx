@@ -1,8 +1,16 @@
 import { StrummingPlayer } from "@/apps/strumming/components/StrummingPlayer";
 import { beginnerPresets } from "@/apps/strumming/presets/beginnerPatterns";
+import { parseStrummingParams } from "@/apps/strumming/domain/queryParams";
 import { Music, Zap, Sliders, CheckCircle2 } from "lucide-react";
 
-export default function StrummingTrainerPage() {
+interface PageProps {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+}
+
+export default async function StrummingTrainerPage({ searchParams }: PageProps) {
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
+  const initialConfig = parseStrummingParams(resolvedSearchParams);
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 sm:py-12 space-y-10">
       {/* Educational Header & Intro */}
@@ -20,7 +28,10 @@ export default function StrummingTrainerPage() {
       </div>
 
       {/* Main Interactive Single-Page Player */}
-      <StrummingPlayer initialPattern={beginnerPresets[0]} />
+      <StrummingPlayer
+        initialPattern={initialConfig.pattern || beginnerPresets[0]}
+        initialConfig={initialConfig}
+      />
 
       {/* Educational Guide & Reference */}
       <section className="border-t border-slate-800/80 pt-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-slate-300">

@@ -20,6 +20,7 @@ export const TRANSLATIONS: Record<Language, TranslationDictionary> = {
     },
     footer: {
       tagline: 'Guitar Companion Platform • Real-time interactive tools for guitarists.',
+      github: 'GitHub',
     },
     common: {
       language: 'Language',
@@ -41,6 +42,7 @@ export const TRANSLATIONS: Record<Language, TranslationDictionary> = {
     },
     footer: {
       tagline: 'Plataforma Guitar Companion • Herramientas interactivas en tiempo real para guitarristas.',
+      github: 'GitHub',
     },
     common: {
       language: 'Idioma',

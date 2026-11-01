@@ -19,6 +19,7 @@ export interface TranslationDictionary {
   };
   footer: {
     tagline: string;
+    github: string;
   };
   common: {
     language: string;

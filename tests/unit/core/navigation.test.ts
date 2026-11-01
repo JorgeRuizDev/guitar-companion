@@ -14,6 +14,10 @@ describe('Navigation System & Dual-Layout Architecture', () => {
       expect(nav.noteTrainerShort).toBeDefined();
       expect(nav.chordTrainerShort).toBeDefined();
       expect(nav.mobileNavLabel).toBeDefined();
+
+      const footer = TRANSLATIONS[lang].footer;
+      expect(footer.tagline).toBeDefined();
+      expect(footer.github).toBe('GitHub');
     }
   });
 
