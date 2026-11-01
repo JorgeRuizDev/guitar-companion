@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Music2, BookOpen } from 'lucide-react';
+import { Home, Music2, BookOpen, Layers } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export const PlatformBottomNav: React.FC = () => {
@@ -20,6 +20,8 @@ export const PlatformBottomNav: React.FC = () => {
     pathname === '/strumming' || pathname?.startsWith('/strumming/');
   const isNoteTrainerActive =
     pathname === '/basic-note-trainer' || pathname?.startsWith('/basic-note-trainer/');
+  const isChordTrainerActive =
+    pathname === '/basic-chord-trainer' || pathname?.startsWith('/basic-chord-trainer/');
 
   const navItems = [
     {
@@ -42,6 +44,13 @@ export const PlatformBottomNav: React.FC = () => {
       shortLabel: t.nav.noteTrainerShort,
       icon: BookOpen,
       isActive: isNoteTrainerActive,
+    },
+    {
+      href: '/basic-chord-trainer',
+      label: t.nav.chordTrainer,
+      shortLabel: t.nav.chordTrainerShort,
+      icon: Layers,
+      isActive: isChordTrainerActive,
     },
   ];
 

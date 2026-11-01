@@ -10,8 +10,10 @@ export interface TranslationDictionary {
     home: string;
     strumming: string;
     noteTrainer: string;
+    chordTrainer: string;
     strummingShort: string;
     noteTrainerShort: string;
+    chordTrainerShort: string;
     brand: string;
     mobileNavLabel: string;
   };

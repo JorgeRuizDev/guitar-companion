@@ -19,6 +19,8 @@ export const PlatformHeader: React.FC = () => {
     pathname === '/strumming' || pathname?.startsWith('/strumming/');
   const isNoteTrainerActive =
     pathname === '/basic-note-trainer' || pathname?.startsWith('/basic-note-trainer/');
+  const isChordTrainerActive =
+    pathname === '/basic-chord-trainer' || pathname?.startsWith('/basic-chord-trainer/');
 
   return (
     <header className="border-b border-slate-800/80 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40 w-full">
@@ -60,6 +62,16 @@ export const PlatformHeader: React.FC = () => {
               }`}
             >
               {t.nav.noteTrainer}
+            </Link>
+            <Link
+              href="/basic-chord-trainer"
+              className={`text-sm font-medium px-3 py-2 rounded-lg transition-all min-h-[44px] flex items-center whitespace-nowrap ${
+                isChordTrainerActive
+                  ? 'bg-slate-800 text-amber-400 font-semibold shadow-inner'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+              }`}
+            >
+              {t.nav.chordTrainer}
             </Link>
           </nav>
 

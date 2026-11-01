@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { ArrowRight, Music2, Clock, Sparkles, BookOpen } from "lucide-react";
+import { ArrowRight, Music2, Clock, Sparkles, BookOpen, Layers } from "lucide-react";
 import { useLanguage } from "@/core/i18n/LanguageContext";
 
 export default function PlatformHomePage() {
@@ -88,30 +88,35 @@ export default function PlatformHomePage() {
           </div>
         </Link>
 
-        {/* Coming Soon: Fretboard Navigator */}
-        <div className="p-6 sm:p-8 rounded-2xl bg-slate-900/40 border border-slate-800/50 flex flex-col justify-between opacity-75">
+        {/* App 003: Basic Chord Trainer */}
+        <Link
+          href="/basic-chord-trainer"
+          className="group relative p-6 sm:p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 hover:bg-slate-800/80 transition-all duration-200 flex flex-col justify-between shadow-xl shadow-black/40 min-h-[44px]"
+        >
           <div className="space-y-4">
-            <div className="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-500">
-              <Clock className="w-6 h-6" />
+            <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
+              <Layers className="w-6 h-6" />
             </div>
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                {isEs ? 'Próximamente' : 'Coming Soon'}
+              <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
+                {isEs ? 'Aplicación 003' : 'Application 003'}
               </span>
-              <h2 className="text-2xl font-bold text-slate-400 mt-1">
-                {isEs ? 'Navegador del Diapasón' : 'Fretboard Navigator'}
+              <h2 className="text-2xl font-bold text-white group-hover:text-amber-300 transition-colors mt-1">
+                {isEs ? 'Entrenador de Acordes' : 'Basic Chord Trainer'}
               </h2>
             </div>
-            <p className="text-sm text-slate-500 leading-relaxed">
+            <p className="text-sm text-slate-400 leading-relaxed">
               {isEs
-                ? 'Visualización interactiva para escalas, tríadas e intervalos en todas las afinaciones de guitarra y posiciones CAGED.'
-                : 'Interactive visualization for scales, triads, and intervals across all guitar tunings and CAGED positions.'}
+                ? 'Domina los 22 acordes abiertos esenciales en la guitarra con notación dual (anglosajona y solfeo europeo), dibujo interactivo en diapasón y reconocimiento rápido.'
+                : 'Master 22 essential beginner open guitar chords with dual notation (Anglo-Saxon and European Solfège), interactive fretboard drawing, and rapid recognition drills.'}
             </p>
           </div>
-          <div className="mt-8 text-xs font-medium text-slate-600">
-            {isEs ? 'En desarrollo' : 'In Development'}
+
+          <div className="mt-8 flex items-center gap-2 text-sm font-semibold text-amber-400 group-hover:translate-x-1 transition-transform">
+            <span>{isEs ? 'Abrir Entrenador' : 'Launch Trainer'}</span>
+            <ArrowRight className="w-4 h-4" />
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
