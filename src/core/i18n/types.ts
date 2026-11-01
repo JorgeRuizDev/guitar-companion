@@ -7,9 +7,13 @@ export type Language = 'en' | 'es';
 
 export interface TranslationDictionary {
   nav: {
+    home: string;
     strumming: string;
     noteTrainer: string;
+    strummingShort: string;
+    noteTrainerShort: string;
     brand: string;
+    mobileNavLabel: string;
   };
   footer: {
     tagline: string;

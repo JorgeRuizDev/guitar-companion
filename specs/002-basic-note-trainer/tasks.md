@@ -107,7 +107,7 @@
 - [x] T022 [P] [US4] Implement query parameters parser in `src/apps/basic-note-trainer/domain/queryParams.ts` handling `mode`, `direction`, `difficulty`, and `embed`
 - [x] T023 [P] [US4] Implement live progress bar component in `src/apps/basic-note-trainer/components/LiveProgressBar.tsx` showing Okeys, Failures, Streak, and Accuracy % in both standalone and embed views
 - [x] T024 [P] [US4] Implement host postMessage bridge hook in `src/apps/basic-note-trainer/hooks/usePostMessageBridge.ts` dispatching `NOTE_TRAINER_ANSWER` and `NOTE_TRAINER_PROGRESS` events to `window.parent`
-- [x] T025 [US4] Implement embed mode layout branch in `src/app/(apps)/basic-note-trainer/page.tsx` and `src/app/(apps)/basic-note-trainer/layout.tsx` suppressing platform header/footer when `embed=true`
+- [x] T025 [US4] Implement embed mode layout branch in `src/app/(apps)/basic-note-trainer/page.tsx` and `src/app/(apps)/basic-note-trainer/layout.tsx` suppressing platform header/footer and bottom navigation when `embed=true`
 
 **Checkpoint**: All user stories complete, including deep linking and web-view embedding
 

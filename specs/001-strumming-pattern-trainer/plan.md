@@ -34,7 +34,7 @@ The technical architecture adopts **Next.js 15+ (App Router)** with a **Multi-Ap
 | :--- | :--- | :---: |
 | **I. Arquitectura Multi-Aplicación** | Application code is isolated in `src/apps/strumming/` and routes in `src/app/(apps)/strumming/`, consuming only shared primitives from `src/core/`. Adding or removing this app has zero impact on future sibling apps. | **PASS** |
 | **II. SEO-First Obligatorio** | App route uses Next.js Server Components with `generateMetadata`, delivering full semantic HTML, Open Graph tags, canonical URL, and Schema.org JSON-LD markup on initial crawlable response. | **PASS** |
-| **III. Mobile-First & Desktop** | Tailwind CSS mobile-first styling (`min-width` expansion), touch targets $\ge 44\times 44$px, Screen Wake Lock integration, and desktop layout enrichment. | **PASS** |
+| **III. Mobile-First & Desktop** | Tailwind CSS mobile-first styling (`min-width` expansion), touch targets $\ge 44\times 44$px, Screen Wake Lock integration, Dual Navigation Architecture (desktop top header vs mobile fixed bottom navigation bar avoiding top overflow), and desktop layout enrichment. | **PASS** |
 | **IV. Modelo Centrado en Usuario (Zero-Mock UI)** | Anonymous guest mode operates completely without fake login badges, fictitious profile avatars, or non-functional logout menus. Storage schema records `ownerId: null` for cloud sync migration readiness. | **PASS** |
 | **V. Simplicidad y Rendimiento** | YAGNI strictly observed: zero third-party audio libraries (Tone.js / Howler.js omitted in favor of ~100 lines of native Web Audio synth); GPU-accelerated playhead bypasses React Virtual DOM re-renders. | **PASS** |
 

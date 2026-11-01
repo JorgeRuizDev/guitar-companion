@@ -138,6 +138,7 @@ As a Spanish-speaking guitarist or music learner, I want to switch the applicati
 - **FR-014**: System MUST synchronize language configuration bi-directionally: URL query parameter `lang` takes immediate precedence on initial page load, and subsequent UI language toggle selections update client context and persist to local storage.
 - **FR-015**: In embed mode (`embed=true` or `/basic-note-trainer/embed`), the system MUST suppress the UI language selector and platform chrome, rendering strictly the exercise configured via query parameters or inherited defaults.
 - **FR-016**: System MUST provide a compact mode (`compact=true`) that caps the entire widget vertical height to <= 410px by transitioning pedagogical explanations in-place within the primary card footprint and utilizing a slimline progress bar.
+- **FR-017**: System MUST support Dual Navigation Architecture in standalone mode: desktop viewports (>= 768px) display top navbar links in the header, while phone/mobile viewports (< 768px) hide top navbar links to eliminate horizontal overflow and instead provide an ergonomic fixed bottom navigation bar (PlatformBottomNav) with touch targets >= 44x44px. In embed mode, both header and bottom navigation bars MUST be completely suppressed.
 
 ### Key Entities
 
@@ -182,6 +183,7 @@ As a Spanish-speaking guitarist or music learner, I want to switch the applicati
 - **SC-006**: When loaded with `embed=true` or via `/basic-note-trainer/embed`, the interface renders with zero navigation header/footer clutter and no UI language switcher, consuming 100% of the host iframe or web-view container cleanly.
 - **SC-007**: 100% of educational content (questions, answers, hints, explanations, mnemonics) is accurately rendered in the selected language (`en` or `es`).
 - **SC-008**: In embed mode, the entire exercise including error recovery explanations and "Next Card" action fits within a standard 410px height container without requiring vertical scrolling.
+- **SC-009**: On mobile/phone viewports (< 768px), the top navbar maintains 0px horizontal overflow with tool links replaced by the dedicated mobile bottom navigation bar (PlatformBottomNav).
 
 ## Assumptions
 

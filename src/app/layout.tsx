@@ -3,6 +3,7 @@ import "./globals.css";
 import { LanguageProvider } from "@/core/i18n/LanguageContext";
 import { PlatformHeader } from "@/core/ui/PlatformHeader";
 import { PlatformFooter } from "@/core/ui/PlatformFooter";
+import { PlatformBottomNav } from "@/core/ui/PlatformBottomNav";
 
 export const metadata: Metadata = {
   title: "Guitar Companion | Interactive Web Tools for Guitarists",
@@ -29,8 +30,9 @@ export default function RootLayout({
       >
         <LanguageProvider>
           <PlatformHeader />
-          <main className="flex-1 flex flex-col">{children}</main>
+          <main className="flex-1 flex flex-col pb-16 md:pb-0">{children}</main>
           <PlatformFooter />
+          <PlatformBottomNav />
         </LanguageProvider>
       </body>
     </html>

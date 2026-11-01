@@ -22,9 +22,14 @@ Cada aplicación y página pública indexable DEBE estar diseñada y renderizada
 La experiencia de usuario DEBE diseñarse y codificarse priorizando dispositivos móviles como base estructural obligatoria.
 - La maquetación, diseño de interacción y estilos CSS DEBEN comenzar en viewports móviles reducidos (a partir de 320px). Las hojas de estilo base DEBEN ser móviles y escalar progresivamente a escritorios mediante media queries de ampliación (`min-width`).
 - Los elementos interactivos en vista móvil DEBEN garantizar áreas táctiles seguras y accesibles (mínimo 44x44px con márgenes adecuados).
+- **Arquitectura de Navegación Dual (Dual Navigation Architecture)**:
+  - En dispositivos móviles y teléfonos (pantallas `< 768px` / `md`), la barra de navegación superior (*PlatformHeader*) NO DEBE albergar enlaces horizontales que puedan provocar desbordamientos (*overflow*), roturas de línea o solapamientos visuales. En teléfonos, la cabecera superior se limita a la identidad de marca y el selector de idioma.
+  - La navegación entre herramientas en teléfonos DEBE resolverse mediante un sistema de navegación específico para móviles: una barra de navegación inferior fija (*PlatformBottomNav* / *Bottom Tab Bar*) con iconos táctiles ergonómicos, etiquetas breves localizadas, indicador visual de ruta activa y soporte para zonas seguras (`safe-area-inset-bottom`).
+  - En vistas de escritorio (`md` y superiores), los enlaces de navegación horizontal se presentan de forma expandida en la cabecera superior y la barra inferior se oculta.
+  - En modos embebidos (`embed=true` o rutas `/embed`), tanto la cabecera superior como la navegación inferior deben suprimirse íntegramente.
 - El soporte en escritorio DEBE ser de primera categoría: no debe consistir en un simple escalado o estiramiento de la interfaz móvil, sino en una adaptación enriquecida que aproveche layouts multicolumna, navegación expandida, atajos de teclado y estados hover ergonómicos.
 - El rendimiento en redes móviles DEBE cumplir con los umbrales de Core Web Vitals (LCP < 2.5s, INP < 200ms, CLS < 0.1) como criterio indispensable de aceptación.
-*Rationale*: La mayoría de los músicos consultan utilidades e interfaces web desde teléfonos mientras sostienen su instrumento, pero los usuarios de escritorio demandan una experiencia de trabajo cómoda, rica y ergonómica.
+*Rationale*: La mayoría de los músicos consultan utilidades e interfaces web desde teléfonos mientras sostienen su instrumento, pero los usuarios de escritorio demandan una experiencia de trabajo cómoda, rica y ergonómica. Una barra de navegación inferior es mucho más accesible al pulgar y evita desbordamientos en pantallas pequeñas.
 
 ### IV. Modelo Centrado en el Usuario sin Simulación de UI (Zero-Mock UI)
 La arquitectura de datos DEBE estar concebida y modelada alrededor de la identidad del usuario, mientras que la interfaz de usuario DEBE permanecer estrictamente honesta y limpia.
@@ -71,4 +76,4 @@ Toda la interfaz de usuario, textos informativos, etiquetas, controles interacti
   - **PATCH**: Correcciones ortográficas, mejoras de redacción, precisiones terminológicas o refinamientos no semánticos.
 - **Revisiones de Cumplimiento**: Todas las especificaciones, planes y revisiones de código DEBEN validar activamente la conformidad con las directrices aquí ratificadas.
 
-**Version**: 1.1.0 | **Ratified**: 2026-10-31 | **Last Amended**: 2026-11-01
+**Version**: 1.2.0 | **Ratified**: 2026-10-31 | **Last Amended**: 2026-11-01

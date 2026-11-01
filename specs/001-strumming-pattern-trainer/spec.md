@@ -90,6 +90,7 @@ As a rhythm student, I want the metronome to support configurable subdivisions (
 - **Tempo Extremes**: What happens when the user sets BPM to an extreme value (e.g., 30 BPM or 280 BPM)? The UI restricts tempo input to a musically practical range (40 - 240 BPM) with smooth slider steps and input validation.
 - **Silent Mode / Audio Context Restrictions**: How does the system handle browser environments where audio autoplay is blocked until user interaction? Playback controls clearly prompt the user to tap/click before starting audio, with visual fallback playhead moving smoothly even if audio device is muted.
 - **Window Resizing & Screen Rotation**: How does the visual timeline behave when switching from mobile portrait (320px) to landscape or desktop? The timeline responsive container adjusts block proportions gracefully, maintaining playhead alignment with zero drift or visual clipping.
+- **Mobile Navigation and Header Sizing**: On mobile/phone viewports (< 768px), the top navbar MUST NOT overflow horizontally or clip items; platform tool links are hidden from the top header and replaced with a dedicated mobile bottom navigation bar (PlatformBottomNav) providing thumb-friendly switching between tools without obscuring interactive controls.
 - **All-Empty Pattern**: What happens if the user configures all beat slots as Empty? The metronome continues clicking according to the time signature and BPM, while the playhead sweeps across blank blocks without producing strum actions.
 - **Rapid Subdivision Switching**: What happens if the subdivision format is changed while looping? The engine safely pauses playback, recalculates slot allocations, and resets the playhead to beat 1 to prevent timing anomalies.
 
@@ -122,6 +123,7 @@ As a rhythm student, I want the metronome to support configurable subdivisions (
 - **FR-023**: System MUST provide an interactive Tap Tempo ("TAP") control that computes and sets the BPM based on user tap intervals clamped between 40 and 240 BPM.
 - **FR-024**: System MUST render real-time beat pulse indicators (4 dots in 4/4 time) synchronized with metronome downbeats, highlighting Beat 1 with accent emphasis.
 - **FR-025**: System MUST ensure Web Audio initialization is fully decoupled from SSR hydration, using a shared singleton audio context with synchronous gesture unlocking (silent buffer) to prevent silent playback on mobile/WebKit browsers.
+- **FR-026**: System MUST utilize a Dual Navigation Architecture: on desktop viewports (>= 768px), navigation between platform tools is hosted in the top header (PlatformHeader); on mobile/phone viewports (< 768px), top header navigation links are hidden to prevent horizontal overflow and replaced with a fixed bottom navigation bar (PlatformBottomNav) with thumb-friendly touch targets (>= 44x44px), active route highlighting, and safe-area inset accommodation.
 
 ### Key Entities *(include if feature involves data)*
 

@@ -40,7 +40,7 @@
 - [X] T012 Implement LookaheadScheduler in src/apps/strumming/engine/LookaheadScheduler.ts using a 25ms polling loop and 100ms lookahead window with zero clock drift for bpm clamped between 40 and 240 and countInMeasures in [0, 1, 2, 3]
 - [X] T013 [P] Implement unit tests for LookaheadScheduler in tests/unit/strumming/LookaheadScheduler.test.ts verifying sub-ms event calculation, tempo adjustments, and count-in transitions
 - [X] T014 [P] Implement AnimationDriver in src/apps/strumming/engine/AnimationDriver.ts calling requestAnimationFrame and calculating progress in under 0.1ms without heap allocations
-- [X] T015 Implement root layout and platform landing page in src/app/layout.tsx and src/app/page.tsx maintaining Multi-App navigation without fake user profiles
+- [X] T015 Implement root layout and platform landing page in src/app/layout.tsx and src/app/page.tsx maintaining Multi-App Dual Navigation Architecture (desktop header vs mobile fixed bottom nav bar) without fake user profiles
 - [X] T016 Implement SEO-optimized layout and metadata in src/app/(apps)/strumming/layout.tsx and src/app/(apps)/strumming/opengraph-image.tsx delivering server-rendered semantic tags and Open Graph data
 
 **Checkpoint**: Foundation ready - audio engine, storage, and shared UI primitives ready for user story integration.
