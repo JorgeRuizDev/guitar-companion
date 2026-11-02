@@ -513,18 +513,14 @@ export const StrummingPlayer: React.FC<StrummingPlayerProps> = ({
         }}
       />
 
-      {/* Visual Timeline with Top-Right Alternation / Free Mode Toggle (US1) */}
+      {/* Visual Timeline (US1) */}
       <VisualTimeline
         pattern={pattern}
         animationDriver={engine.animationDriver}
         isCountingIn={engine.isCountingIn}
         countInBeatRemaining={engine.countInBeatRemaining}
         totalCountInBeats={engine.totalCountInBeats}
-        strictAlternation={strictAlternation}
-        onToggleStrictAlternation={handleToggleStrictAlternation}
         onSlotClick={handleSlotClick}
-        onAddSlot={handleAddSlot}
-        onRemoveSlot={handleRemoveSlot}
         isInteractive={true}
       />
 
