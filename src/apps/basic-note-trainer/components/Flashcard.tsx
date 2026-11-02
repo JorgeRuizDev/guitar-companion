@@ -4,6 +4,7 @@ import React from 'react';
 import { FlashcardQuestion, CardStatus, Language } from '../types';
 import { OptionButton } from './OptionButton';
 import { Lightbulb, ArrowRight, BookOpen, CheckCircle } from 'lucide-react';
+import { ChromaticScaleVisualizer } from './ChromaticScaleVisualizer';
 
 export interface FlashcardProps {
   card: FlashcardQuestion;
@@ -74,15 +75,25 @@ export const Flashcard: React.FC<FlashcardProps> = ({
           </span>
         </div>
 
-        {/* Theoretical Explanation */}
+        {/* Theoretical Explanation with Pre-Line Formatting */}
         <div className="w-full space-y-1 text-left mb-2.5">
           <div className="flex items-start gap-2">
             <BookOpen className="w-4 h-4 text-neutral-400 mt-0.5 shrink-0" />
-            <p className="text-xs sm:text-sm text-neutral-200 leading-snug">
+            <div className="text-xs sm:text-sm text-neutral-200 leading-snug whitespace-pre-line font-sans">
               {card.explanation}
-            </p>
+            </div>
           </div>
         </div>
+
+        {/* Visual Chromatic Scale Map */}
+        {card.category !== 'translation' && (
+          <ChromaticScaleVisualizer
+            highlightNote={card.noteReference}
+            lang={lang}
+            compact={true}
+            className="mb-2.5"
+          />
+        )}
 
         {/* Mnemonic Banner */}
         <div className="w-full px-3 py-2 rounded-xl bg-amber-950/30 border border-amber-800/40 text-amber-200 text-xs sm:text-sm font-medium flex items-center gap-2 mb-3">

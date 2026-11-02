@@ -76,7 +76,7 @@ export default async function Image() {
             margin: 0,
           }}
         >
-          Master Anglo-Saxon (A-G) and European Solfège (Do-Si) translations, chromatic accidentals, and natural semitones.
+          Master Anglo-Saxon (A-G) and Solfège (Do-Si) translations, chromatic accidentals, and natural semitones.
         </p>
 
         <div

@@ -194,3 +194,61 @@ export function getAccidentalPedagogy(
 ) {
   return lang === 'es' ? ACCIDENTAL_MNEMONICS_ES[key] : ACCIDENTAL_MNEMONICS_EN[key];
 }
+
+/**
+ * Formats a visual 12-pitch chromatic scale representation to include in card explanations.
+ * Visually distinguishes natural semitones (E-F and B-C) from whole tones with accidentals (#/b).
+ */
+export function getVisualScaleExplanation(lang: Language = 'es', focusNote?: string): string {
+  const isEs = lang === 'es';
+
+  if (isEs) {
+    let focusTip = '';
+    if (focusNote) {
+      if (focusNote === 'B' || focusNote === 'C') {
+        focusTip = `\n📌 Nota destacada: Si (B) y Do (C) son semitono natural contiguo (1 traste, sin alteración intermedia).`;
+      } else if (focusNote === 'E' || focusNote === 'F') {
+        focusTip = `\n📌 Nota destacada: Mi (E) y Fa (F) son semitono natural contiguo (1 traste, sin alteración intermedia).`;
+      } else {
+        focusTip = `\n📌 Nota destacada: ${focusNote} tiene sostenido (#) y bemol (b) a su alrededor al estar separada por 1 tono entero (2 trastes).`;
+      }
+    }
+
+    return [
+      '🎼 Escala cromática completa (12 notas en orden):',
+      '• Con sostenidos (#): C ➔ C# ➔ D ➔ D# ➔ [E ➔ F] ➔ F# ➔ G ➔ G# ➔ A ➔ A# ➔ [B ➔ C]',
+      '• Con bemoles (b):    C ➔ Db ➔ D ➔ Eb ➔ [E ➔ F] ➔ Gb ➔ G ➔ Ab ➔ A ➔ Bb ➔ [B ➔ C]',
+      '• En solfeo:          Do ➔ Do#/Reb ➔ Re ➔ Re#/Mib ➔ [Mi ➔ Fa] ➔ Fa#/Solb ➔ Sol ➔ Sol#/Lab ➔ La ➔ La#/Sib ➔ [Si ➔ Do]',
+      '',
+      '💡 Regla visual imprescindible:',
+      'Las dos únicas parejas SIN alteración (# ni b) intermedia son:',
+      '👉 Mi - Fa (E - F)',
+      '👉 Si - Do (B - C)',
+      '¡Están pegadas en trastes contiguos (a solo 1 traste de distancia)! Todas las demás notas tienen sostenido (#) y bemol (b) intermedio.' + focusTip,
+    ].join('\n');
+  }
+
+  let focusTipEn = '';
+  if (focusNote) {
+    if (focusNote === 'B' || focusNote === 'C') {
+      focusTipEn = `\n📌 Highlighted note: B and C are a natural half-step (1 fret apart, zero gap).`;
+    } else if (focusNote === 'E' || focusNote === 'F') {
+      focusTipEn = `\n📌 Highlighted note: E and F are a natural half-step (1 fret apart, zero gap).`;
+    } else {
+      focusTipEn = `\n📌 Highlighted note: ${focusNote} is surrounded by accidentals (#/b) separated by a whole step (2 frets).`;
+    }
+  }
+
+  return [
+    '🎼 Complete Chromatic Scale (12 notes in sequence):',
+    '• With sharps (#): C ➔ C# ➔ D ➔ D# ➔ [E ➔ F] ➔ F# ➔ G ➔ G# ➔ A ➔ A# ➔ [B ➔ C]',
+    '• With flats (b):  C ➔ Db ➔ D ➔ Eb ➔ [E ➔ F] ➔ Gb ➔ G ➔ Ab ➔ A ➔ Bb ➔ [B ➔ C]',
+    '• In Solfège:      Do ➔ Do#/Reb ➔ Re ➔ Re#/Mib ➔ [Mi ➔ Fa] ➔ Fa#/Solb ➔ Sol ➔ Sol#/Lab ➔ La ➔ La#/Sib ➔ [Si ➔ Do]',
+    '',
+    '💡 Essential visual rule:',
+    'The ONLY two natural pairs with NO sharp (#) or flat (b) between them are:',
+    '👉 E - F (Mi - Fa)',
+    '👉 B - C (Si - Do)',
+    'They sit on directly adjacent frets (1 fret apart)! All other natural notes have an accidental (#/b) in between.' + focusTipEn,
+  ].join('\n');
+}

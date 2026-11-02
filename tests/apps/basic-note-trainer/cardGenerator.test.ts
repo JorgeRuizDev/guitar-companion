@@ -106,8 +106,8 @@ describe('Card Generator - User Story 1 (Translation Cards)', () => {
         lang: 'es',
       });
 
-      expect(card.prompt).toBe("¿Qué nota europea (solfeo) corresponde a 'B'?");
-      expect(card.subPrompt).toContain('anglosajona');
+      expect(card.prompt).toBe("¿Qué nota corresponde a la letra 'B'?");
+      expect(card.subPrompt).toContain('Cifrado');
       expect(card.correctAnswer).toBe('Si');
       expect(card.explanation).toContain('equivale a Si');
       expect(card.mnemonic).toContain('Si-Do');
@@ -139,11 +139,11 @@ describe('Card Generator - User Story 1 (Translation Cards)', () => {
         letter: 'E',
         lang: 'en',
       });
-      expect(enCard.prompt).toContain("What European Solfège note corresponds to 'E'?");
+      expect(enCard.prompt).toContain("What Solfège note corresponds to letter 'E'?");
       expect(enCard.explanation).toContain('equals Mi');
 
       const esCard = retranslateCard(enCard, 'es');
-      expect(esCard.prompt).toContain("¿Qué nota europea (solfeo) corresponde a 'E'?");
+      expect(esCard.prompt).toContain("¿Qué nota corresponde a la letra 'E'?");
       expect(esCard.explanation).toContain('equivale a Mi');
       expect(esCard.mnemonic).toContain('Mi-Fa');
       expect(esCard.correctAnswer).toBe('Mi');

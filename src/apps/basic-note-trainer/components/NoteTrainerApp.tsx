@@ -121,6 +121,8 @@ export const NoteTrainerApp: React.FC<NoteTrainerAppProps> = ({
           <ExplanationCard
             explanation={card.explanation}
             mnemonic={card.mnemonic}
+            noteReference={card.noteReference}
+            category={card.category}
             lang={effectiveLang}
             onNextCard={nextCard}
           />

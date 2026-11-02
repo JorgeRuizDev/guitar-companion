@@ -2,13 +2,16 @@
 
 import React from 'react';
 import { Lightbulb, ArrowRight, BookOpen } from 'lucide-react';
-import { Language } from '../types';
+import { Language, QuestionCategory } from '../types';
+import { ChromaticScaleVisualizer } from './ChromaticScaleVisualizer';
 
 export interface ExplanationCardProps {
   explanation: string;
   mnemonic: string;
   onNextCard: () => void;
   lang?: Language;
+  noteReference?: string;
+  category?: QuestionCategory;
   className?: string;
 }
 
@@ -17,6 +20,8 @@ export const ExplanationCard: React.FC<ExplanationCardProps> = ({
   mnemonic,
   onNextCard,
   lang = 'en',
+  noteReference,
+  category,
   className = '',
 }) => {
   const isEs = lang === 'es';
@@ -38,15 +43,23 @@ export const ExplanationCard: React.FC<ExplanationCardProps> = ({
         </span>
       </div>
 
-      {/* Theoretical Explanation */}
+      {/* Theoretical Explanation with Pre-Line Formatting */}
       <div className="space-y-1.5 text-left">
         <div className="flex items-start gap-2">
           <BookOpen className="w-4 h-4 text-neutral-400 mt-0.5 shrink-0" />
-          <p className="text-xs sm:text-sm text-neutral-200 leading-relaxed font-normal">
+          <div className="text-xs sm:text-sm text-neutral-200 leading-relaxed font-normal whitespace-pre-line font-sans">
             {explanation}
-          </p>
+          </div>
         </div>
       </div>
+
+      {/* Visual Chromatic Scale Map for Accidentals, Sequence, or when note reference is provided */}
+      {category !== 'translation' && (
+        <ChromaticScaleVisualizer
+          highlightNote={noteReference}
+          lang={lang}
+        />
+      )}
 
       {/* Mnemonic Trick Banner */}
       <div className="px-3 py-2 rounded-xl bg-amber-950/30 border border-amber-800/40 text-amber-200 text-xs sm:text-sm font-medium flex items-center gap-2">

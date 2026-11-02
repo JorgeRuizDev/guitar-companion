@@ -7,7 +7,7 @@ import {
 import { CHORD_CATALOG, getChordBySymbol } from '@/apps/basic-chord-trainer/domain/chordCatalog';
 
 describe('Dual Notation Formatting (User Story 1)', () => {
-  it('formats dual notation with both Anglo-Saxon symbol and European Solfege name', () => {
+  it('formats dual notation with both Anglo-Saxon symbol and Solfege name', () => {
     const cChord = getChordBySymbol('C')!;
     expect(formatDualNotation(cChord)).toBe('C (Do Mayor)');
 

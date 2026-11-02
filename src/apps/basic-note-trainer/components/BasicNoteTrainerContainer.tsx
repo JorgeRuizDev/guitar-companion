@@ -45,11 +45,11 @@ export const BasicNoteTrainerContainer: React.FC<BasicNoteTrainerContainerProps>
         <p className="text-slate-400 text-sm sm:text-base max-w-3xl leading-relaxed">
           {isEs ? (
             <>
-              Traduce con fluidez entre la notación anglosajona (<code className="text-amber-300">A, B, C, D, E, F, G</code>) y el solfeo europeo (<code className="text-amber-300">Do, Re, Mi, Fa, Sol, La, Si</code>), domina las alteraciones cromáticas y memoriza los semitonos naturales con tarjetas interactivas y trucos nemotécnicos.
+              Traduce con fluidez entre la notación anglosajona (<code className="text-amber-300">A, B, C, D, E, F, G</code>) y el solfeo (<code className="text-amber-300">Do, Re, Mi, Fa, Sol, La, Si</code>), domina las alteraciones cromáticas y memoriza los semitonos naturales con tarjetas interactivas y trucos nemotécnicos.
             </>
           ) : (
             <>
-              Translate effortlessly between Anglo-Saxon letter notation (<code className="text-amber-300">A, B, C, D, E, F, G</code>) and European Solfège (<code className="text-amber-300">Do, Re, Mi, Fa, Sol, La, Si</code>), master chromatic accidentals, and memorize natural semitones with interactive flashcards and memory tricks.
+              Translate effortlessly between Anglo-Saxon letter notation (<code className="text-amber-300">A, B, C, D, E, F, G</code>) and Solfège (<code className="text-amber-300">Do, Re, Mi, Fa, Sol, La, Si</code>), master chromatic accidentals, and memorize natural semitones with interactive flashcards and memory tricks.
             </>
           )}
         </p>

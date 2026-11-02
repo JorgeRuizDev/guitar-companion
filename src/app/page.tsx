@@ -77,8 +77,8 @@ export default function PlatformHomePage() {
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">
               {isEs
-                ? 'Traduce con soltura entre letras anglosajonas (A-G) y el solfeo europeo (Do-Si), domina las alteraciones cromáticas (#/b) y los semitonos naturales con tarjetas interactivas.'
-                : 'Translate effortlessly between Anglo-Saxon letters (A-G) and European Solfège (Do-Si), master chromatic accidentals, and memorize natural semitones with interactive flashcards.'}
+                ? 'Traduce con soltura entre letras anglosajonas (A-G) y el solfeo (Do-Si), domina las alteraciones cromáticas (#/b) y los semitonos naturales con tarjetas interactivas.'
+                : 'Translate effortlessly between Anglo-Saxon letters (A-G) and Solfège (Do-Si), master chromatic accidentals, and memorize natural semitones with interactive flashcards.'}
             </p>
           </div>
 
@@ -107,8 +107,8 @@ export default function PlatformHomePage() {
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">
               {isEs
-                ? 'Domina los 22 acordes abiertos esenciales en la guitarra con notación dual (anglosajona y solfeo europeo), dibujo interactivo en diapasón y reconocimiento rápido.'
-                : 'Master 22 essential beginner open guitar chords with dual notation (Anglo-Saxon and European Solfège), interactive fretboard drawing, and rapid recognition drills.'}
+                ? 'Domina los 22 acordes abiertos esenciales en la guitarra con notación dual (anglosajona y solfeo), dibujo interactivo en diapasón y reconocimiento rápido.'
+                : 'Master 22 essential beginner open guitar chords with dual notation (Anglo-Saxon and Solfège), interactive fretboard drawing, and rapid recognition drills.'}
             </p>
           </div>
 

@@ -25,7 +25,7 @@ export type ChordCategory =
 export interface ChordDefinition {
   id: string; // e.g. "c-major", "a-minor", "f-beginner", "cadd9"
   symbol: string; // Anglo-Saxon notation: e.g. "C", "Am", "G7", "Fmaj7"
-  solfegeName: string; // European Solfège: e.g. "Do Mayor", "La menor", "Sol 7ª"
+  solfegeName: string; // Solfège: e.g. "Do Mayor", "La menor", "Sol 7ª"
   category: ChordCategory;
   // Strings ordered from 6 (Low E) down to 1 (High E)
   strings: [

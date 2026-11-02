@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Basic Note Trainer | Guitar Companion',
   description:
-    'Master Anglo-Saxon note letters (A-G) and European Solfège (Do-Si) translations, chromatic accidentals (#/b), and natural semitones with interactive flashcards and memory tricks.',
+    'Master Anglo-Saxon note letters (A-G) and Solfège (Do-Si) translations, chromatic accidentals (#/b), and natural semitones with interactive flashcards and memory tricks.',
   keywords: [
     'guitar note trainer',
     'learn note names',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Basic Note Trainer | Guitar Companion',
     description:
-      'Learn musical note names, European Solfège translations, and chromatic accidentals with interactive flashcards.',
+      'Learn musical note names, Solfège translations, and chromatic accidentals with interactive flashcards.',
     type: 'website',
     url: 'https://guitarcompanion.app/basic-note-trainer',
   },

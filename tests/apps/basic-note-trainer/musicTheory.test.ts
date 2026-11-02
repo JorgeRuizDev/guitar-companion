@@ -19,7 +19,7 @@ import {
 
 describe('Music Theory Engine', () => {
   describe('Bidirectional Translation', () => {
-    it('correctly maps all 7 Anglo-Saxon letters to European Solfège', () => {
+    it('correctly maps all 7 Anglo-Saxon letters to Solfège', () => {
       expect(letterToSolfege('C')).toBe('Do');
       expect(letterToSolfege('D')).toBe('Re');
       expect(letterToSolfege('E')).toBe('Mi');

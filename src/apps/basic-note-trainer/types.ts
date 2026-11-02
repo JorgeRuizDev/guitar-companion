@@ -33,7 +33,7 @@ export type TranslationDirection = 'letters-to-solfege' | 'solfege-to-letters' |
 export interface FlashcardQuestion {
   id: string;
   category: QuestionCategory;
-  prompt: string; // e.g. "What European note corresponds to 'D'?"
+  prompt: string; // e.g. "What Solfège note corresponds to 'D'?"
   subPrompt?: string; // Secondary context or visual cue
   options: [string, string, string, string]; // Exactly 4 unique choices
   correctAnswer: string;

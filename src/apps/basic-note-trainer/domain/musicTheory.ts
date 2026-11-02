@@ -1,6 +1,6 @@
 /**
  * Pure Music Theory Engine for Basic Note Trainer
- * Canonical mappings between Anglo-Saxon letters (A-G) and European Solfège (Do-Si),
+ * Canonical mappings between Anglo-Saxon letters (A-G) and Solfège (Do-Si),
  * 12-pitch chromatic sequence, natural semitones, and accidental rules.
  * @module apps/basic-note-trainer/domain/musicTheory
  */
@@ -91,7 +91,25 @@ export const NATURAL_WHOLE_TONES: readonly [NaturalLetter, NaturalLetter][] = [
 ] as const;
 
 /**
- * Translates an Anglo-Saxon letter note (A-G) to European Solfège (La-Si-Do-Re-Mi-Fa-Sol).
+ * Enharmonic equivalence pairs for chromatic accidentals.
+ */
+export interface EnharmonicPair {
+  sharp: string;
+  flat: string;
+  solfegeSharp: string;
+  solfegeFlat: string;
+}
+
+export const ENHARMONIC_PAIRS: readonly EnharmonicPair[] = [
+  { sharp: 'C#', flat: 'Db', solfegeSharp: 'Do#', solfegeFlat: 'Reb' },
+  { sharp: 'D#', flat: 'Eb', solfegeSharp: 'Re#', solfegeFlat: 'Mib' },
+  { sharp: 'F#', flat: 'Gb', solfegeSharp: 'Fa#', solfegeFlat: 'Solb' },
+  { sharp: 'G#', flat: 'Ab', solfegeSharp: 'Sol#', solfegeFlat: 'Lab' },
+  { sharp: 'A#', flat: 'Bb', solfegeSharp: 'La#', solfegeFlat: 'Sib' },
+] as const;
+
+/**
+ * Translates an Anglo-Saxon letter note (A-G) to Solfège (La-Si-Do-Re-Mi-Fa-Sol).
  */
 export function letterToSolfege(letter: NaturalLetter): SolfegeNote {
   return LETTER_TO_SOLFEGE[letter];
@@ -140,6 +158,14 @@ export function isNaturalSemitonePair(n1: NaturalLetter, n2: NaturalLetter): boo
 export function getNextChromatic(index: number): ChromaticPitch {
   const nextIndex = (index + 1) % 12;
   return CHROMATIC_SCALE[nextIndex];
+}
+
+/**
+ * Gets the previous chromatic pitch (one half-step below) given a chromatic index (0-11).
+ */
+export function getPreviousChromatic(index: number): ChromaticPitch {
+  const prevIndex = (index - 1 + 12) % 12;
+  return CHROMATIC_SCALE[prevIndex];
 }
 
 /**

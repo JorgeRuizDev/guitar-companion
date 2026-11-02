@@ -1,6 +1,6 @@
 /**
  * Dual-Notation Formatters and Musical Helpers
- * Bridges Anglo-Saxon Letter notation (C, Am, G7) and European Solfège notation (Do Mayor, La menor, Sol 7ª).
+ * Bridges Anglo-Saxon Letter notation (C, Am, G7) and Solfège notation (Do Mayor, La menor, Sol 7ª).
  * @module apps/basic-chord-trainer/domain/dualNotation
  */
 

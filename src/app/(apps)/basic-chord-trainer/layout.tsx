@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Basic Chord Trainer | Guitar Companion',
   description:
-    'Learn beginner open guitar chords (C, G, D, Am, Em, E7, Cadd9) with dual Anglo-Saxon and European Solfège notation, interactive fretboard drawing, and recognition drills.',
+    'Learn beginner open guitar chords (C, G, D, Am, Em, E7, Cadd9) with dual Anglo-Saxon and Solfège notation, interactive fretboard drawing, and recognition drills.',
   keywords: [
     'guitar chord trainer',
     'open chords guitar',
@@ -39,7 +39,7 @@ export default function BasicChordTrainerLayout({
     applicationCategory: 'EducationalApplication',
     operatingSystem: 'All',
     description:
-      'Interactive guitar chord learning tool bridging Anglo-Saxon letter notation and European Solfège through fretboard drawing and visual identification.',
+      'Interactive guitar chord learning tool bridging Anglo-Saxon letter notation and Solfège through fretboard drawing and visual identification.',
     offers: {
       '@type': 'Offer',
       price: '0',
