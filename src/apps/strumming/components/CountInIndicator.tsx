@@ -4,17 +4,25 @@ export interface CountInIndicatorProps {
   isCountingIn: boolean;
   beatRemaining: number | null;
   totalBeats: number;
+  beatsPerMeasure?: number;
 }
 
 export const CountInIndicator: React.FC<CountInIndicatorProps> = ({
   isCountingIn,
   beatRemaining,
   totalBeats,
+  beatsPerMeasure = 4,
 }) => {
   if (!isCountingIn || beatRemaining === null) return null;
 
-  // Calculate current beat (1, 2, 3, 4) in the active measure
-  const currentBeatInMeasure = 4 - ((beatRemaining - 1) % 4);
+  const meterBeats = Math.max(1, beatsPerMeasure);
+
+  // Calculate current beat (1..meterBeats) in the active measure:
+  // totalBeats = measures * meterBeats
+  // When beatRemaining is totalBeats -> 1st beat
+  // When beatRemaining is 1 -> last beat (meterBeats)
+  const beatsElapsed = totalBeats - beatRemaining;
+  const currentBeatInMeasure = (beatsElapsed % meterBeats) + 1;
 
   return (
     <div className="absolute inset-0 z-30 flex items-center justify-center bg-slate-950/85 backdrop-blur-sm rounded-2xl animate-in fade-in duration-150 p-2">
@@ -26,7 +34,7 @@ export const CountInIndicator: React.FC<CountInIndicatorProps> = ({
           {currentBeatInMeasure}
         </div>
         <div className="flex gap-2 mt-0.5">
-          {[1, 2, 3, 4].map((b) => (
+          {Array.from({ length: meterBeats }, (_, i) => i + 1).map((b) => (
             <div
               key={b}
               className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-150 ${

@@ -109,6 +109,31 @@ describe("Strumming Query Parameters Domain", () => {
       expect(parseStrummingParams({ metroSub: "sixteenth" }).metroSub).toBe("sixteenth");
       expect(parseStrummingParams({ metroSub: "swing" }).metroSub).toBe("swing");
     });
+
+    it("parses meter and blocks for atypical time signatures and custom block counts", () => {
+      const config34 = parseStrummingParams({
+        meter: "3/4",
+        strokes: "d,-,d,-,u,-",
+      });
+      expect(config34.timeSignature).toEqual([3, 4]);
+      expect(config34.pattern?.timeSignature).toEqual([3, 4]);
+      expect(config34.pattern?.slots).toHaveLength(6);
+
+      const config68 = parseStrummingParams({
+        meter: "6/8",
+        blocks: "6",
+        strokes: "d,-,d,u,d,-",
+      });
+      expect(config68.timeSignature).toEqual([6, 8]);
+      expect(config68.pattern?.slots).toHaveLength(6);
+
+      const configCustom = parseStrummingParams({
+        blocks: "10",
+        strokes: "d,u,d,u,d,u,d,u,d,u",
+      });
+      expect(configCustom.blocks).toBe(10);
+      expect(configCustom.pattern?.slots).toHaveLength(10);
+    });
   });
 
   describe("generateStrummingShareUrl", () => {

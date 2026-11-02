@@ -95,3 +95,5 @@ export interface IPlaybackEngine {
 ## 3. Guarantees & Constraints
 - `getCurrentProgress()` MUST execute in under `0.1 ms` and NEVER allocate memory on the heap (to prevent garbage collection pauses during visual animation loops).
 - Changing BPM via `setBpm()` MUST calculate future event times dynamically without restarting the audio context or interrupting active sounds.
+- Measure duration MUST be computed dynamically based on the active meter $\text{timeSignature} = [beatsPerMeasure, beatValue]$: $\text{measureDuration} = \text{beatsPerMeasure} \times \left(\frac{4}{\text{beatValue}}\right) \times \left(\frac{60.0}{\text{BPM}}\right)$, ensuring accurate playback across 4/4, 3/4, 6/8, and arbitrary slot configurations ($N \in [2, 24]$).
+- When changing patterns with different slot lengths or meters, `setPattern()` MUST recalculate event schedules and reset the playhead smoothly without audio glitching.

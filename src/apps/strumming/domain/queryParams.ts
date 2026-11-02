@@ -16,6 +16,8 @@ import { beginnerPresets } from "../presets/beginnerPatterns";
 export interface StrummingUrlConfig {
   bpm?: number;
   subdivision?: SubdivisionUnit;
+  timeSignature?: [number, number];
+  blocks?: number;
   pattern?: StrummingPattern;
   presetId?: string;
   accent?: boolean;
@@ -63,25 +65,49 @@ export function serializePatternStrokes(pattern: StrummingPattern): string {
  */
 export function createCustomPatternFromStrokes(
   strokes: StrokeDirection[],
-  subdivision: SubdivisionUnit,
-  customName: string = "Shared Custom Pattern"
+  subdivision: SubdivisionUnit = "eighth",
+  customName: string = "Shared Custom Pattern",
+  timeSignature: [number, number] = [4, 4],
+  slotCount?: number
 ): StrummingPattern {
-  const count = subdivision === "sixteenth" ? 16 : 8;
+  let count = slotCount ?? strokes.length;
+  if (!slotCount) {
+    if (subdivision === "sixteenth") count = 16;
+    else if (subdivision === "eighth") count = timeSignature[0] === 3 || timeSignature[0] === 6 ? 6 : 8;
+    else count = Math.max(2, Math.min(24, strokes.length || 8));
+  }
+  count = Math.max(2, Math.min(24, count));
+
   const safeStrokes: StrokeDirection[] = Array.from({ length: count }, (_, i) => strokes[i] ?? "none");
 
-  const slots: BeatSlot[] = safeStrokes.map((dir, i) => {
-    let beatLabel = "";
-    const isQuarterBeat = subdivision === "eighth" ? i % 2 === 0 : i % 4 === 0;
+  const is34 = timeSignature[0] === 3 && timeSignature[1] === 4;
+  const is68 = timeSignature[0] === 6 && timeSignature[1] === 8;
 
-    if (subdivision === "eighth") {
-      beatLabel = isQuarterBeat ? `${i / 2 + 1}` : "&";
-    } else {
+  const slots: BeatSlot[] = safeStrokes.map((dir, i) => {
+    let beatLabel = `${i + 1}`;
+    let isQuarterBeat = false;
+    let isCompoundAccent = false;
+
+    if (is68) {
+      isQuarterBeat = i % 2 === 0;
+      beatLabel = isQuarterBeat ? `${Math.floor(i / 2) + 1}` : "&";
+    } else if (is34) {
+      isQuarterBeat = i % 2 === 0;
+      beatLabel = isQuarterBeat ? `${Math.floor(i / 2) + 1}` : "&";
+    } else if (subdivision === "eighth") {
+      isQuarterBeat = i % 2 === 0;
+      beatLabel = isQuarterBeat ? `${Math.floor(i / 2) + 1}` : "&";
+    } else if (subdivision === "sixteenth") {
       const beatNum = Math.floor(i / 4) + 1;
       const subIdx = i % 4;
+      isQuarterBeat = subIdx === 0;
       if (subIdx === 0) beatLabel = `${beatNum}`;
       else if (subIdx === 1) beatLabel = "e";
       else if (subIdx === 2) beatLabel = "&";
       else beatLabel = "a";
+    } else {
+      isQuarterBeat = false;
+      beatLabel = `${i + 1}`;
     }
 
     return {
@@ -90,13 +116,14 @@ export function createCustomPatternFromStrokes(
       strokeDirection: dir,
       isQuarterBeat,
       isMeasureStart: i === 0,
+      isCompoundAccent,
     };
   });
 
   return {
     id: `custom-shared-${Date.now()}`,
     name: customName,
-    timeSignature: [4, 4],
+    timeSignature,
     subdivision,
     slots,
     isPreset: false,
@@ -122,6 +149,8 @@ export function parseStrummingParams(
 
   const bpmRaw = getParam("bpm");
   const subRaw = getParam("subdivision") || getParam("sub");
+  const meterRaw = getParam("meter") || getParam("timeSignature") || getParam("ts");
+  const blocksRaw = getParam("blocks") || getParam("slots");
   const presetRaw = getParam("preset");
   const strokesRaw = getParam("strokes") || getParam("pattern");
   const accentRaw = getParam("accent");
@@ -139,6 +168,38 @@ export function parseStrummingParams(
     }
   }
 
+  // 1b. Time Signature / Meter
+  let parsedTimeSignature: [number, number] | undefined;
+  if (meterRaw) {
+    const cleanMeter = meterRaw.trim();
+    if (cleanMeter === "3/4" || cleanMeter === "3-4") parsedTimeSignature = [3, 4];
+    else if (cleanMeter === "6/8" || cleanMeter === "6-8") parsedTimeSignature = [6, 8];
+    else if (cleanMeter === "4/4" || cleanMeter === "4-4") parsedTimeSignature = [4, 4];
+    else {
+      const parts = cleanMeter.split(/[\/\-_]/);
+      if (parts.length === 2) {
+        const num = parseInt(parts[0], 10);
+        const den = parseInt(parts[1], 10);
+        if (!isNaN(num) && !isNaN(den) && num > 0 && den > 0) {
+          parsedTimeSignature = [num, den];
+        }
+      }
+    }
+  }
+  if (parsedTimeSignature) {
+    config.timeSignature = parsedTimeSignature;
+  }
+
+  // 1c. Blocks count
+  let parsedBlocks: number | undefined;
+  if (blocksRaw) {
+    const blocksVal = parseInt(blocksRaw, 10);
+    if (!isNaN(blocksVal)) {
+      parsedBlocks = Math.max(2, Math.min(24, blocksVal));
+      config.blocks = parsedBlocks;
+    }
+  }
+
   // 2. Subdivision
   let detectedSubdivision: SubdivisionUnit | undefined;
   if (subRaw) {
@@ -147,6 +208,8 @@ export function parseStrummingParams(
       detectedSubdivision = "sixteenth";
     } else if (cleanSub === "8th" || cleanSub === "eighth" || cleanSub === "8") {
       detectedSubdivision = "eighth";
+    } else if (cleanSub === "custom") {
+      detectedSubdivision = "custom";
     }
   }
 
@@ -164,6 +227,7 @@ export function parseStrummingParams(
       config.presetId = matchedPreset.id;
       config.pattern = matchedPreset;
       detectedSubdivision = matchedPreset.subdivision;
+      if (!config.timeSignature) config.timeSignature = matchedPreset.timeSignature;
     }
   } else if (strokesRaw) {
     // Parse stroke sequence: "d,-,d,u,-,u,d,u" or "D-DU-UDU"
@@ -179,9 +243,21 @@ export function parseStrummingParams(
 
     const strokes = tokens.map(normalizeStrokeToken);
     const sub: SubdivisionUnit =
-      detectedSubdivision || (strokes.length > 8 ? "sixteenth" : "eighth");
+      detectedSubdivision ||
+      (parsedBlocks
+        ? "custom"
+        : strokes.length > 8
+        ? "sixteenth"
+        : "eighth");
 
-    config.pattern = createCustomPatternFromStrokes(strokes, sub);
+    const effectiveTimeSignature: [number, number] = parsedTimeSignature || [4, 4];
+    config.pattern = createCustomPatternFromStrokes(
+      strokes,
+      sub,
+      "Shared Custom Pattern",
+      effectiveTimeSignature,
+      parsedBlocks || strokes.length
+    );
     detectedSubdivision = sub;
   }
 
@@ -232,8 +308,22 @@ export function generateStrummingShareUrl(options: StrummingShareOptions): strin
     const presetSlug = pattern.id.replace(/^preset-/, "");
     params.set("preset", presetSlug);
   } else {
-    params.set("sub", pattern.subdivision === "eighth" ? "8th" : "16th");
+    params.set(
+      "sub",
+      pattern.subdivision === "sixteenth"
+        ? "16th"
+        : pattern.subdivision === "custom"
+        ? "custom"
+        : "8th"
+    );
     params.set("strokes", serializePatternStrokes(pattern));
+    if (pattern.timeSignature && (pattern.timeSignature[0] !== 4 || pattern.timeSignature[1] !== 4)) {
+      params.set("meter", `${pattern.timeSignature[0]}/${pattern.timeSignature[1]}`);
+    }
+    const standardLength = pattern.subdivision === "sixteenth" ? 16 : 8;
+    if (pattern.slots.length !== standardLength) {
+      params.set("blocks", String(pattern.slots.length));
+    }
   }
 
   // BPM

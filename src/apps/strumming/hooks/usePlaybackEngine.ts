@@ -21,7 +21,9 @@ export function usePlaybackEngine({
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isCountingIn, setIsCountingIn] = useState<boolean>(false);
   const [countInBeatRemaining, setCountInBeatRemaining] = useState<number | null>(null);
-  const [totalCountInBeats, setTotalCountInBeats] = useState<number>(initialCountIn * 4);
+  const beatsPerMeasure = initialPattern?.timeSignature?.[0] ?? 4;
+  const [totalCountInBeats, setTotalCountInBeats] = useState<number>(initialCountIn * beatsPerMeasure);
+  const [pattern, setPatternState] = useState<StrummingPattern>(initialPattern);
   const [bpm, setBpmState] = useState<number>(initialBpm);
   const [accentFirstBeat, setAccentState] = useState<boolean>(initialAccent);
   const [countInMeasures, setCountInState] = useState<0 | 1 | 2 | 3>(initialCountIn);
@@ -74,7 +76,9 @@ export function usePlaybackEngine({
   // Keep pattern updated
   useEffect(() => {
     engineRef.current?.setPattern(initialPattern);
-  }, [initialPattern]);
+    const meterBeats = initialPattern?.timeSignature?.[0] ?? 4;
+    setTotalCountInBeats(countInMeasures * meterBeats);
+  }, [initialPattern, countInMeasures]);
 
   const start = useCallback(async () => {
     const engine = getOrCreateEngine();
@@ -144,9 +148,17 @@ export function usePlaybackEngine({
 
   const setCountInMeasures = useCallback((measures: 0 | 1 | 2 | 3) => {
     setCountInState(measures);
-    setTotalCountInBeats(measures * 4);
+    const meterBeats = pattern?.timeSignature?.[0] ?? 4;
+    setTotalCountInBeats(measures * meterBeats);
     engineRef.current?.setCountIn(measures);
-  }, []);
+  }, [pattern]);
+
+  const setPattern = useCallback((newPattern: StrummingPattern) => {
+    setPatternState(newPattern);
+    const meterBeats = newPattern?.timeSignature?.[0] ?? 4;
+    setTotalCountInBeats(countInMeasures * meterBeats);
+    engineRef.current?.setPattern(newPattern);
+  }, [countInMeasures]);
 
   const setMetronomeSubdivision = useCallback((sub: MetronomeSubdivision, playPreview: boolean = false) => {
     setSubdivisionState(sub);
@@ -190,6 +202,7 @@ export function usePlaybackEngine({
     setBpm,
     setAccentFirstBeat,
     setCountInMeasures,
+    setPattern,
     setMetronomeSubdivision,
     playSubdivisionPreview,
   };

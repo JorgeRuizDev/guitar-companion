@@ -18,7 +18,12 @@ export class MetronomeSynth {
    * @param isAccent Whether this pulse is beat 1 / accented
    * @param theme Sound profile ('woodblock' | 'click' | 'beep')
    */
-  public scheduleTick(time: number, isAccent: boolean, theme: SoundTheme = 'woodblock'): void {
+  public scheduleTick(
+    time: number,
+    isAccent: boolean,
+    theme: SoundTheme = 'woodblock',
+    isCompoundAccent: boolean = false
+  ): void {
     const osc = this.context.createOscillator();
     const gain = this.context.createGain();
 
@@ -26,26 +31,26 @@ export class MetronomeSynth {
     gain.connect(this.context.destination);
 
     // Profile frequency and waveform selection
-    let baseFreq = isAccent ? 1000 : 600;
+    let baseFreq = isAccent ? 1000 : (isCompoundAccent ? 800 : 600);
     let duration = 0.05; // 50ms default click duration
-    let peakGain = isAccent ? 0.9 : 0.6;
+    let peakGain = isAccent ? 0.9 : (isCompoundAccent ? 0.75 : 0.6);
 
     if (theme === 'woodblock') {
       osc.type = 'triangle';
-      baseFreq = isAccent ? 1200 : 750;
+      baseFreq = isAccent ? 1200 : (isCompoundAccent ? 950 : 750);
       duration = 0.045;
-      peakGain = isAccent ? 0.9 : 0.65;
+      peakGain = isAccent ? 0.9 : (isCompoundAccent ? 0.78 : 0.65);
     } else if (theme === 'click') {
       osc.type = 'sine';
-      baseFreq = isAccent ? 1600 : 900;
+      baseFreq = isAccent ? 1600 : (isCompoundAccent ? 1200 : 900);
       duration = 0.035;
-      peakGain = isAccent ? 0.9 : 0.6;
+      peakGain = isAccent ? 0.9 : (isCompoundAccent ? 0.75 : 0.6);
     } else {
       // 'beep'
       osc.type = 'sine';
-      baseFreq = isAccent ? 1000 : 600;
+      baseFreq = isAccent ? 1000 : (isCompoundAccent ? 800 : 600);
       duration = 0.06;
-      peakGain = isAccent ? 0.9 : 0.6;
+      peakGain = isAccent ? 0.9 : (isCompoundAccent ? 0.75 : 0.6);
     }
 
     const now = this.context.currentTime;
@@ -54,6 +59,7 @@ export class MetronomeSynth {
     osc.frequency.setValueAtTime(baseFreq, tickTime);
 
     // Volume envelope: sharp attack, exponential decay down to near-silence
+    gain.gain.setValueAtTime(0, 0);
     gain.gain.cancelScheduledValues(tickTime);
     gain.gain.setValueAtTime(peakGain, tickTime);
     gain.gain.exponentialRampToValueAtTime(0.0001, tickTime + duration);
@@ -101,6 +107,7 @@ export class MetronomeSynth {
     osc.frequency.setValueAtTime(baseFreq, tickTime);
 
     // Balanced gain: audible, distinct sub-beat click
+    gain.gain.setValueAtTime(0, 0);
     gain.gain.cancelScheduledValues(tickTime);
     gain.gain.setValueAtTime(gainLevel, tickTime);
     gain.gain.exponentialRampToValueAtTime(0.0001, tickTime + duration);

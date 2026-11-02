@@ -69,7 +69,9 @@ export const BeatSlotBlock: React.FC<BeatSlotBlockProps> = ({
         {slot.isQuarterBeat && (
           <div
             className={`h-1 rounded-full ${
-              slot.isMeasureStart ? "w-4 bg-amber-400" : "w-2 bg-slate-600"
+              slot.isMeasureStart
+                ? "w-4 bg-amber-400"
+                : "w-2 bg-slate-600"
             }`}
           />
         )}

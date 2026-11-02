@@ -13,7 +13,11 @@ describe("beginnerPresets Library", () => {
       expect(preset.name.length).toBeGreaterThan(0);
       expect(preset.name.length).toBeLessThanOrEqual(50);
 
-      if (preset.subdivision === "eighth") {
+      if (preset.timeSignature && preset.timeSignature[0] === 3) {
+        expect(preset.slots.length).toBe(6);
+      } else if (preset.timeSignature && preset.timeSignature[0] === 6) {
+        expect(preset.slots.length).toBe(12);
+      } else if (preset.subdivision === "eighth") {
         expect(preset.slots.length).toBe(8);
       } else {
         expect(preset.slots.length).toBe(16);
@@ -33,5 +37,22 @@ describe("beginnerPresets Library", () => {
     const directions = islandStrum!.slots.map((s) => s.strokeDirection);
     // D - D U - U D U
     expect(directions).toEqual(["down", "none", "down", "up", "none", "up", "down", "up"]);
+  });
+
+  it("includes 3/4 waltz presets (6 slots) and 6/8 compound ballad preset (12 slots)", () => {
+    const waltzBasic = beginnerPresets.find((p) => p.id === "preset-waltz-basic");
+    expect(waltzBasic).toBeDefined();
+    expect(waltzBasic!.timeSignature).toEqual([3, 4]);
+    expect(waltzBasic!.slots.length).toBe(6);
+
+    const waltzBallad = beginnerPresets.find((p) => p.id === "preset-waltz-ballad");
+    expect(waltzBallad).toBeDefined();
+    expect(waltzBallad!.timeSignature).toEqual([3, 4]);
+    expect(waltzBallad!.slots.length).toBe(6);
+
+    const ballad68 = beginnerPresets.find((p) => p.id === "preset-ballad-68");
+    expect(ballad68).toBeDefined();
+    expect(ballad68!.timeSignature).toEqual([6, 8]);
+    expect(ballad68!.slots.length).toBe(12);
   });
 });

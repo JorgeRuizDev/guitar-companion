@@ -3,7 +3,7 @@ import { StrummingPattern } from "../types";
 import { BeatSlotBlock } from "./BeatSlotBlock";
 import { CountInIndicator } from "./CountInIndicator";
 import { AnimationDriver } from "../engine/AnimationDriver";
-import { ArrowDownUp, SlidersHorizontal } from "lucide-react";
+import { ArrowDownUp, SlidersHorizontal, Plus, Minus } from "lucide-react";
 
 export interface VisualTimelineProps {
   pattern: StrummingPattern;
@@ -14,6 +14,8 @@ export interface VisualTimelineProps {
   strictAlternation?: boolean;
   onSlotClick?: (index: number) => void;
   onToggleStrictAlternation?: () => void;
+  onAddSlot?: () => void;
+  onRemoveSlot?: () => void;
   isInteractive?: boolean;
 }
 
@@ -26,6 +28,8 @@ export const VisualTimeline: React.FC<VisualTimelineProps> = ({
   strictAlternation = true,
   onSlotClick,
   onToggleStrictAlternation,
+  onAddSlot,
+  onRemoveSlot,
   isInteractive = true,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,40 +55,70 @@ export const VisualTimeline: React.FC<VisualTimelineProps> = ({
     <div
       className="relative w-full rounded-2xl bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 p-3 sm:p-5 pt-7 sm:pt-8 min-h-[148px] sm:min-h-[168px] shadow-2xl overflow-hidden select-none"
     >
-      {/* Top-Right Mode Toggle Icon: Alternating D/U vs Free Direction (e.g. DDDU) */}
-      {onToggleStrictAlternation && (
-        <button
-          type="button"
-          onClick={onToggleStrictAlternation}
-          title={
-            strictAlternation
-              ? "Alternate D/U Mode (Odds: Down, Evens: Up) - Click to enable Free Direction"
-              : "Free Direction Mode (Any direction allowed) - Click to enforce Alternate D/U"
-          }
-          aria-label={
-            strictAlternation
-              ? "Alternate D/U Mode active (Odds: Down, Evens: Up). Click to enable Free Direction"
-              : "Free Direction Mode active. Click to enforce Alternate D/U"
-          }
-          className={`absolute top-2 right-2 sm:top-2.5 sm:right-3 z-30 flex items-center gap-1 px-2 py-1 sm:px-2.5 sm:py-1 rounded-lg border text-[11px] font-bold tracking-tight transition-all cursor-pointer shadow-md min-h-[30px] ${
-            strictAlternation
-              ? "bg-amber-500/15 border-amber-500/50 text-amber-300 hover:bg-amber-500/25"
-              : "bg-cyan-500/15 border-cyan-500/50 text-cyan-300 hover:bg-cyan-500/25"
-          }`}
-        >
-          {strictAlternation ? (
-            <>
-              <ArrowDownUp className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-              <span className="hidden xs:inline sm:inline">D / U</span>
-            </>
-          ) : (
-            <>
-              <SlidersHorizontal className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-              <span className="hidden xs:inline sm:inline">Free D/U</span>
-            </>
-          )}
-        </button>
-      )}
+      {/* Top-Right Header: Strum Count (+ / -) & Alternation Mode Toggle */}
+      <div className="absolute top-2 right-2 sm:top-2.5 sm:right-3 z-30 flex items-center gap-1.5 sm:gap-2">
+        {onAddSlot && onRemoveSlot && (
+          <div className="flex items-center bg-slate-900/90 backdrop-blur-sm px-1.5 py-0.5 rounded-lg border border-slate-700/80 gap-1 min-h-[30px] shadow-md">
+            <button
+              type="button"
+              onClick={onRemoveSlot}
+              disabled={pattern.slots.length <= 2}
+              title="Quitar un strum (mínimo 2)"
+              aria-label="Remove a strum"
+              className="w-5 h-5 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed text-slate-200 flex items-center justify-center font-bold text-xs cursor-pointer transition-all active:scale-95"
+            >
+              <Minus className="w-3 h-3 stroke-[2.5]" />
+            </button>
+            <span className="text-[11px] font-mono font-bold text-amber-400 px-1 tabular-nums select-none">
+              {pattern.slots.length} strums
+            </span>
+            <button
+              type="button"
+              onClick={onAddSlot}
+              disabled={pattern.slots.length >= 24}
+              title="Añadir un strum (máximo 24)"
+              aria-label="Add a strum"
+              className="w-5 h-5 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed text-slate-200 flex items-center justify-center font-bold text-xs cursor-pointer transition-all active:scale-95"
+            >
+              <Plus className="w-3 h-3 stroke-[2.5]" />
+            </button>
+          </div>
+        )}
+
+        {onToggleStrictAlternation && (
+          <button
+            type="button"
+            onClick={onToggleStrictAlternation}
+            title={
+              strictAlternation
+                ? "Alternate D/U Mode (Odds: Down, Evens: Up) - Click to enable Free Direction"
+                : "Free Direction Mode (Any direction allowed) - Click to enforce Alternate D/U"
+            }
+            aria-label={
+              strictAlternation
+                ? "Alternate D/U Mode active (Odds: Down, Evens: Up). Click to enable Free Direction"
+                : "Free Direction Mode active. Click to enforce Alternate D/U"
+            }
+            className={`flex items-center gap-1 px-2 py-1 sm:px-2.5 sm:py-1 rounded-lg border text-[11px] font-bold tracking-tight transition-all cursor-pointer shadow-md min-h-[30px] ${
+              strictAlternation
+                ? "bg-amber-500/15 border-amber-500/50 text-amber-300 hover:bg-amber-500/25"
+                : "bg-cyan-500/15 border-cyan-500/50 text-cyan-300 hover:bg-cyan-500/25"
+            }`}
+          >
+            {strictAlternation ? (
+              <>
+                <ArrowDownUp className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span className="hidden xs:inline sm:inline">D / U</span>
+              </>
+            ) : (
+              <>
+                <SlidersHorizontal className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                <span className="hidden xs:inline sm:inline">Free D/U</span>
+              </>
+            )}
+          </button>
+        )}
+      </div>
 
       {/* 6 Guitar Fretboard Strings Background */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
@@ -134,6 +168,7 @@ export const VisualTimeline: React.FC<VisualTimelineProps> = ({
         isCountingIn={isCountingIn}
         beatRemaining={countInBeatRemaining}
         totalBeats={totalCountInBeats}
+        beatsPerMeasure={pattern.timeSignature?.[0] ?? 4}
       />
     </div>
   );

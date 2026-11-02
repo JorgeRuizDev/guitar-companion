@@ -53,7 +53,8 @@ export class LookaheadScheduler implements IPlaybackEngine {
   private timerId: number | null = null;
 
   // Audio scheduling state
-  private nextEventTime: number = 0;
+  private nextBeatTime: number = 0;
+  private nextSlotTime: number = 0;
   private currentSlotIndex: number = 0;
   private countInBeatsRemaining: number = 0;
   private totalCountInBeats: number = 0;
@@ -61,7 +62,7 @@ export class LookaheadScheduler implements IPlaybackEngine {
   private completedMeasuresCount: number = 0;
   private pausedProgress: number = 0;
 
-  // Constants
+  // Lookahead Constants (Chris Wilson Web Audio Scheduler Model)
   private readonly lookaheadMs: number = 100;
   private readonly scheduleIntervalMs: number = 25;
 
@@ -81,16 +82,31 @@ export class LookaheadScheduler implements IPlaybackEngine {
     this.synth = new MetronomeSynth(this.audioHost.getContext());
   }
 
-  private getQuarterBeatDuration(): number {
+  public getBeatsPerMeasure(): number {
+    return this.pattern.timeSignature ? this.pattern.timeSignature[0] : 4;
+  }
+
+  public getBeatValue(): number {
+    return this.pattern.timeSignature ? this.pattern.timeSignature[1] : 4;
+  }
+
+  public getQuarterBeatDuration(): number {
     return 60.0 / this.bpm;
   }
 
-  private getMeasureDuration(): number {
-    return 4.0 * this.getQuarterBeatDuration();
+  public getBeatDuration(): number {
+    const den = this.getBeatValue();
+    return (4.0 / den) * (60.0 / this.bpm);
   }
 
-  private getSlotDuration(): number {
-    const slots = this.pattern.slots.length;
+  public getMeasureDuration(): number {
+    const num = this.getBeatsPerMeasure();
+    const den = this.getBeatValue();
+    return (num * (4.0 / den) * 60.0) / this.bpm;
+  }
+
+  public getSlotDuration(): number {
+    const slots = Math.max(1, this.pattern.slots.length);
     return this.getMeasureDuration() / slots;
   }
 
@@ -106,20 +122,25 @@ export class LookaheadScheduler implements IPlaybackEngine {
       // Resume from paused position
       const measureDur = this.getMeasureDuration();
       this.measureStartTime = now - (this.pausedProgress * measureDur);
-      this.nextEventTime = now;
       this.pausedProgress = 0;
       this.countingIn = false;
+      this.alignNextEventsFromCurrentTime(now);
     } else if (this.countInMeasures > 0) {
       // Begin count-in
       this.countingIn = true;
-      this.totalCountInBeats = this.countInMeasures * 4;
+      const beatsPerMeasure = this.getBeatsPerMeasure();
+      this.totalCountInBeats = this.countInMeasures * beatsPerMeasure;
       this.countInBeatsRemaining = this.totalCountInBeats;
-      this.nextEventTime = now + 0.05; // tiny lead-in to align hardware queue
+      this.nextBeatTime = now + 0.05; // tiny lead-in to align hardware queue
+      this.measureStartTime = this.nextBeatTime + (this.totalCountInBeats * this.getBeatDuration());
+      this.nextSlotTime = this.measureStartTime;
+      this.currentSlotIndex = 0;
     } else {
       // Immediate pattern start
       this.countingIn = false;
-      this.nextEventTime = now + 0.05;
-      this.measureStartTime = this.nextEventTime;
+      this.nextBeatTime = now + 0.05;
+      this.measureStartTime = this.nextBeatTime;
+      this.nextSlotTime = this.measureStartTime;
       this.currentSlotIndex = 0;
     }
 
@@ -166,11 +187,11 @@ export class LookaheadScheduler implements IPlaybackEngine {
     const currentProgress = this.getCurrentProgress();
     this.bpm = clamped;
 
-    if (this.playing && !this.countingIn) {
+    if (this.playing && !this.isCountingIn()) {
       const now = this.audioHost.getCurrentTime();
       const newMeasureDur = this.getMeasureDuration();
       this.measureStartTime = now - (currentProgress * newMeasureDur);
-      this.nextEventTime = now;
+      this.alignNextEventsFromCurrentTime(now);
     }
   }
 
@@ -179,9 +200,16 @@ export class LookaheadScheduler implements IPlaybackEngine {
   }
 
   public setPattern(pattern: StrummingPattern): void {
+    const meterChanged =
+      !this.pattern.timeSignature ||
+      !pattern.timeSignature ||
+      this.pattern.timeSignature[0] !== pattern.timeSignature[0] ||
+      this.pattern.timeSignature[1] !== pattern.timeSignature[1];
     const slotsChanged = this.pattern.slots.length !== pattern.slots.length;
+
     this.pattern = pattern;
-    if (slotsChanged) {
+
+    if (meterChanged || slotsChanged) {
       this.reset();
     }
   }
@@ -195,11 +223,14 @@ export class LookaheadScheduler implements IPlaybackEngine {
   }
 
   public playSubdivisionPreview(subdivision: MetronomeSubdivision): void {
-    this.audioHost.ensureRunning().then(() => {
-      this.synth.playSubdivisionPreview(subdivision);
-    }).catch((err) => {
-      console.warn("Failed to play subdivision preview:", err);
-    });
+    this.audioHost
+      .ensureRunning()
+      .then(() => {
+        this.synth.playSubdivisionPreview(subdivision);
+      })
+      .catch((err) => {
+        console.warn("Failed to play subdivision preview:", err);
+      });
   }
 
   public getMetronomeSubdivision(): MetronomeSubdivision {
@@ -211,7 +242,8 @@ export class LookaheadScheduler implements IPlaybackEngine {
   }
 
   public isCountingIn(): boolean {
-    return this.countingIn;
+    if (!this.playing) return false;
+    return this.countingIn && this.audioHost.getCurrentTime() < this.measureStartTime;
   }
 
   /**
@@ -222,7 +254,7 @@ export class LookaheadScheduler implements IPlaybackEngine {
     if (!this.playing && this.pausedProgress > 0) {
       return this.pausedProgress;
     }
-    if (!this.playing || this.countingIn) {
+    if (!this.playing || this.isCountingIn()) {
       return 0.0;
     }
 
@@ -254,99 +286,135 @@ export class LookaheadScheduler implements IPlaybackEngine {
     }
   }
 
+  private alignNextEventsFromCurrentTime(currentTime: number): void {
+    const measureDuration = this.getMeasureDuration();
+    const beatDuration = this.getBeatDuration();
+    const slotDuration = this.getSlotDuration();
+    const slotsCount = Math.max(1, this.pattern.slots.length);
+
+    const elapsed = Math.max(0, currentTime - this.measureStartTime);
+    const currentMeasureStart =
+      this.measureStartTime + Math.floor(elapsed / measureDuration) * measureDuration;
+    const elapsedInMeasure = elapsed % measureDuration;
+
+    let nextBeatOffset = Math.ceil(elapsedInMeasure / beatDuration) * beatDuration;
+    if (currentMeasureStart + nextBeatOffset <= currentTime + 0.005) {
+      nextBeatOffset += beatDuration;
+    }
+    this.nextBeatTime = currentMeasureStart + nextBeatOffset;
+
+    let nextSlotOffset = Math.ceil(elapsedInMeasure / slotDuration) * slotDuration;
+    if (currentMeasureStart + nextSlotOffset <= currentTime + 0.005) {
+      nextSlotOffset += slotDuration;
+    }
+    this.nextSlotTime = currentMeasureStart + nextSlotOffset;
+    this.currentSlotIndex = Math.round(nextSlotOffset / slotDuration) % slotsCount;
+  }
+
   private scheduleEvents(): void {
     if (!this.playing) return;
 
     const currentTime = this.audioHost.getCurrentTime();
-    const horizon = currentTime + (this.lookaheadMs / 1000.0);
+    const horizon = currentTime + this.lookaheadMs / 1000.0;
 
-    // If scheduling fell behind (e.g. background tab or frame lag), catch up smoothly
-    if (this.nextEventTime < currentTime - 0.05) {
-      this.nextEventTime = currentTime + 0.005;
-      this.measureStartTime = this.nextEventTime - (this.currentSlotIndex * this.getSlotDuration());
+    // Smooth catch-up if timer fell behind (background tab or CPU stutter)
+    if (this.nextBeatTime < currentTime - 0.05) {
+      this.alignNextEventsFromCurrentTime(currentTime);
     }
 
-    while (this.nextEventTime < horizon) {
+    // Seamless count-in completion when playback reaches measureStartTime
+    if (this.countingIn && currentTime >= this.measureStartTime) {
+      this.countingIn = false;
+      this.onCountInComplete?.();
+    }
+
+    // 1. Schedule Metronome Beats (Independent musical clock)
+    while (this.nextBeatTime < horizon) {
       try {
-        if (this.countingIn) {
-          this.scheduleCountInTick(this.nextEventTime);
-          this.nextEventTime += this.getQuarterBeatDuration();
+        if (this.countInBeatsRemaining > 0) {
+          const beatsPerMeasure = this.getBeatsPerMeasure();
+          const beatIndexInMeasure =
+            (this.totalCountInBeats - this.countInBeatsRemaining) % beatsPerMeasure;
+
+          this.scheduleBeatTick(this.nextBeatTime, beatIndexInMeasure, true);
+          this.onBeatTick?.(beatIndexInMeasure);
+          this.onCountInTick?.(this.countInBeatsRemaining, this.totalCountInBeats);
 
           this.countInBeatsRemaining--;
-          if (this.countInBeatsRemaining <= 0) {
-            this.countingIn = false;
-            this.measureStartTime = this.nextEventTime;
-            this.currentSlotIndex = 0;
-            this.onCountInComplete?.();
-          }
+          this.nextBeatTime += this.getBeatDuration();
         } else {
-          this.schedulePatternSlot(this.nextEventTime, this.currentSlotIndex);
-          const slotDuration = this.getSlotDuration();
-          this.nextEventTime += slotDuration;
+          const beatsPerMeasure = this.getBeatsPerMeasure();
+          const measureDuration = this.getMeasureDuration();
+          const beatDuration = this.getBeatDuration();
 
-          this.currentSlotIndex = (this.currentSlotIndex + 1) % this.pattern.slots.length;
-          if (this.currentSlotIndex === 0) {
-            this.completedMeasuresCount++;
-            // Note: DO NOT set this.measureStartTime = this.nextEventTime here.
-            // nextEventTime is scheduled ahead of time (lookahead horizon).
-            // Setting measureStartTime into the future causes elapsed time to become negative,
-            // dropping progress to 0 prematurely while the last slot is still playing.
-            // (elapsed % measureDuration) / measureDuration naturally wraps smoothly at 100%.
-            this.onMeasureComplete?.(this.completedMeasuresCount);
-          }
+          const elapsedSinceMeasure = this.nextBeatTime - this.measureStartTime;
+          const elapsedInMeasure =
+            ((elapsedSinceMeasure % measureDuration) + measureDuration) % measureDuration;
+          const beatIndex = Math.round(elapsedInMeasure / beatDuration) % beatsPerMeasure;
+
+          this.scheduleBeatTick(this.nextBeatTime, beatIndex, false);
+          this.onBeatTick?.(beatIndex);
+
+          this.nextBeatTime += beatDuration;
         }
       } catch (err) {
-        console.error("Audio scheduler error:", err);
-        this.nextEventTime += 0.05;
+        console.error("Audio scheduler beat error:", err);
+        this.nextBeatTime += 0.05;
+      }
+    }
+
+    // 2. Schedule Pattern Slots & Measure Iterations (Synchronized Visual Clock)
+    if (this.countInBeatsRemaining === 0) {
+      const slotDuration = this.getSlotDuration();
+      const slotsCount = Math.max(1, this.pattern.slots.length);
+
+      while (this.nextSlotTime < horizon) {
+        try {
+          this.onTick?.(this.currentSlotIndex, this.nextSlotTime);
+          this.nextSlotTime += slotDuration;
+
+          this.currentSlotIndex = (this.currentSlotIndex + 1) % slotsCount;
+          if (this.currentSlotIndex === 0) {
+            this.completedMeasuresCount++;
+            this.onMeasureComplete?.(this.completedMeasuresCount);
+          }
+        } catch (err) {
+          console.error("Audio scheduler slot error:", err);
+          this.nextSlotTime += 0.05;
+        }
       }
     }
   }
 
-  private scheduleCountInTick(time: number): void {
-    const beatIndexInMeasure = (this.totalCountInBeats - this.countInBeatsRemaining) % 4;
-    const isAccent = this.accentFirstBeat && beatIndexInMeasure === 0;
+  private scheduleBeatTick(time: number, beatIndex: number, isCountIn: boolean): void {
+    // Beat 0 gets primary accent if accentFirstBeat is enabled.
+    // Central notes are not accented per user request ("Elimina que se acentúe la nota central en el vals").
+    const isAccent = beatIndex === 0 && this.accentFirstBeat;
+    this.synth.scheduleTick(time, isAccent, "woodblock", false);
 
-    this.synth.scheduleTick(time, isAccent);
-    this.scheduleSubdivisionsForQuarterBeat(time);
-    this.onBeatTick?.(beatIndexInMeasure);
-    this.onCountInTick?.(this.countInBeatsRemaining, this.totalCountInBeats);
-  }
-
-  private schedulePatternSlot(time: number, slotIndex: number): void {
-    const slot = this.pattern.slots[slotIndex];
-
-    // Metronome clicks on quarter beats (beats 1, 2, 3, 4)
-    if (slot && slot.isQuarterBeat) {
-      const isBeatOne = slot.isMeasureStart;
-      const isAccent = isBeatOne && this.accentFirstBeat;
-      this.synth.scheduleTick(time, isAccent);
+    // Acoustic subdivisions (only during active pattern playback)
+    if (!isCountIn) {
       this.scheduleSubdivisionsForQuarterBeat(time);
-
-      const quarterSlotsPerMeasure = this.pattern.slots.length / 4;
-      const beatNumber = Math.floor(slotIndex / quarterSlotsPerMeasure);
-      this.onBeatTick?.(beatNumber);
     }
-
-    this.onTick?.(slotIndex, time);
   }
 
   private scheduleSubdivisionsForQuarterBeat(beatStartTime: number): void {
     if (this.metronomeSubdivision === "quarter") return;
 
-    const quarterDur = this.getQuarterBeatDuration();
+    const beatDur = this.getBeatDuration();
 
     if (this.metronomeSubdivision === "eighth") {
-      this.synth.scheduleSubdivisionTick(beatStartTime + 0.5 * quarterDur, 'woodblock', 0.45);
+      this.synth.scheduleSubdivisionTick(beatStartTime + 0.5 * beatDur, "woodblock", 0.45);
     } else if (this.metronomeSubdivision === "sixteenth") {
-      this.synth.scheduleSubdivisionTick(beatStartTime + 0.25 * quarterDur, 'woodblock', 0.45);
-      this.synth.scheduleSubdivisionTick(beatStartTime + 0.5 * quarterDur, 'woodblock', 0.45);
-      this.synth.scheduleSubdivisionTick(beatStartTime + 0.75 * quarterDur, 'woodblock', 0.45);
+      this.synth.scheduleSubdivisionTick(beatStartTime + 0.25 * beatDur, "woodblock", 0.45);
+      this.synth.scheduleSubdivisionTick(beatStartTime + 0.5 * beatDur, "woodblock", 0.45);
+      this.synth.scheduleSubdivisionTick(beatStartTime + 0.75 * beatDur, "woodblock", 0.45);
     } else if (this.metronomeSubdivision === "triplet") {
-      this.synth.scheduleSubdivisionTick(beatStartTime + (1 / 3) * quarterDur, 'woodblock', 0.45);
-      this.synth.scheduleSubdivisionTick(beatStartTime + (2 / 3) * quarterDur, 'woodblock', 0.45);
+      this.synth.scheduleSubdivisionTick(beatStartTime + (1 / 3) * beatDur, "woodblock", 0.45);
+      this.synth.scheduleSubdivisionTick(beatStartTime + (2 / 3) * beatDur, "woodblock", 0.45);
     } else if (this.metronomeSubdivision === "swing") {
       // Swing shuffle: 3rd triplet eighth (2/3 of the beat)
-      this.synth.scheduleSubdivisionTick(beatStartTime + (2 / 3) * quarterDur, 'woodblock', 0.45);
+      this.synth.scheduleSubdivisionTick(beatStartTime + (2 / 3) * beatDur, "woodblock", 0.45);
     }
   }
 }

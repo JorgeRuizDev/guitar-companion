@@ -5,12 +5,14 @@
 
 export type StrokeDirection = 'down' | 'up' | 'none';
 
-export type SubdivisionUnit = 'eighth' | 'sixteenth';
+export type SubdivisionUnit = 'eighth' | 'sixteenth' | 'custom';
+
+export type TimeSignature = [number, number];
 
 export type MetronomeSubdivision = 'quarter' | 'eighth' | 'sixteenth' | 'triplet' | 'swing';
 
 export interface BeatSlot {
-  /** Zero-based index within the measure (0 to 7 for 8th, 0 to 15 for 16th) */
+  /** Zero-based index within the measure (0 to slotsCount - 1) */
   index: number;
   /** Display label corresponding to musical count (e.g. '1', '&', 'e', 'a') */
   beatLabel: string;
@@ -20,6 +22,8 @@ export interface BeatSlot {
   isQuarterBeat: boolean;
   /** True if this slot represents the very first beat of the measure */
   isMeasureStart: boolean;
+  /** True if this slot carries a secondary compound meter accent (e.g. beat 4 in 6/8) */
+  isCompoundAccent?: boolean;
 }
 
 export interface StrummingPattern {
@@ -28,10 +32,10 @@ export interface StrummingPattern {
   /** Human-readable title (minimum 1 character, maximum 50 characters) */
   name: string;
   /** Time signature represented as [beatsPerMeasure, beatValue]. Default [4, 4] */
-  timeSignature: [number, number];
-  /** Subdivisions per measure ('eighth' | 'sixteenth') */
+  timeSignature: TimeSignature;
+  /** Subdivisions per measure ('eighth' | 'sixteenth' | 'custom') */
   subdivision: SubdivisionUnit;
-  /** Sequence of rhythmic slots matching the subdivision length (8 or 16) */
+  /** Sequence of rhythmic slots (between 2 and 24 slots) */
   slots: BeatSlot[];
   /** True if built into the beginner preset library; false if user-created */
   isPreset: boolean;
@@ -99,20 +103,52 @@ export function getTempoMarking(bpm: number): string {
 export function validatePattern(pattern: StrummingPattern): boolean {
   if (!pattern || typeof pattern !== 'object') return false;
   if (!pattern.name || pattern.name.length < 1 || pattern.name.length > 50) return false;
-  if (pattern.subdivision !== 'eighth' && pattern.subdivision !== 'sixteenth') return false;
-  
-  const expectedSlots = pattern.subdivision === 'eighth' ? 8 : 16;
-  if (!Array.isArray(pattern.slots) || pattern.slots.length !== expectedSlots) return false;
+  if (
+    pattern.subdivision !== 'eighth' &&
+    pattern.subdivision !== 'sixteenth' &&
+    pattern.subdivision !== 'custom'
+  ) {
+    return false;
+  }
+
+  if (!Array.isArray(pattern.slots) || pattern.slots.length < 2 || pattern.slots.length > 24) {
+    return false;
+  }
 
   for (let i = 0; i < pattern.slots.length; i++) {
     const slot = pattern.slots[i];
     if (slot.index !== i) return false;
-    if (slot.strokeDirection !== 'down' && slot.strokeDirection !== 'up' && slot.strokeDirection !== 'none') {
+    if (
+      slot.strokeDirection !== 'down' &&
+      slot.strokeDirection !== 'up' &&
+      slot.strokeDirection !== 'none'
+    ) {
       return false;
     }
   }
 
   return true;
+}
+
+/**
+ * Calculates the exact duration of a musical measure in seconds based on BPM and TimeSignature.
+ * Formula: beatsPerMeasure * (4 / beatValue) * (60.0 / bpm)
+ */
+export function getMeasureDurationSeconds(bpm: number, timeSignature: TimeSignature = [4, 4]): number {
+  const [num, den] = timeSignature;
+  return (num * (4.0 / den) * 60.0) / clampBpm(bpm);
+}
+
+/**
+ * Calculates the duration of each slot in a measure.
+ */
+export function getSlotDurationSeconds(
+  bpm: number,
+  timeSignature: TimeSignature = [4, 4],
+  slotCount: number = 8
+): number {
+  if (slotCount <= 0) return 0;
+  return getMeasureDurationSeconds(bpm, timeSignature) / slotCount;
 }
 
 /**

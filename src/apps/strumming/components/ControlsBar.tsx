@@ -9,6 +9,7 @@ export interface ControlsBarProps {
   countInMeasures: 0 | 1 | 2 | 3;
   metronomeSubdivision: MetronomeSubdivision;
   activeBeatIndex: number;
+  timeSignature?: [number, number];
   onTogglePlayPause: () => void;
   onReset: () => void;
   onBpmChange: (bpm: number) => void;
@@ -24,6 +25,7 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
   countInMeasures,
   metronomeSubdivision,
   activeBeatIndex,
+  timeSignature = [4, 4],
   onTogglePlayPause,
   onReset,
   onBpmChange,
@@ -124,9 +126,9 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
         </div>
       </div>
 
-      {/* 3. Real-Time Beat Dots (Reference circles) */}
-      <div className="flex items-center justify-center gap-3 py-1">
-        {[0, 1, 2, 3].map((b) => {
+      {/* 3. Real-Time Beat Dots (Reference circles, adapted to active timeSignature) */}
+      <div className="flex items-center justify-center gap-2.5 sm:gap-3 py-1 flex-wrap">
+        {Array.from({ length: timeSignature?.[0] ?? 4 }, (_, i) => i).map((b) => {
           const isActive = isPlaying && activeBeatIndex === b;
           const isAccentBeat = b === 0 && accentFirstBeat;
           return (

@@ -36,6 +36,34 @@ function create16thSlots(directions: StrokeDirection[]): BeatSlot[] {
   });
 }
 
+function create34Slots(directions: StrokeDirection[]): BeatSlot[] {
+  if (directions.length !== 6) {
+    throw new Error("3/4 8th subdivision pattern must contain exactly 6 slots");
+  }
+
+  return directions.map((dir, i) => ({
+    index: i,
+    beatLabel: i % 2 === 0 ? `${(i / 2) + 1}` : "&",
+    strokeDirection: dir,
+    isQuarterBeat: i % 2 === 0,
+    isMeasureStart: i === 0,
+  }));
+}
+
+function create68Slots(directions: StrokeDirection[]): BeatSlot[] {
+  if (directions.length !== 12) {
+    throw new Error("6/8 compound pattern must contain exactly 12 slots");
+  }
+
+  return directions.map((dir, i) => ({
+    index: i,
+    beatLabel: i % 2 === 0 ? `${(i / 2) + 1}` : "&",
+    strokeDirection: dir,
+    isQuarterBeat: i % 2 === 0,
+    isMeasureStart: i === 0,
+  }));
+}
+
 export const beginnerPresets: StrummingPattern[] = [
   {
     id: "preset-island-strum",
@@ -98,6 +126,45 @@ export const beginnerPresets: StrummingPattern[] = [
       "none", "up", "down", "up",   // 2 e & a
       "down", "none", "down", "up", // 3 e & a
       "none", "up", "down", "up",   // 4 e & a
+    ]),
+  },
+  {
+    id: "preset-waltz-basic",
+    name: "Vals Básico 3/4 (6 strums: D-U-D-U-D-U)",
+    timeSignature: [3, 4],
+    subdivision: "eighth",
+    isPreset: true,
+    ownerId: null,
+    createdAt: "2026-11-01T00:00:00.000Z",
+    updatedAt: "2026-11-01T00:00:00.000Z",
+    // 6 strums in 3/4 time: 3 Down and 3 Up (1 & 2 & 3 &)
+    slots: create34Slots(["down", "up", "down", "up", "down", "up"]),
+  },
+  {
+    id: "preset-waltz-ballad",
+    name: "Vals Balada 3/4 (D-DU-DU)",
+    timeSignature: [3, 4],
+    subdivision: "eighth",
+    isPreset: true,
+    ownerId: null,
+    createdAt: "2026-11-01T00:00:00.000Z",
+    updatedAt: "2026-11-01T00:00:00.000Z",
+    // 1: D, &: -, 2: D, &: U, 3: D, &: U
+    slots: create34Slots(["down", "none", "down", "up", "down", "up"]),
+  },
+  {
+    id: "preset-ballad-68",
+    name: "Balada 6/8 (12 strums: 6 D y 6 U)",
+    timeSignature: [6, 8],
+    subdivision: "eighth",
+    isPreset: true,
+    ownerId: null,
+    createdAt: "2026-11-01T00:00:00.000Z",
+    updatedAt: "2026-11-01T00:00:00.000Z",
+    // 12 strums in 6/8 time: 6 Down and 6 Up
+    slots: create68Slots([
+      "down", "none", "down", "up", "down", "up",
+      "down", "none", "down", "up", "down", "up",
     ]),
   },
 ];

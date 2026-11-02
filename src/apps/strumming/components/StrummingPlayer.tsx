@@ -6,6 +6,7 @@ import {
   StrokeDirection,
   SubdivisionUnit,
   MetronomeSubdivision,
+  BeatSlot,
   getPositionalStrokeDirection,
   alignSlotsToStrictAlternation,
 } from "../types";
@@ -197,6 +198,7 @@ export const StrummingPlayer: React.FC<StrummingPlayerProps> = ({
   // Handle Preset selection
   const handleSelectPreset = (selectedPreset: StrummingPattern) => {
     setPattern(selectedPreset);
+    engine.setPattern(selectedPreset);
     strummingStorage.saveLastActivePattern(selectedPreset);
     strummingStorage.savePreferences({
       lastPatternId: selectedPreset.id,
@@ -204,9 +206,9 @@ export const StrummingPlayer: React.FC<StrummingPlayerProps> = ({
     });
   };
 
-  // Handle Subdivision toggle (8th vs 16th)
+  // Handle Subdivision toggle (8th vs 16th) in 4/4
   const handleSubdivisionChange = (subdivision: SubdivisionUnit) => {
-    if (subdivision === pattern.subdivision) return;
+    if (subdivision === pattern.subdivision && pattern.timeSignature[0] === 4 && pattern.timeSignature[1] === 4) return;
 
     engine.pause();
     engine.reset();
@@ -249,12 +251,222 @@ export const StrummingPlayer: React.FC<StrummingPlayerProps> = ({
     };
 
     setPattern(newPattern);
+    engine.setPattern(newPattern);
     strummingStorage.saveLastActivePattern(newPattern);
     strummingStorage.saveCustomPattern(newPattern);
     strummingStorage.savePreferences({
       lastPatternId: newPattern.id,
       lastSubdivision: subdivision,
     });
+  };
+
+  // Handle Time Signature selection (4/4, 3/4, 6/8)
+  const handleTimeSignatureChange = (meter: "4/4" | "3/4" | "6/8") => {
+    engine.pause();
+    engine.reset();
+
+    if (meter === "4/4") {
+      handleSubdivisionChange("eighth");
+      return;
+    }
+
+    if (meter === "3/4") {
+      // Waltz: 6 slots (3 Down and 3 Up: 1 & 2 & 3 &)
+      const slotsCount = 6;
+      const slots: BeatSlot[] = Array.from({ length: slotsCount }, (_, i) => ({
+        index: i,
+        beatLabel: i % 2 === 0 ? `${i / 2 + 1}` : "&",
+        strokeDirection: (strictAlternation
+          ? getPositionalStrokeDirection(i)
+          : i % 2 === 0
+          ? "down"
+          : "up") as StrokeDirection,
+        isQuarterBeat: i % 2 === 0,
+        isMeasureStart: i === 0,
+      }));
+
+      const newPattern: StrummingPattern = {
+        id: `custom-3-4-${Date.now()}`,
+        name: "Custom 3/4 Pattern (6 strums)",
+        timeSignature: [3, 4],
+        subdivision: "eighth",
+        slots,
+        isPreset: false,
+        ownerId: null,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+
+      setPattern(newPattern);
+      engine.setPattern(newPattern);
+      strummingStorage.saveLastActivePattern(newPattern);
+      strummingStorage.saveCustomPattern(newPattern);
+      strummingStorage.savePreferences({ lastPatternId: newPattern.id, lastSubdivision: "eighth" });
+    } else if (meter === "6/8") {
+      // 6/8: Duplicated to 12 slots (6 Down and 6 Up: 1 & 2 & 3 & 4 & 5 & 6 &)
+      const slotsCount = 12;
+      const slots: BeatSlot[] = Array.from({ length: slotsCount }, (_, i) => ({
+        index: i,
+        beatLabel: i % 2 === 0 ? `${i / 2 + 1}` : "&",
+        strokeDirection: (strictAlternation
+          ? getPositionalStrokeDirection(i)
+          : i % 2 === 0
+          ? "down"
+          : "up") as StrokeDirection,
+        isQuarterBeat: i % 2 === 0,
+        isMeasureStart: i === 0,
+      }));
+
+      const newPattern: StrummingPattern = {
+        id: `custom-6-8-${Date.now()}`,
+        name: "Custom 6/8 Pattern (12 strums)",
+        timeSignature: [6, 8],
+        subdivision: "eighth",
+        slots,
+        isPreset: false,
+        ownerId: null,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+
+      setPattern(newPattern);
+      engine.setPattern(newPattern);
+      strummingStorage.saveLastActivePattern(newPattern);
+      strummingStorage.saveCustomPattern(newPattern);
+      strummingStorage.savePreferences({ lastPatternId: newPattern.id, lastSubdivision: "eighth" });
+    }
+  };
+
+  // Handle explicit Custom mode activation
+  const handleCustomClick = () => {
+    if (pattern.subdivision === "custom" && !pattern.isPreset) return;
+
+    engine.pause();
+    engine.reset();
+
+    const newPattern: StrummingPattern = {
+      ...pattern,
+      id: `custom-${Date.now()}`,
+      name: `Custom Pattern (${pattern.slots.length} strums)`,
+      subdivision: "custom",
+      isPreset: false,
+      updatedAt: new Date().toISOString(),
+    };
+
+    setPattern(newPattern);
+    engine.setPattern(newPattern);
+    strummingStorage.saveLastActivePattern(newPattern);
+    strummingStorage.saveCustomPattern(newPattern);
+    strummingStorage.savePreferences({
+      lastPatternId: newPattern.id,
+      lastSubdivision: "custom",
+    });
+  };
+
+  // Dynamically add a block/slot to the active pattern (max 24)
+  const handleAddSlot = () => {
+    if (pattern.slots.length >= 24) return;
+    engine.pause();
+    engine.reset();
+
+    const newSlotsCount = pattern.slots.length + 1;
+    const divisor = pattern.subdivision === "sixteenth" ? 4 : 2;
+    const newBeats = Math.max(1, Math.ceil(newSlotsCount / divisor));
+
+    const updatedSlots: BeatSlot[] = Array.from({ length: newSlotsCount }, (_, i) => {
+      const beatNum = Math.floor(i / divisor) + 1;
+      const subIdx = i % divisor;
+      const isBeatStart = subIdx === 0;
+
+      let beatLabel = "";
+      if (divisor === 2) {
+        beatLabel = isBeatStart ? `${beatNum}` : "&";
+      } else {
+        beatLabel = isBeatStart ? `${beatNum}` : ["", "e", "&", "a"][subIdx];
+      }
+
+      const existingDirection = pattern.slots[i]?.strokeDirection;
+      const strokeDirection =
+        existingDirection !== undefined
+          ? existingDirection
+          : strictAlternation
+          ? getPositionalStrokeDirection(i)
+          : "none";
+
+      return {
+        index: i,
+        beatLabel,
+        strokeDirection,
+        isQuarterBeat: isBeatStart,
+        isMeasureStart: i === 0,
+      };
+    });
+
+    const updatedPattern: StrummingPattern = {
+      ...pattern,
+      id: `custom-dyn-${Date.now()}`,
+      name: `Custom ${newSlotsCount}-Slot Pattern`,
+      subdivision: "custom",
+      timeSignature: [newBeats, pattern.timeSignature?.[1] || 4],
+      slots: updatedSlots,
+      isPreset: false,
+      updatedAt: new Date().toISOString(),
+    };
+
+    setPattern(updatedPattern);
+    engine.setPattern(updatedPattern);
+    strummingStorage.saveLastActivePattern(updatedPattern);
+    strummingStorage.saveCustomPattern(updatedPattern);
+    strummingStorage.savePreferences({ lastPatternId: updatedPattern.id, lastSubdivision: "custom" });
+  };
+
+  // Dynamically remove the last block/slot from active pattern (min 2)
+  const handleRemoveSlot = () => {
+    if (pattern.slots.length <= 2) return;
+    engine.pause();
+    engine.reset();
+
+    const newSlotsCount = pattern.slots.length - 1;
+    const divisor = pattern.subdivision === "sixteenth" ? 4 : 2;
+    const newBeats = Math.max(1, Math.ceil(newSlotsCount / divisor));
+
+    const updatedSlots: BeatSlot[] = Array.from({ length: newSlotsCount }, (_, i) => {
+      const beatNum = Math.floor(i / divisor) + 1;
+      const subIdx = i % divisor;
+      const isBeatStart = subIdx === 0;
+
+      let beatLabel = "";
+      if (divisor === 2) {
+        beatLabel = isBeatStart ? `${beatNum}` : "&";
+      } else {
+        beatLabel = isBeatStart ? `${beatNum}` : ["", "e", "&", "a"][subIdx];
+      }
+
+      return {
+        ...pattern.slots[i],
+        index: i,
+        beatLabel,
+        isQuarterBeat: isBeatStart,
+        isMeasureStart: i === 0,
+      };
+    });
+
+    const updatedPattern: StrummingPattern = {
+      ...pattern,
+      id: `custom-dyn-${Date.now()}`,
+      name: `Custom ${newSlotsCount}-Slot Pattern`,
+      subdivision: "custom",
+      timeSignature: [newBeats, pattern.timeSignature?.[1] || 4],
+      slots: updatedSlots,
+      isPreset: false,
+      updatedAt: new Date().toISOString(),
+    };
+
+    setPattern(updatedPattern);
+    engine.setPattern(updatedPattern);
+    strummingStorage.saveLastActivePattern(updatedPattern);
+    strummingStorage.saveCustomPattern(updatedPattern);
+    strummingStorage.savePreferences({ lastPatternId: updatedPattern.id, lastSubdivision: "custom" });
   };
 
   // Persist BPM adjustments
@@ -281,9 +493,15 @@ export const StrummingPlayer: React.FC<StrummingPlayerProps> = ({
       <PresetSelector
         activePatternId={pattern.id}
         activeSubdivision={pattern.subdivision}
+        timeSignature={pattern.timeSignature}
+        slotCount={pattern.slots.length}
         strictAlternation={strictAlternation}
         onSelectPreset={handleSelectPreset}
         onSubdivisionChange={handleSubdivisionChange}
+        onTimeSignatureChange={handleTimeSignatureChange}
+        onCustomClick={handleCustomClick}
+        onAddSlot={handleAddSlot}
+        onRemoveSlot={handleRemoveSlot}
         onToggleStrictAlternation={handleToggleStrictAlternation}
         shareProps={{
           pattern,
@@ -305,6 +523,8 @@ export const StrummingPlayer: React.FC<StrummingPlayerProps> = ({
         strictAlternation={strictAlternation}
         onToggleStrictAlternation={handleToggleStrictAlternation}
         onSlotClick={handleSlotClick}
+        onAddSlot={handleAddSlot}
+        onRemoveSlot={handleRemoveSlot}
         isInteractive={true}
       />
 
@@ -319,6 +539,7 @@ export const StrummingPlayer: React.FC<StrummingPlayerProps> = ({
         countInMeasures={engine.countInMeasures}
         metronomeSubdivision={engine.metronomeSubdivision}
         activeBeatIndex={engine.activeBeatIndex}
+        timeSignature={pattern.timeSignature}
         onTogglePlayPause={engine.togglePlayPause}
         onReset={engine.reset}
         onBpmChange={handleBpmChange}
