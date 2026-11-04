@@ -48,6 +48,7 @@ export interface ChordTrainerSessionState {
   metrics: SessionMetrics;
   mode: PracticeMode;
   chordPool: ChordDefinition[];
+  recentChordIds: string[];
 }
 
 export type ChordTrainerAction =
@@ -104,6 +105,7 @@ export function createInitialChordSessionState(
     },
     mode,
     chordPool,
+    recentChordIds: [targetChord.id],
   };
 }
 
@@ -221,16 +223,27 @@ export function chordTrainerSessionReducer(
     }
 
     case 'NEXT_CHALLENGE': {
+      const currentChordId = state.challenge.targetChord.id;
+      const prevRecent = state.recentChordIds || [];
+      const updatedRecent = [
+        currentChordId,
+        ...prevRecent.filter((id) => id !== currentChordId),
+      ].slice(0, 4);
+      const nextNotation =
+        state.challenge.notation === 'letters' ? 'solfege' : 'letters';
+
       const nextChallenge = generateNextChallenge(
         state.mode,
         state.challenge.type,
         state.chordPool,
-        state.challenge.targetChord.id
+        updatedRecent,
+        nextNotation
       );
 
       return {
         ...state,
         challenge: nextChallenge,
+        recentChordIds: updatedRecent,
         userState: createDefaultUserFretboardState(),
         status: 'PENDING',
         selectedChordId: null,

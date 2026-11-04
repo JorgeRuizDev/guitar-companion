@@ -113,3 +113,14 @@ guitar-companion/
 ## Complexity Tracking
 
 *No constitutional violations or unjustified complexity introduced. All gates pass unconditionally.*
+
+---
+
+## Migration Addendum (Spec 004 - Interactive Quiz Framework)
+
+- **Status**: Migrated / Integrated.
+- **Reference**: [Interactive Quiz Framework Spec](../../specs/004-interactive-quiz-framework/spec.md).
+- **Architecture**:
+  - Theory cards and note translation question banks are externalized into modular JSON packs (`src/content/quizzes/courses/course-01-notes.json` and `course-02-accidentals.json`).
+  - Visual diagram `ChromaticScaleVisualizer` is registered with the decoupled visual registry (`visualRegistry.register('chromatic-scale', ChromaticScaleVisualizerAdapter)`).
+  - Backward compatibility: 100% maintained for existing routes (`/basic-note-trainer`, `/basic-note-trainer/embed`), query parameter schemas, keyboard shortcuts, and postMessage events.

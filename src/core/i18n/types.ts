@@ -14,6 +14,8 @@ export interface TranslationDictionary {
     strummingShort: string;
     noteTrainerShort: string;
     chordTrainerShort: string;
+    quiz?: string;
+    quizShort?: string;
     brand: string;
     mobileNavLabel: string;
   };

@@ -20,9 +20,9 @@ description: "Task list for Interactive Learning & Quiz Framework implementation
 
 **Purpose**: Project initialization, directory structure, manifest stub, and public export boundaries.
 
-- [ ] T001 Create framework directory structure at `src/core/quiz/` (`types/`, `engine/`, `registry/`, `components/`, `hooks/`) and content directory at `src/content/quizzes/` (`courses/`, `topics/`)
-- [ ] T002 [P] Initialize question pack index manifest in `src/content/quizzes/manifest.json` conforming to `QuestionPackManifest` schema (`version: "1.0"`, `packs: []`)
-- [ ] T003 [P] Create public module re-exports and barrel stub in `src/core/quiz/index.ts`
+- [X] T001 Create framework directory structure at `src/core/quiz/` (`types/`, `engine/`, `registry/`, `components/`, `hooks/`) and content directory at `src/content/quizzes/` (`courses/`, `topics/`)
+- [X] T002 [P] Initialize question pack index manifest in `src/content/quizzes/manifest.json` conforming to `QuestionPackManifest` schema (`version: "1.0"`, `packs: []`)
+- [X] T003 [P] Create public module re-exports and barrel stub in `src/core/quiz/index.ts`
 
 ---
 
@@ -32,13 +32,13 @@ description: "Task list for Interactive Learning & Quiz Framework implementation
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T004 [P] Define Zod schemas and TypeScript interfaces in `src/core/quiz/types/schema.ts` strictly validating `QuestionType` (`'single-choice' | 'multiple-choice' | 'interactive-visual'`), `DifficultyLevel` (`'beginner' | 'intermediate' | 'advanced'`), `NotationFormat` (`'letters' | 'solfege' | 'dual' | 'neutral'`), `LocalizedText` (`{ en: string; es: string }`), `VisualDescriptor` (`{ visualType: string; visualProps: Record<string, unknown> }`), `QuestionOption` (`{ id: string; label: LocalizedText; visualCue?: VisualDescriptor }`), `Remediation` (`{ explanation: LocalizedText; hint?: LocalizedText; mnemonic?: LocalizedText; visualExplanation?: VisualDescriptor }`), and `Question` (`id: string`, `familyIds?: string[]`, `type: QuestionType`, `course: number`, `difficulty: DifficultyLevel`, `topics: string[]`, `notation: NotationFormat`, `prompt: LocalizedText`, `subPrompt?: LocalizedText`, `stimulus?: VisualDescriptor`, `options: QuestionOption[]`, `correctAnswer: string[]`, `remediation: Remediation`)
-- [ ] T005 [P] Define session state types, lifecycle statuses, and action interfaces in `src/core/quiz/types/session.ts` defining `SessionStatus` (`'IDLE' | 'ANSWERING' | 'EVALUATED_CORRECT' | 'EVALUATED_INCORRECT' | 'SESSION_EXHAUSTED'`), `SessionStats` (`hits: number`, `misses: number`, `currentStreak: number`, `bestStreak: number`, `accuracy: number`, `totalCompleted: number`), and `QuizSessionState` (`filter`, `candidatePool`, `activeQuestion`, `excludedFamilyIds: Set<string>`, `servedQuestionIds: Set<string>`, `selectedOptionIds: string[]`, `status`, `stats`)
-- [ ] T006 [P] Implement Decoupled Visual Component Registry in `src/core/quiz/registry/visualRegistry.ts` conforming to `VisualRegistryInterface` (`register(visualType: string, component: VisualComponentType): void`, `get(visualType: string): VisualComponentType | undefined`, `has(visualType: string): boolean`)
-- [ ] T007 [P] Implement pure answer evaluator in `src/core/quiz/engine/evaluator.ts` implementing `evaluateAnswer(question: Question, selectedIds: string[])` with all-or-nothing logic returning `{ isCorrect: boolean, falsePositives: string[], falseNegatives: string[] }`
-- [ ] T008 Implement pack loader and schema validator in `src/core/quiz/engine/packLoader.ts` reading `src/content/quizzes/manifest.json` and verifying loaded packs against `QuestionSchema`
-- [ ] T009 [P] Create unit test suite in `tests/unit/core/quiz/validatePacks.test.ts` validating all JSON question packs against Zod schemas and asserting ID uniqueness
-- [ ] T010 [P] Create unit test suite in `tests/unit/core/quiz/evaluator.test.ts` verifying single-choice and all-or-nothing multiple-choice grading, false positive detection, and false negative diagnostics
+- [X] T004 [P] Define Zod schemas and TypeScript interfaces in `src/core/quiz/types/schema.ts` strictly validating `QuestionType` (`'single-choice' | 'multiple-choice' | 'interactive-visual'`), `DifficultyLevel` (`'beginner' | 'intermediate' | 'advanced'`), `NotationFormat` (`'letters' | 'solfege' | 'dual' | 'neutral'`), `LocalizedText` (`{ en: string; es: string }`), `VisualDescriptor` (`{ visualType: string; visualProps: Record<string, unknown> }`), `QuestionOption` (`{ id: string; label: LocalizedText; visualCue?: VisualDescriptor }`), `Remediation` (`{ explanation: LocalizedText; hint?: LocalizedText; mnemonic?: LocalizedText; visualExplanation?: VisualDescriptor }`), and `Question` (`id: string`, `familyIds?: string[]`, `type: QuestionType`, `course: number`, `difficulty: DifficultyLevel`, `topics: string[]`, `notation: NotationFormat`, `prompt: LocalizedText`, `subPrompt?: LocalizedText`, `stimulus?: VisualDescriptor`, `options: QuestionOption[]`, `correctAnswer: string[]`, `remediation: Remediation`)
+- [X] T005 [P] Define session state types, lifecycle statuses, and action interfaces in `src/core/quiz/types/session.ts` defining `SessionStatus` (`'IDLE' | 'ANSWERING' | 'EVALUATED_CORRECT' | 'EVALUATED_INCORRECT' | 'SESSION_EXHAUSTED'`), `SessionStats` (`hits: number`, `misses: number`, `currentStreak: number`, `bestStreak: number`, `accuracy: number`, `totalCompleted: number`), and `QuizSessionState` (`filter`, `candidatePool`, `activeQuestion`, `excludedFamilyIds: Set<string>`, `servedQuestionIds: Set<string>`, `selectedOptionIds: string[]`, `status`, `stats`)
+- [X] T006 [P] Implement Decoupled Visual Component Registry in `src/core/quiz/registry/visualRegistry.ts` conforming to `VisualRegistryInterface` (`register(visualType: string, component: VisualComponentType): void`, `get(visualType: string): VisualComponentType | undefined`, `has(visualType: string): boolean`)
+- [X] T007 [P] Implement pure answer evaluator in `src/core/quiz/engine/evaluator.ts` implementing `evaluateAnswer(question: Question, selectedIds: string[])` with all-or-nothing logic returning `{ isCorrect: boolean, falsePositives: string[], falseNegatives: string[] }`
+- [X] T008 Implement pack loader and schema validator in `src/core/quiz/engine/packLoader.ts` reading `src/content/quizzes/manifest.json` and verifying loaded packs against `QuestionSchema`
+- [X] T009 [P] Create unit test suite in `tests/unit/core/quiz/validatePacks.test.ts` validating all JSON question packs against Zod schemas and asserting ID uniqueness
+- [X] T010 [P] Create unit test suite in `tests/unit/core/quiz/evaluator.test.ts` verifying single-choice and all-or-nothing multiple-choice grading, false positive detection, and false negative diagnostics
 
 **Checkpoint**: Foundation ready - all core types, validators, evaluation logic, and registry ready for user story implementations.
 
@@ -52,14 +52,14 @@ description: "Task list for Interactive Learning & Quiz Framework implementation
 
 ### Tests for User Story 1 ⚠️
 
-- [ ] T011 [P] [US1] Create unit test suite in `tests/unit/core/quiz/QuestionView.test.tsx` verifying single-choice selection, multi-select toggling, submit action, and visual stimulus delegation
+- [X] T011 [P] [US1] Create unit test suite in `tests/unit/core/quiz/QuestionView.test.tsx` verifying single-choice selection, multi-select toggling, submit action, and visual stimulus delegation
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Create initial modular question pack in `src/content/quizzes/courses/course-01-notes.json` containing note translation questions (`single-choice` and `multiple-choice`) with bilingual `en`/`es` prompts and valid remediation objects
-- [ ] T013 [P] [US1] Implement responsive option grid in `src/core/quiz/components/OptionGrid.tsx` rendering selectable option buttons with accessible touch targets $\ge 44\times 44$px supporting single and multi-select states
-- [ ] T014 [US1] Implement QuestionView component in `src/core/quiz/components/QuestionView.tsx` rendering localized `prompt`, `subPrompt`, optional stimulus via `visualRegistry`, options grid, and explicit submit button for multiple-choice questions
-- [ ] T015 [US1] Implement core QuizRunner container in `src/core/quiz/components/QuizRunner.tsx` coordinating question display, option selection state, and submission handling in guest mode
+- [X] T012 [P] [US1] Create initial modular question pack in `src/content/quizzes/courses/course-01-notes.json` containing note translation questions (`single-choice` and `multiple-choice`) with bilingual `en`/`es` prompts and valid remediation objects
+- [X] T013 [P] [US1] Implement responsive option grid in `src/core/quiz/components/OptionGrid.tsx` rendering selectable option buttons with accessible touch targets $\ge 44\times 44$px supporting single and multi-select states
+- [X] T014 [US1] Implement QuestionView component in `src/core/quiz/components/QuestionView.tsx` rendering localized `prompt`, `subPrompt`, optional stimulus via `visualRegistry`, options grid, and explicit submit button for multiple-choice questions
+- [X] T015 [US1] Implement core QuizRunner container in `src/core/quiz/components/QuizRunner.tsx` coordinating question display, option selection state, and submission handling in guest mode
 
 **Checkpoint**: User Story 1 is functional as an independent MVP. Learners can answer single-choice and multi-choice questions loaded dynamically from external JSON.
 
@@ -73,12 +73,12 @@ description: "Task list for Interactive Learning & Quiz Framework implementation
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T016 [P] [US2] Create unit test suite in `tests/unit/core/quiz/RemediationCard.test.tsx` verifying rendering of theoretical explanation (`remediation.explanation`), error diff diagnostics (`falsePositives`, `falseNegatives`), mnemonics (`remediation.mnemonic`), and visual explanation (`remediation.visualExplanation`)
+- [X] T016 [P] [US2] Create unit test suite in `tests/unit/core/quiz/RemediationCard.test.tsx` verifying rendering of theoretical explanation (`remediation.explanation`), error diff diagnostics (`falsePositives`, `falseNegatives`), mnemonics (`remediation.mnemonic`), and visual explanation (`remediation.visualExplanation`)
 
 ### Implementation for User Story 2
 
-- [ ] T017 [US2] Implement RemediationCard component in `src/core/quiz/components/RemediationCard.tsx` rendering localized `remediation.explanation`, explicit error diagnostics for selected false positives and omitted false negatives, `remediation.mnemonic` callout, and `remediation.visualExplanation` via `visualRegistry`
-- [ ] T018 [US2] Integrate immediate in-place remediation flow into `src/core/quiz/components/QuizRunner.tsx`, displaying RemediationCard on `EVALUATED_INCORRECT` with a prominent "Continue" action to resume play
+- [X] T017 [US2] Implement RemediationCard component in `src/core/quiz/components/RemediationCard.tsx` rendering localized `remediation.explanation`, explicit error diagnostics for selected false positives and omitted false negatives, `remediation.mnemonic` callout, and `remediation.visualExplanation` via `visualRegistry`
+- [X] T018 [US2] Integrate immediate in-place remediation flow into `src/core/quiz/components/QuizRunner.tsx`, displaying RemediationCard on `EVALUATED_INCORRECT` with a prominent "Continue" action to resume play
 
 **Checkpoint**: User Stories 1 AND 2 operate harmoniously. Mistakes immediately trigger rich, multi-modal pedagogical remediation.
 
@@ -92,14 +92,14 @@ description: "Task list for Interactive Learning & Quiz Framework implementation
 
 ### Tests for User Story 3 ⚠️
 
-- [ ] T019 [P] [US3] Create unit test suite in `tests/unit/core/quiz/filter.test.ts` verifying filter predicate rules for course ranges, difficulty levels, topic intersections, and notation matching
-- [ ] T020 [P] [US3] Create unit test suite in `tests/unit/core/quiz/urlParams.test.ts` verifying URL query parameter parsing, range transformations (e.g., `"1-5"` → `[1,2,3,4,5]`), sanitization, and fallback defaults
+- [X] T019 [P] [US3] Create unit test suite in `tests/unit/core/quiz/filter.test.ts` verifying filter predicate rules for course ranges, difficulty levels, topic intersections, and notation matching
+- [X] T020 [P] [US3] Create unit test suite in `tests/unit/core/quiz/urlParams.test.ts` verifying URL query parameter parsing, range transformations (e.g., `"1-5"` → `[1,2,3,4,5]`), sanitization, and fallback defaults
 
 ### Implementation for User Story 3
 
-- [ ] T021 [P] [US3] Implement dynamic multi-dimensional question filter in `src/core/quiz/engine/filter.ts` evaluating `QuestionFilter` (`courses?: number[]`, `difficulties?: DifficultyLevel[]`, `topics?: string[]`, `notation?: NotationFormat | 'any'`) against candidate questions
-- [ ] T022 [US3] Implement declarative URL parameter parsing and state synchronization hook in `src/core/quiz/hooks/useQuizUrlParams.ts` conforming to `QuizUrlParamsSchema` in `contracts/url-params.contract.ts`
-- [ ] T023 [US3] Implement EmptyPoolNotice component in `src/core/quiz/components/EmptyPoolNotice.tsx` and integrate into `src/core/quiz/components/QuizRunner.tsx` to display helpful recovery recommendations when 0 questions match the filter
+- [X] T021 [P] [US3] Implement dynamic multi-dimensional question filter in `src/core/quiz/engine/filter.ts` evaluating `QuestionFilter` (`courses?: number[]`, `difficulties?: DifficultyLevel[]`, `topics?: string[]`, `notation?: NotationFormat | 'any'`) against candidate questions
+- [X] T022 [US3] Implement declarative URL parameter parsing and state synchronization hook in `src/core/quiz/hooks/useQuizUrlParams.ts` conforming to `QuizUrlParamsSchema` in `contracts/url-params.contract.ts`
+- [X] T023 [US3] Implement EmptyPoolNotice component in `src/core/quiz/components/EmptyPoolNotice.tsx` and integrate into `src/core/quiz/components/QuizRunner.tsx` to display helpful recovery recommendations when 0 questions match the filter
 
 **Checkpoint**: User Stories 1, 2, and 3 are functional. Sessions can be dynamically filtered via code or declarative URL query parameters.
 
@@ -113,14 +113,14 @@ description: "Task list for Interactive Learning & Quiz Framework implementation
 
 ### Tests for User Story 4 ⚠️
 
-- [ ] T024 [P] [US4] Create unit test suite in `tests/unit/core/quiz/carousel.test.ts` verifying pure Fisher-Yates shuffling, non-repeating draws, and multi-family mutual exclusion invariant
-- [ ] T025 [P] [US4] Create unit test suite in `tests/unit/core/quiz/useQuizSession.test.ts` verifying session state machine transitions (`IDLE` → `ANSWERING` → `EVALUATED_CORRECT` / `EVALUATED_INCORRECT` → `SESSION_EXHAUSTED`), live streak calculations, accuracy %, and pool exhaustion
+- [X] T024 [P] [US4] Create unit test suite in `tests/unit/core/quiz/carousel.test.ts` verifying pure Fisher-Yates shuffling, non-repeating draws, and multi-family mutual exclusion invariant
+- [X] T025 [P] [US4] Create unit test suite in `tests/unit/core/quiz/useQuizSession.test.ts` verifying session state machine transitions (`IDLE` → `ANSWERING` → `EVALUATED_CORRECT` / `EVALUATED_INCORRECT` → `SESSION_EXHAUSTED`), live streak calculations, accuracy %, and pool exhaustion
 
 ### Implementation for User Story 4
 
-- [ ] T026 [P] [US4] Implement carousel draw and multi-family exclusion algorithm in `src/core/quiz/engine/carousel.ts` implementing `drawNextEligible(pool: Question[], excludedFamilies: Set<string>): Question | null`
-- [ ] T027 [US4] Implement session state reducer and hook in `src/core/quiz/hooks/useQuizSession.ts` managing `QuizSessionState`, Fisher-Yates initialization, non-repeating draws, streak updates, and guest persistence via `@/core/storage/typedStorage.ts` with `ownerId: null`
-- [ ] T028 [US4] Implement SessionProgressBar component in `src/core/quiz/components/SessionProgressBar.tsx` displaying live current streak, best streak, and accuracy percentage, integrated into `src/core/quiz/components/QuizRunner.tsx`
+- [X] T026 [P] [US4] Implement carousel draw and multi-family exclusion algorithm in `src/core/quiz/engine/carousel.ts` implementing `drawNextEligible(pool: Question[], excludedFamilies: Set<string>): Question | null`
+- [X] T027 [US4] Implement session state reducer and hook in `src/core/quiz/hooks/useQuizSession.ts` managing `QuizSessionState`, Fisher-Yates initialization, non-repeating draws, streak updates, and guest persistence via `@/core/storage/typedStorage.ts` with `ownerId: null`
+- [X] T028 [US4] Implement SessionProgressBar component in `src/core/quiz/components/SessionProgressBar.tsx` displaying live current streak, best streak, and accuracy percentage, integrated into `src/core/quiz/components/QuizRunner.tsx`
 
 **Checkpoint**: Core carousel engine complete. Questions never repeat, sister variants are excluded across multiple families, and streak mechanics operate continuously.
 
@@ -134,13 +134,13 @@ description: "Task list for Interactive Learning & Quiz Framework implementation
 
 ### Tests for User Story 5 ⚠️
 
-- [ ] T029 [P] [US5] Create unit test suite in `tests/unit/core/quiz/notationFilter.test.ts` verifying strict notation segregation (`letters` vs `solfege`) and dual/neutral question fallbacks
+- [X] T029 [P] [US5] Create unit test suite in `tests/unit/core/quiz/notationFilter.test.ts` verifying strict notation segregation (`letters` vs `solfege`) and dual/neutral question fallbacks
 
 ### Implementation for User Story 5
 
-- [ ] T030 [P] [US5] Author modular question pack for semitones and accidentals in `src/content/quizzes/courses/course-02-accidentals.json` defining paired letter and solfège questions linked by shared `familyIds` (e.g. `family-csharp-translation`)
-- [ ] T031 [US5] Update index manifest in `src/content/quizzes/manifest.json` registering `course-02-accidentals.json` with course number `2` and supported notations `["letters", "solfege", "dual"]`
-- [ ] T032 [US5] Enhance notation filter handling in `src/core/quiz/engine/filter.ts` and add accessible notation selector toggle to `src/core/quiz/components/QuizRunner.tsx`
+- [X] T030 [P] [US5] Author modular question pack for semitones and accidentals in `src/content/quizzes/courses/course-02-accidentals.json` defining paired letter and solfège questions linked by shared `familyIds` (e.g. `family-csharp-translation`)
+- [X] T031 [US5] Update index manifest in `src/content/quizzes/manifest.json` registering `course-02-accidentals.json` with course number `2` and supported notations `["letters", "solfege", "dual"]`
+- [X] T032 [US5] Enhance notation filter handling in `src/core/quiz/engine/filter.ts` and add accessible notation selector toggle to `src/core/quiz/components/QuizRunner.tsx`
 
 **Checkpoint**: Notation segregation and mixing fully operational with zero sister collisions across musical conventions.
 
@@ -154,12 +154,12 @@ description: "Task list for Interactive Learning & Quiz Framework implementation
 
 ### Implementation for User Story 6
 
-- [ ] T033 [P] [US6] Author open chords modular question pack in `src/content/quizzes/topics/open-chords.json` extracting 22 chords from `chordCatalog.ts` with "identify" and "draw" sister question family IDs
-- [ ] T034 [P] [US6] Register `ChromaticScaleVisualizer` and `FretboardDiagram` in `src/core/quiz/registry/visualRegistry.ts` (mapping `chromatic-scale` and `fretboard-diagram` visual types)
-- [ ] T035 [US6] Refactor `BasicNoteTrainerContainer` in `src/apps/basic-note-trainer/components/BasicNoteTrainerContainer.tsx` to delegate session management to `@/core/quiz` hooks and JSON packs while preserving existing UI styling, routes, and query parameters
-- [ ] T036 [US6] Refactor `BasicChordTrainerContainer` in `src/apps/basic-chord-trainer/components/BasicChordTrainerContainer.tsx` to consume `@/core/quiz` and `open-chords.json`, preserving existing Identify and Draw interaction modes and routes
-- [ ] T037 [P] [US6] Update implementation plan in `specs/002-basic-note-trainer/plan.md` adding migration addendum referencing spec `004`
-- [ ] T038 [P] [US6] Update implementation plan in `specs/003-basic-chord-trainer/plan.md` adding migration addendum referencing spec `004`
+- [X] T033 [P] [US6] Author open chords modular question pack in `src/content/quizzes/topics/open-chords.json` extracting 22 chords from `chordCatalog.ts` with "identify" and "draw" sister question family IDs
+- [X] T034 [P] [US6] Register `ChromaticScaleVisualizer` and `FretboardDiagram` in `src/core/quiz/registry/visualRegistry.ts` (mapping `chromatic-scale` and `fretboard-diagram` visual types)
+- [X] T035 [US6] Refactor `BasicNoteTrainerContainer` in `src/apps/basic-note-trainer/components/BasicNoteTrainerContainer.tsx` to delegate session management to `@/core/quiz` hooks and JSON packs while preserving existing UI styling, routes, and query parameters
+- [X] T036 [US6] Refactor `BasicChordTrainerContainer` in `src/apps/basic-chord-trainer/components/BasicChordTrainerContainer.tsx` to consume `@/core/quiz` and `open-chords.json`, preserving existing Identify and Draw interaction modes and routes
+- [X] T037 [P] [US6] Update implementation plan in `specs/002-basic-note-trainer/plan.md` adding migration addendum referencing spec `004`
+- [X] T038 [P] [US6] Update implementation plan in `specs/003-basic-chord-trainer/plan.md` adding migration addendum referencing spec `004`
 
 **Checkpoint**: Both existing trainer apps are migrated to the shared JSON engine. 100% backward compatibility maintained.
 
@@ -169,12 +169,25 @@ description: "Task list for Interactive Learning & Quiz Framework implementation
 
 **Purpose**: Embed view support, PostMessage bridge, public showcase routes, SEO structured data, platform navigation integration, and Docker container verification.
 
-- [ ] T039 [P] Implement PostMessage bridge hook in `src/core/quiz/hooks/useQuizPostMessage.ts` emitting `QUIZ_ANSWER`, `QUIZ_PROGRESS`, and `QUIZ_EXHAUSTED` events conforming to `contracts/postmessage.contract.ts`
-- [ ] T040 [P] Implement public showcase page in `src/app/(apps)/quiz/page.tsx` with SSR pre-rendered layout, semantic HTML hierarchy, dynamic OpenGraph metadata, and JSON-LD structured data
-- [ ] T041 [P] Implement embed route in `src/app/(apps)/quiz/embed/page.tsx` activating `embed=true` and `compact=true` with suppressed platform header and bottom navigation
-- [ ] T042 [P] Update platform navigation in `src/core/ui/navigation.ts` adding `/quiz` entry with localized EN/ES labels and icon representation
-- [ ] T043 Run complete automated test suite (`bun test --preload ./tests/setup.ts`) verifying all core, unit, app, and pack validation tests pass
-- [ ] T044 Execute Docker production reload (`bun run docker:reload`) and verify health endpoint `curl -f http://192.168.1.202:3100/api/health`
+- [X] T039 [P] Implement PostMessage bridge hook in `src/core/quiz/hooks/useQuizPostMessage.ts` emitting `QUIZ_ANSWER`, `QUIZ_PROGRESS`, and `QUIZ_EXHAUSTED` events conforming to `contracts/postmessage.contract.ts`
+- [X] T040 [P] Implement public showcase page in `src/app/(apps)/quiz/page.tsx` with SSR pre-rendered layout, semantic HTML hierarchy, dynamic OpenGraph metadata, and JSON-LD structured data
+- [X] T041 [P] Implement embed route in `src/app/(apps)/quiz/embed/page.tsx` activating `embed=true` and `compact=true` with suppressed platform header and bottom navigation
+- [X] T042 [P] Update platform navigation in `src/core/ui/navigation.ts` adding `/quiz` entry with localized EN/ES labels and icon representation
+- [X] T043 Run complete automated test suite (`bun test --preload ./tests/setup.ts`) verifying all core, unit, app, and pack validation tests pass
+- [X] T044 Execute Docker production reload (`bun run docker:reload`) and verify health endpoint `curl -f http://192.168.1.202:3100/api/health`
+
+---
+
+## Phase 10: Visual Component Extraction, Homogenization & Route Deferral
+
+**Purpose**: Extract visual question components from note trainer and chord trainer into common primitives, harmonize styling to be mobile-first and compact, eliminate horizontal overflow in embedded webviews, and temporarily remove the standalone `/quiz` route.
+
+- [X] T045 [P] Extract unified question visual primitives into `src/core/ui/questions/` (`QuestionCard`, `QuestionHeader`, `StimulusContainer`, `ActionNextButton`, `MnemonicBanner`, `FeedbackBanner`)
+- [X] T046 [P] Restyle `src/core/quiz/components/` (`OptionGrid`, `QuestionView`, `RemediationCard`, `SessionProgressBar`, `EmptyPoolNotice`, `QuizRunner`) to match dark neutral theme with strict 2×2 grid, mobile-first compact layout, and zero horizontal scroll
+- [X] T047 [P] Adopt shared question primitives across `IdentifyChallenge`, `Flashcard`, and `ExplanationCard`
+- [X] T048 [P] Remove standalone `/quiz` route (`src/app/(apps)/quiz/`) and purge `/quiz` navigation from `PlatformHeader.tsx`, `PlatformBottomNav.tsx`, and `app/page.tsx`
+- [X] T049 Update feature specifications (`spec.md`, `plan.md`, `tasks.md`) reflecting deferral of `/quiz` route and component homogenization
+- [X] T050 Run complete test suite and execute mandatory Docker production reload (`bun run docker:reload`)
 
 ---
 

@@ -71,6 +71,7 @@ export interface TranslationCardOptions {
   letter?: NaturalLetter;
   solfege?: SolfegeNote;
   lang?: Language;
+  excludeNotes?: string[];
 }
 
 /**
@@ -86,8 +87,12 @@ export function generateTranslationCard(options: TranslationCardOptions = {}): F
     effectiveDir = options.direction;
   }
 
+  const exclude = options.excludeNotes || [];
+
   if (effectiveDir === 'letters-to-solfege') {
-    const letter = options.letter ?? NATURAL_LETTERS[Math.floor(Math.random() * NATURAL_LETTERS.length)];
+    const candidates = NATURAL_LETTERS.filter((l) => !exclude.includes(l));
+    const pool = candidates.length > 0 ? candidates : NATURAL_LETTERS;
+    const letter = options.letter ?? pool[Math.floor(Math.random() * pool.length)];
     const correctAnswer = letterToSolfege(letter);
     const distractors = pickDistinctDistractors(SOLFEGE_NOTES, correctAnswer, 3);
     const shuffledOptions = shuffleArray([correctAnswer, ...distractors]) as [string, string, string, string];
@@ -120,7 +125,9 @@ export function generateTranslationCard(options: TranslationCardOptions = {}): F
       noteReference: letter,
     };
   } else {
-    const solfege = options.solfege ?? SOLFEGE_NOTES[Math.floor(Math.random() * SOLFEGE_NOTES.length)];
+    const candidates = SOLFEGE_NOTES.filter((s) => !exclude.includes(solfegeToLetter(s)));
+    const pool = candidates.length > 0 ? candidates : SOLFEGE_NOTES;
+    const solfege = options.solfege ?? pool[Math.floor(Math.random() * pool.length)];
     const correctAnswer = solfegeToLetter(solfege);
     const distractors = pickDistinctDistractors(NATURAL_LETTERS, correctAnswer, 3);
     const shuffledOptions = shuffleArray([correctAnswer, ...distractors]) as [string, string, string, string];
@@ -594,7 +601,8 @@ export function generatePreviousChromaticQuestion(
  */
 export function generateCard(
   config: TrainerConfig,
-  reviewQueue: string[] = []
+  reviewQueue: string[] = [],
+  excludeNotes: string[] = []
 ): FlashcardQuestion {
   const lang = config.lang ?? 'en';
 
@@ -607,12 +615,20 @@ export function generateCard(
     }
   }
 
+  const pickNaturalLetter = (): NaturalLetter => {
+    if (targetLetter) return targetLetter;
+    const candidates = NATURAL_LETTERS.filter((l) => !excludeNotes.includes(l));
+    const pool = candidates.length > 0 ? candidates : NATURAL_LETTERS;
+    return pool[Math.floor(Math.random() * pool.length)];
+  };
+
   // Translation mode
   if (config.mode === 'translation') {
     return generateTranslationCard({
       direction: config.direction,
       letter: targetLetter,
       lang,
+      excludeNotes,
     });
   }
 
@@ -622,15 +638,16 @@ export function generateCard(
     if (roll < 0.25) {
       return generateNaturalSemitoneQuestion(lang);
     }
+    const chosenLetter = pickNaturalLetter();
     if (roll < 0.50) {
-      return generateAccidentalQuestion(targetLetter, lang);
+      return generateAccidentalQuestion(chosenLetter, lang);
     }
     if (roll < 0.75) {
       return generateEnharmonicQuestion(lang);
     }
     return Math.random() < 0.5
-      ? generateNextChromaticQuestion(targetLetter, lang)
-      : generatePreviousChromaticQuestion(targetLetter, lang);
+      ? generateNextChromaticQuestion(chosenLetter, lang)
+      : generatePreviousChromaticQuestion(chosenLetter, lang);
   }
 
   // Mixed mode: 50% translation, 50% accidentals/sequence
@@ -640,6 +657,7 @@ export function generateCard(
       direction: config.direction,
       letter: targetLetter,
       lang,
+      excludeNotes,
     });
   }
 
@@ -647,15 +665,16 @@ export function generateCard(
   if (accidentalRoll < 0.25) {
     return generateNaturalSemitoneQuestion(lang);
   }
+  const chosenLetter = pickNaturalLetter();
   if (accidentalRoll < 0.50) {
-    return generateAccidentalQuestion(targetLetter, lang);
+    return generateAccidentalQuestion(chosenLetter, lang);
   }
   if (accidentalRoll < 0.75) {
     return generateEnharmonicQuestion(lang);
   }
   return Math.random() < 0.5
-    ? generateNextChromaticQuestion(targetLetter, lang)
-    : generatePreviousChromaticQuestion(targetLetter, lang);
+    ? generateNextChromaticQuestion(chosenLetter, lang)
+    : generatePreviousChromaticQuestion(chosenLetter, lang);
 }
 
 /**

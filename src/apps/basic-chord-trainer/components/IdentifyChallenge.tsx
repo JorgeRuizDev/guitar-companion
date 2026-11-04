@@ -10,7 +10,7 @@ import { formatOptionLabel, formatPromptTitle } from '../domain/dualNotation';
 import { chordDefinitionToFretboardState } from '../domain/fretboardEvaluator';
 import { FretboardDiagram } from './FretboardDiagram';
 import { OptionButton } from '@/core/ui/OptionButton';
-import { ArrowRight } from 'lucide-react';
+import { ActionNextButton } from '@/core/ui/questions';
 
 interface IdentifyChallengeProps {
   challenge: PracticeChallenge;
@@ -36,7 +36,7 @@ export const IdentifyChallenge: React.FC<IdentifyChallengeProps> = ({
   const isCorrect = status === 'EVALUATED_CORRECT';
   const isIncorrect = status === 'EVALUATED_INCORRECT';
 
-  const prompt = formatPromptTitle(targetChord, lang, 'identify');
+  const prompt = formatPromptTitle(targetChord, lang, 'identify', challenge.notation);
   const targetFretboardState = chordDefinitionToFretboardState(targetChord);
 
   return (
@@ -70,7 +70,7 @@ export const IdentifyChallenge: React.FC<IdentifyChallengeProps> = ({
           return (
             <OptionButton
               key={option.id}
-              label={formatOptionLabel(option)}
+              label={formatOptionLabel(option, challenge.notation, lang)}
               index={idx}
               isCorrect={!isPending && isThisTarget}
               isIncorrect={!isPending && isThisSelected && !isThisTarget}
@@ -85,15 +85,11 @@ export const IdentifyChallenge: React.FC<IdentifyChallengeProps> = ({
       {/* Advance Button (shown after answering) */}
       {!isPending && (
         <div className="w-full max-w-[340px] mt-3 animate-in fade-in slide-in-from-bottom-2">
-          <button
-            type="button"
+          <ActionNextButton
+            label={lang === 'es' ? 'Siguiente Acorde' : 'Next Chord'}
             onClick={onNext}
             autoFocus
-            className="w-full flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-sm shadow-md shadow-amber-500/25 transition-all active:scale-95 cursor-pointer"
-          >
-            <span>{lang === 'es' ? 'Siguiente Acorde' : 'Next Chord'}</span>
-            <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-          </button>
+          />
         </div>
       )}
     </div>

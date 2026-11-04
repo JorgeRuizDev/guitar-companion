@@ -101,4 +101,22 @@ describe('Embed Views Layout & Scroll Configuration', () => {
     expect(content).not.toContain('grid-cols-1');
     expect(content).toContain('OptionButton');
   });
+
+  it('ensures ExplanationCard in basic-note-trainer prevents mobile viewport overflow via smooth scroll and collapsible scale text', () => {
+    const filePath = join(process.cwd(), 'src/apps/basic-note-trainer/components/ExplanationCard.tsx');
+    const content = readFileSync(filePath, 'utf-8');
+
+    expect(content).toContain('scrollIntoView');
+    expect(content).toContain('scaleMarkerIndex');
+    expect(content).toContain('mainExplanation');
+    expect(content).toContain('<details');
+  });
+
+  it('ensures Flashcard compact recovery view prevents viewport overflow with collapsible scale text', () => {
+    const filePath = join(process.cwd(), 'src/apps/basic-note-trainer/components/Flashcard.tsx');
+    const content = readFileSync(filePath, 'utf-8');
+
+    expect(content).toContain('scaleMarkerIndex');
+    expect(content).toContain('mainExplanation');
+  });
 });

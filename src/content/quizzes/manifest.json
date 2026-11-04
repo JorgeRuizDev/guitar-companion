@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "packs": [
+    {
+      "packId": "course-01-notes",
+      "filePath": "src/content/quizzes/courses/course-01-notes.json",
+      "course": 1,
+      "topics": ["notes", "translation", "theory"],
+      "questionCount": 16,
+      "supportedNotations": ["letters", "solfege", "dual"]
+    },
+    {
+      "packId": "course-02-accidentals",
+      "filePath": "src/content/quizzes/courses/course-02-accidentals.json",
+      "course": 2,
+      "topics": ["accidentals", "semitones", "theory"],
+      "questionCount": 8,
+      "supportedNotations": ["letters", "solfege", "dual"]
+    },
+    {
+      "packId": "open-chords",
+      "filePath": "src/content/quizzes/topics/open-chords.json",
+      "course": 3,
+      "topics": ["chords", "open-chords"],
+      "questionCount": 88,
+      "supportedNotations": ["letters", "solfege"]
+    }
+  ]
+}

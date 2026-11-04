@@ -18,7 +18,7 @@ export const BasicNoteTrainerContainer: React.FC<BasicNoteTrainerContainerProps>
   // Embed view (suppresses header & footer, minimal scrollable container)
   if (config.embed) {
     return (
-      <div className="fixed inset-0 z-50 bg-neutral-950 text-neutral-100 flex flex-col justify-start items-center p-2 sm:p-3 overflow-y-auto overflow-x-hidden overscroll-y-contain select-none">
+      <div className="fixed inset-0 z-50 bg-slate-950 text-slate-100 flex flex-col justify-start items-center p-2 sm:p-3 overflow-y-auto overflow-x-hidden overscroll-y-contain select-none">
         <NoteTrainerApp
           config={{ ...config, embed: true, compact: true, lang: activeLang }}
           className="w-full"
@@ -28,37 +28,37 @@ export const BasicNoteTrainerContainer: React.FC<BasicNoteTrainerContainerProps>
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8 sm:py-12 space-y-10">
+    <div className="w-full max-w-6xl mx-auto px-4 py-6 sm:py-8">
       {/* Header & Intro */}
-      <div className="space-y-3 text-center sm:text-left">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold">
+      <header className="text-center mb-8 sm:mb-10">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold mb-3">
           <Music2 className="w-3.5 h-3.5" />
           <span>
             {isEs
-              ? 'Fundamentos de Armonía y Diapasón'
-              : 'Fretboard & Music Theory Foundations'}
+              ? 'Fundamentos de Armonía • Aplicación 002'
+              : 'Fretboard Foundations • Application 002'}
           </span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
           {isEs ? 'Entrenador de Notas' : 'Basic Note Trainer'}
         </h1>
-        <p className="text-slate-400 text-sm sm:text-base max-w-3xl leading-relaxed">
+        <p className="max-w-2xl mx-auto text-sm sm:text-base text-slate-300 mt-2 sm:mt-3 leading-relaxed">
           {isEs ? (
             <>
-              Traduce con fluidez entre la notación anglosajona (<code className="text-amber-300">A, B, C, D, E, F, G</code>) y el solfeo (<code className="text-amber-300">Do, Re, Mi, Fa, Sol, La, Si</code>), domina las alteraciones cromáticas y memoriza los semitonos naturales con tarjetas interactivas y trucos nemotécnicos.
+              Traduce con fluidez entre la notación anglosajona (<code className="text-amber-300 font-mono">A, B, C, D, E, F, G</code>) y el solfeo (<code className="text-amber-300 font-mono">Do, Re, Mi, Fa, Sol, La, Si</code>), domina las alteraciones cromáticas y memoriza los semitonos naturales con tarjetas interactivas y trucos nemotécnicos.
             </>
           ) : (
             <>
-              Translate effortlessly between Anglo-Saxon letter notation (<code className="text-amber-300">A, B, C, D, E, F, G</code>) and Solfège (<code className="text-amber-300">Do, Re, Mi, Fa, Sol, La, Si</code>), master chromatic accidentals, and memorize natural semitones with interactive flashcards and memory tricks.
+              Translate effortlessly between Anglo-Saxon letter notation (<code className="text-amber-300 font-mono">A, B, C, D, E, F, G</code>) and Solfège (<code className="text-amber-300 font-mono">Do, Re, Mi, Fa, Sol, La, Si</code>), master chromatic accidentals, and memorize natural semitones with interactive flashcards and memory tricks.
             </>
           )}
         </p>
-      </div>
+      </header>
 
       {/* Main Flashcard App Container */}
-      <div className="bg-neutral-900/40 border border-neutral-800 rounded-3xl p-4 sm:p-8 backdrop-blur-sm">
+      <section id="note-trainer-session" className="w-full flex flex-col items-center mb-10">
         <NoteTrainerApp config={{ ...config, lang: activeLang }} />
-      </div>
+      </section>
 
       {/* Educational Guide & Mnemonic Reference */}
       <section className="border-t border-slate-800/80 pt-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-slate-300">

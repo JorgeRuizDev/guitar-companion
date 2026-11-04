@@ -24,6 +24,14 @@
   - *Decision*: Immediate In-Place Remediation (No Post-Session Review Queue). The learning process happens immediately when a user fails: the rich pedagogical explanation and visual cues are presented right then. No delayed review buffer is queued for later.
 - **Q6 (Multiple Sister Question Families)**: Can a question belong to multiple sister question families simultaneously?
   - *Decision*: Yes. A question can define an array of family identifiers (`familyIds: string[]`), allowing it to belong to multiple sister families simultaneously (for instance, one family for inverse translations such as C↔Do, and another family for notation variants such as Solfège↔Letters). When any question is served in a session, all its associated `familyIds` are registered in the session exclusion set (`excludedFamilyIds`), and any remaining candidate question sharing *at least one* common family ID is automatically excluded from that session.
+- **Q7 (Temporary Removal of Standalone `/quiz` Route)**: Should the standalone `/quiz` route remain active or be removed for now?
+  - *Decision*: The standalone `/quiz` route (and its embed subpage) is temporarily removed from the platform routing and navigation. The interactive quiz framework lives as an underlying shared engine (`@/core/quiz`) and common question UI library (`@/core/ui/questions`), without exposing a standalone public quiz application page until unified app integration is finalized.
+- **Q8 (Visual Question Component Extraction & Homogeneity)**: How are question visual components standardized across note trainer, chord trainer, and future quizzes?
+  - *Decision*: Common visual question components are extracted into `@/core/ui/questions` (`QuestionCard`, `QuestionHeader`, `StimulusContainer`, `ActionNextButton`, `MnemonicBanner`, `FeedbackBanner`, `OptionButton`). All question interfaces must strictly adhere to:
+    1. **Mobile-First & Ultra-Compact**: Optimized for embedded WebViews where up to 70% of standard viewport height is unavailable.
+    2. **Zero Horizontal Overflow**: All containers enforce `overflow-x-hidden` with a strict `max-w-md` boundary and `grid-cols-2` 2×2 option layout. Horizontal scrolling is considered a defect.
+    3. **Permissive Vertical Overflow**: In constrained WebViews, vertical scrolling is enabled (`overflow-y-auto overscroll-y-contain justify-start`, avoiding `overflow-hidden` or centered layouts that truncate content).
+    4. **Homogeneous Styling**: Consistent dark theme (`neutral-900`/`slate-900` cards, `neutral-800` borders, `amber-500` accents and action gradients, `emerald-500` correct, `rose-500` incorrect, minimum 44×44px touch targets).
 
 ## Architectural Foundation & Analysis of Existing Apps
 
@@ -202,6 +210,9 @@ As a maintainer and learner, I want `basic-note-trainer` and `basic-chord-traine
 - **FR-019**: System MUST update the implementation plans of each corresponding feature specification (`002-basic-note-trainer` and `003-basic-chord-trainer`) to formally document and reference that a migration following this framework specification is applied.
 - **FR-020**: System MUST provide a gamified, continuous session model designed for quick casual play (e.g., 20-30 second bursts while waiting, or sustained continuous practice): questions are drawn in a randomized, non-repeating stream limited in length only by the total number of eligible questions in the active filter pool or when the user exits.
 - **FR-021**: The learning and remediation loop MUST happen immediately in-place upon error; no post-session review queue or deferred retry buffer is queued.
+- **FR-022**: Question visual components MUST be extracted and unified into a common shared library (`@/core/ui/questions`: `QuestionCard`, `QuestionHeader`, `StimulusContainer`, `ActionNextButton`, `MnemonicBanner`, `FeedbackBanner`, `OptionButton`) ensuring identical styling and UX across note trainer, chord trainer, and quiz components.
+- **FR-023**: Question interfaces MUST enforce a mobile-first, compact layout with strict `max-w-md` boundaries, 2×2 option grids (`grid-cols-2`), and zero horizontal overflow (`overflow-x-hidden`), while permitting permissive vertical scrolling (`overflow-y-auto`, `justify-start`) for webviews lacking 70% of screen height.
+- **FR-024**: The standalone `/quiz` route SHALL be temporarily removed from the platform routing and navigation until core integration is complete.
 
 ---
 

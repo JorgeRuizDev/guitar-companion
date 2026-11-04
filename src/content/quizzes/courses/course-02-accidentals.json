@@ -1,0 +1,283 @@
+{
+  "packId": "course-02-accidentals",
+  "course": 2,
+  "topics": ["accidentals", "semitones", "theory"],
+  "questions": [
+    {
+      "id": "c02-q01-csharp-letters",
+      "familyIds": ["family-csharp-translation"],
+      "type": "single-choice",
+      "course": 2,
+      "difficulty": "beginner",
+      "topics": ["accidentals", "semitones"],
+      "notation": "letters",
+      "prompt": {
+        "en": "What note is one half step (semitone) above C?",
+        "es": "¿Qué nota está un semitono por encima de C?"
+      },
+      "subPrompt": {
+        "en": "Select the correct sharp note.",
+        "es": "Selecciona la nota sostenida correcta."
+      },
+      "options": [
+        { "id": "opt-csharp", "label": { "en": "C#", "es": "C#" } },
+        { "id": "opt-d", "label": { "en": "D", "es": "D" } },
+        { "id": "opt-b", "label": { "en": "B", "es": "B" } },
+        { "id": "opt-dsharp", "label": { "en": "D#", "es": "D#" } }
+      ],
+      "correctAnswer": ["opt-csharp"],
+      "remediation": {
+        "explanation": {
+          "en": "Raising C by one half step yields C# (C-sharp).",
+          "es": "Subir C un semitono produce C# (C sostenido)."
+        },
+        "mnemonic": {
+          "en": "Sharp = Higher pitch (one fret up towards guitar body)",
+          "es": "Sostenido = Medio tono hacia arriba (un traste hacia el cuerpo de la guitarra)"
+        }
+      }
+    },
+    {
+      "id": "c02-q02-csharp-solfege",
+      "familyIds": ["family-csharp-translation"],
+      "type": "single-choice",
+      "course": 2,
+      "difficulty": "beginner",
+      "topics": ["accidentals", "semitones"],
+      "notation": "solfege",
+      "prompt": {
+        "en": "What note is one half step (semitone) above Do?",
+        "es": "¿Qué nota está un semitono por encima de Do?"
+      },
+      "subPrompt": {
+        "en": "Select the correct Solfège syllable.",
+        "es": "Selecciona la sílaba correcta en Solfeo."
+      },
+      "options": [
+        { "id": "opt-dosharp", "label": { "en": "Do#", "es": "Do#" } },
+        { "id": "opt-re", "label": { "en": "Re", "es": "Re" } },
+        { "id": "opt-si", "label": { "en": "Si", "es": "Si" } },
+        { "id": "opt-resharp", "label": { "en": "Re#", "es": "Re#" } }
+      ],
+      "correctAnswer": ["opt-dosharp"],
+      "remediation": {
+        "explanation": {
+          "en": "Raising Do by one semitone gives Do sostenido (Do#).",
+          "es": "Elevar Do un semitono da Do sostenido (Do#)."
+        }
+      }
+    },
+    {
+      "id": "c02-q03-enharmonic-fsharp-letters",
+      "familyIds": ["family-enharmonic-fsharp"],
+      "type": "single-choice",
+      "course": 2,
+      "difficulty": "intermediate",
+      "topics": ["accidentals", "theory"],
+      "notation": "letters",
+      "prompt": {
+        "en": "Which note is enharmonically equivalent to F#?",
+        "es": "¿Qué nota es enarmónicamente equivalente a F#?"
+      },
+      "options": [
+        { "id": "opt-gflat", "label": { "en": "G♭", "es": "G♭" } },
+        { "id": "opt-aflat", "label": { "en": "A♭", "es": "A♭" } },
+        { "id": "opt-esharp", "label": { "en": "E#", "es": "E#" } },
+        { "id": "opt-dsharp", "label": { "en": "D#", "es": "D#" } }
+      ],
+      "correctAnswer": ["opt-gflat"],
+      "remediation": {
+        "explanation": {
+          "en": "Enharmonic notes sound at the same exact pitch but have different names. F# (raising F by 1 semitone) sounds identical to G♭ (lowering G by 1 semitone).",
+          "es": "Las notas enarmónicas suenan exactamente con la misma frecuencia pero tienen diferente nombre. F# (subir F 1 semitono) suena idéntico a G♭ (bajar G 1 semitono)."
+        },
+        "mnemonic": {
+          "en": "F# and Gb occupy the same fret on the fretboard.",
+          "es": "Fa# y Solb ocupan el mismo traste en el diapasón."
+        }
+      }
+    },
+    {
+      "id": "c02-q03-enharmonic-fsharp-solfege",
+      "familyIds": ["family-enharmonic-fsharp"],
+      "type": "single-choice",
+      "course": 2,
+      "difficulty": "intermediate",
+      "topics": ["accidentals", "theory"],
+      "notation": "solfege",
+      "prompt": {
+        "en": "Which note is enharmonically equivalent to Fa#?",
+        "es": "¿Qué nota es enarmónicamente equivalente a Fa#?"
+      },
+      "options": [
+        { "id": "opt-solflat", "label": { "en": "Sol♭", "es": "Sol♭" } },
+        { "id": "opt-laflat", "label": { "en": "La♭", "es": "La♭" } },
+        { "id": "opt-misharp", "label": { "en": "Mi#", "es": "Mi#" } },
+        { "id": "opt-resharp-sol", "label": { "en": "Re#", "es": "Re#" } }
+      ],
+      "correctAnswer": ["opt-solflat"],
+      "remediation": {
+        "explanation": {
+          "en": "Enharmonic notes sound at the same exact pitch. Fa# (raising Fa by 1 semitone) sounds identical to Sol♭ (lowering Sol by 1 semitone).",
+          "es": "Las notas enarmónicas tienen el mismo sonido. Fa# (subir Fa un semitono) suena idéntico a Sol♭ (bajar Sol un semitono)."
+        },
+        "mnemonic": {
+          "en": "Fa# and Solb occupy the same fret on the fretboard.",
+          "es": "Fa# y Solb ocupan el mismo traste en el diapasón."
+        }
+      }
+    },
+    {
+      "id": "c02-q04-flat-meaning",
+      "familyIds": ["family-accidental-definitions"],
+      "type": "single-choice",
+      "course": 2,
+      "difficulty": "beginner",
+      "topics": ["accidentals", "theory"],
+      "notation": "neutral",
+      "prompt": {
+        "en": "What does a flat symbol (♭) do to a musical pitch?",
+        "es": "¿Qué efecto produce el símbolo bemol (♭) sobre una nota?"
+      },
+      "options": [
+        {
+          "id": "opt-lower-half",
+          "label": {
+            "en": "Lowers it by one half step (1 semitone / 1 fret)",
+            "es": "La baja un semitono (1 traste hacia la pala)"
+          }
+        },
+        {
+          "id": "opt-raise-half",
+          "label": {
+            "en": "Raises it by one half step",
+            "es": "La sube un semitono"
+          }
+        },
+        {
+          "id": "opt-cancel",
+          "label": {
+            "en": "Cancels previous accidentals",
+            "es": "Cancela alteraciones previas"
+          }
+        },
+        {
+          "id": "opt-double",
+          "label": {
+            "en": "Doubles the note duration",
+            "es": "Duplica la duración de la nota"
+          }
+        }
+      ],
+      "correctAnswer": ["opt-lower-half"],
+      "remediation": {
+        "explanation": {
+          "en": "A flat (♭) lowers the pitch of a note by one half step (1 semitone or 1 fret on guitar).",
+          "es": "Un bemol (♭) disminuye el tono de una nota en un semitono (1 traste en la guitarra)."
+        }
+      }
+    },
+    {
+      "id": "c02-q05-sharp-meaning",
+      "familyIds": ["family-accidental-definitions"],
+      "type": "single-choice",
+      "course": 2,
+      "difficulty": "beginner",
+      "topics": ["accidentals", "theory"],
+      "notation": "neutral",
+      "prompt": {
+        "en": "What does a sharp symbol (♯) do to a musical pitch?",
+        "es": "¿Qué efecto produce el símbolo sostenido (♯) sobre una nota?"
+      },
+      "options": [
+        {
+          "id": "opt-raise-half",
+          "label": {
+            "en": "Raises it by one half step (1 semitone / 1 fret)",
+            "es": "La sube un semitono (1 traste hacia el cuerpo)"
+          }
+        },
+        {
+          "id": "opt-lower-half",
+          "label": {
+            "en": "Lowers it by one half step",
+            "es": "La baja un semitono"
+          }
+        },
+        {
+          "id": "opt-cancel",
+          "label": {
+            "en": "Cancels all previous accidentals",
+            "es": "Cancela todas las alteraciones anteriores"
+          }
+        },
+        {
+          "id": "opt-octave",
+          "label": {
+            "en": "Transposes the note by one full octave",
+            "es": "Transporta la nota una octava completa"
+          }
+        }
+      ],
+      "correctAnswer": ["opt-raise-half"],
+      "remediation": {
+        "explanation": {
+          "en": "A sharp (♯) raises the pitch of a note by one half step (1 semitone).",
+          "es": "Un sostenido (♯) eleva la altura de una nota en un semitono."
+        }
+      }
+    },
+    {
+      "id": "c02-q06-bflat-letters",
+      "familyIds": ["family-bflat-translation"],
+      "type": "single-choice",
+      "course": 2,
+      "difficulty": "beginner",
+      "topics": ["accidentals"],
+      "notation": "letters",
+      "prompt": {
+        "en": "Which note is located 1 semitone below B?",
+        "es": "¿Qué nota se encuentra 1 semitono por debajo de B?"
+      },
+      "options": [
+        { "id": "opt-bb", "label": { "en": "B♭", "es": "B♭" } },
+        { "id": "opt-a", "label": { "en": "A", "es": "A" } },
+        { "id": "opt-c", "label": { "en": "C", "es": "C" } },
+        { "id": "opt-gsharp", "label": { "en": "G#", "es": "G#" } }
+      ],
+      "correctAnswer": ["opt-bb"],
+      "remediation": {
+        "explanation": {
+          "en": "One semitone below B is B♭ (B-flat), which is enharmonically equivalent to A#.",
+          "es": "Un semitono por debajo de B es B♭ (B bemol), equivalente enarmónico de A#."
+        }
+      }
+    },
+    {
+      "id": "c02-q07-bflat-solfege",
+      "familyIds": ["family-bflat-translation"],
+      "type": "single-choice",
+      "course": 2,
+      "difficulty": "beginner",
+      "topics": ["accidentals"],
+      "notation": "solfege",
+      "prompt": {
+        "en": "Which note is located 1 semitone below Si?",
+        "es": "¿Qué nota se encuentra 1 semitono por debajo de Si?"
+      },
+      "options": [
+        { "id": "opt-sib", "label": { "en": "Si♭", "es": "Si♭" } },
+        { "id": "opt-la", "label": { "en": "La", "es": "La" } },
+        { "id": "opt-do", "label": { "en": "Do", "es": "Do" } },
+        { "id": "opt-solsharp", "label": { "en": "Sol#", "es": "Sol#" } }
+      ],
+      "correctAnswer": ["opt-sib"],
+      "remediation": {
+        "explanation": {
+          "en": "One semitone below Si is Si bemol (Si♭).",
+          "es": "Un semitono por debajo de Si es Si bemol (Si♭)."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1105 @@
+{
+  "packId": "course-01-notes",
+  "course": 1,
+  "topics": [
+    "notes",
+    "translation",
+    "theory"
+  ],
+  "questions": [
+    {
+      "id": "c01-q-c-to-solfege",
+      "familyIds": [
+        "family-c-translation"
+      ],
+      "type": "single-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "translation"
+      ],
+      "notation": "letters",
+      "prompt": {
+        "en": "What is the Solfège name for the note 'C'?",
+        "es": "¿Cuál es el nombre en Solfeo de la nota 'C'?"
+      },
+      "subPrompt": {
+        "en": "Select the corresponding syllable.",
+        "es": "Selecciona la sílaba correspondiente."
+      },
+      "options": [
+        {
+          "id": "opt-do",
+          "label": {
+            "en": "Do",
+            "es": "Do"
+          }
+        },
+        {
+          "id": "opt-re",
+          "label": {
+            "en": "Re",
+            "es": "Re"
+          }
+        },
+        {
+          "id": "opt-mi",
+          "label": {
+            "en": "Mi",
+            "es": "Mi"
+          }
+        },
+        {
+          "id": "opt-la",
+          "label": {
+            "en": "La",
+            "es": "La"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-do"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "'C' corresponds to 'Do' in the Solfège system.",
+          "es": "'C' corresponde a 'Do' en el sistema de Solfeo."
+        },
+        "hint": {
+          "en": "Series: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si.",
+          "es": "Serie: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+        },
+        "mnemonic": {
+          "en": "C = Do",
+          "es": "C = Do"
+        }
+      }
+    },
+    {
+      "id": "c01-q-solfege-do-to-letter",
+      "familyIds": [
+        "family-c-translation"
+      ],
+      "type": "single-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "translation"
+      ],
+      "notation": "solfege",
+      "prompt": {
+        "en": "Which Anglo-Saxon letter represents the note 'Do'?",
+        "es": "¿Qué letra anglosajona representa la nota 'Do'?"
+      },
+      "subPrompt": {
+        "en": "Select the corresponding letter symbol.",
+        "es": "Selecciona la letra de cifrado correspondiente."
+      },
+      "options": [
+        {
+          "id": "opt-c",
+          "label": {
+            "en": "C",
+            "es": "C"
+          }
+        },
+        {
+          "id": "opt-d",
+          "label": {
+            "en": "D",
+            "es": "D"
+          }
+        },
+        {
+          "id": "opt-e",
+          "label": {
+            "en": "E",
+            "es": "E"
+          }
+        },
+        {
+          "id": "opt-f",
+          "label": {
+            "en": "F",
+            "es": "F"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-c"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "'Do' is represented by 'C' in Anglo-Saxon notation.",
+          "es": "'Do' se representa con la letra 'C' en notación anglosajona."
+        },
+        "hint": {
+          "en": "Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.",
+          "es": "Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B."
+        },
+        "mnemonic": {
+          "en": "Do is C.",
+          "es": "Do es C."
+        }
+      }
+    },
+    {
+      "id": "c01-q-d-to-solfege",
+      "familyIds": [
+        "family-d-translation"
+      ],
+      "type": "single-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "translation"
+      ],
+      "notation": "letters",
+      "prompt": {
+        "en": "What is the Solfège name for the note 'D'?",
+        "es": "¿Cuál es el nombre en Solfeo de la nota 'D'?"
+      },
+      "subPrompt": {
+        "en": "Select the corresponding syllable.",
+        "es": "Selecciona la sílaba correspondiente."
+      },
+      "options": [
+        {
+          "id": "opt-re",
+          "label": {
+            "en": "Re",
+            "es": "Re"
+          }
+        },
+        {
+          "id": "opt-do",
+          "label": {
+            "en": "Do",
+            "es": "Do"
+          }
+        },
+        {
+          "id": "opt-mi",
+          "label": {
+            "en": "Mi",
+            "es": "Mi"
+          }
+        },
+        {
+          "id": "opt-fa",
+          "label": {
+            "en": "Fa",
+            "es": "Fa"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-re"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "'D' corresponds to 'Re' in the Solfège system.",
+          "es": "'D' corresponde a 'Re' en el sistema de Solfeo."
+        },
+        "hint": {
+          "en": "Series: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si.",
+          "es": "Serie: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+        },
+        "mnemonic": {
+          "en": "D = Re",
+          "es": "D = Re"
+        }
+      }
+    },
+    {
+      "id": "c01-q-solfege-re-to-letter",
+      "familyIds": [
+        "family-d-translation"
+      ],
+      "type": "single-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "translation"
+      ],
+      "notation": "solfege",
+      "prompt": {
+        "en": "Which Anglo-Saxon letter represents the note 'Re'?",
+        "es": "¿Qué letra anglosajona representa la nota 'Re'?"
+      },
+      "subPrompt": {
+        "en": "Select the corresponding letter symbol.",
+        "es": "Selecciona la letra de cifrado correspondiente."
+      },
+      "options": [
+        {
+          "id": "opt-d",
+          "label": {
+            "en": "D",
+            "es": "D"
+          }
+        },
+        {
+          "id": "opt-c",
+          "label": {
+            "en": "C",
+            "es": "C"
+          }
+        },
+        {
+          "id": "opt-e",
+          "label": {
+            "en": "E",
+            "es": "E"
+          }
+        },
+        {
+          "id": "opt-g",
+          "label": {
+            "en": "G",
+            "es": "G"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-d"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "'Re' is represented by 'D' in Anglo-Saxon notation.",
+          "es": "'Re' se representa con la letra 'D' en notación anglosajona."
+        },
+        "hint": {
+          "en": "Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.",
+          "es": "Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B."
+        },
+        "mnemonic": {
+          "en": "Re is D.",
+          "es": "Re es D."
+        }
+      }
+    },
+    {
+      "id": "c01-q-e-to-solfege",
+      "familyIds": [
+        "family-e-translation"
+      ],
+      "type": "single-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "translation"
+      ],
+      "notation": "letters",
+      "prompt": {
+        "en": "What is the Solfège name for the note 'E'?",
+        "es": "¿Cuál es el nombre en Solfeo de la nota 'E'?"
+      },
+      "subPrompt": {
+        "en": "Select the corresponding syllable.",
+        "es": "Selecciona la sílaba correspondiente."
+      },
+      "options": [
+        {
+          "id": "opt-mi",
+          "label": {
+            "en": "Mi",
+            "es": "Mi"
+          }
+        },
+        {
+          "id": "opt-re",
+          "label": {
+            "en": "Re",
+            "es": "Re"
+          }
+        },
+        {
+          "id": "opt-fa",
+          "label": {
+            "en": "Fa",
+            "es": "Fa"
+          }
+        },
+        {
+          "id": "opt-sol",
+          "label": {
+            "en": "Sol",
+            "es": "Sol"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-mi"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "'E' corresponds to 'Mi' in the Solfège system.",
+          "es": "'E' corresponde a 'Mi' en el sistema de Solfeo."
+        },
+        "hint": {
+          "en": "Series: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si.",
+          "es": "Serie: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+        },
+        "mnemonic": {
+          "en": "E = Mi",
+          "es": "E = Mi"
+        }
+      }
+    },
+    {
+      "id": "c01-q-solfege-mi-to-letter",
+      "familyIds": [
+        "family-e-translation"
+      ],
+      "type": "single-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "translation"
+      ],
+      "notation": "solfege",
+      "prompt": {
+        "en": "Which Anglo-Saxon letter represents the note 'Mi'?",
+        "es": "¿Qué letra anglosajona representa la nota 'Mi'?"
+      },
+      "subPrompt": {
+        "en": "Select the corresponding letter symbol.",
+        "es": "Selecciona la letra de cifrado correspondiente."
+      },
+      "options": [
+        {
+          "id": "opt-e",
+          "label": {
+            "en": "E",
+            "es": "E"
+          }
+        },
+        {
+          "id": "opt-d",
+          "label": {
+            "en": "D",
+            "es": "D"
+          }
+        },
+        {
+          "id": "opt-f",
+          "label": {
+            "en": "F",
+            "es": "F"
+          }
+        },
+        {
+          "id": "opt-a",
+          "label": {
+            "en": "A",
+            "es": "A"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-e"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "'Mi' is represented by 'E' in Anglo-Saxon notation.",
+          "es": "'Mi' se representa con la letra 'E' en notación anglosajona."
+        },
+        "hint": {
+          "en": "Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.",
+          "es": "Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B."
+        },
+        "mnemonic": {
+          "en": "Mi is E.",
+          "es": "Mi es E."
+        }
+      }
+    },
+    {
+      "id": "c01-q-f-to-solfege",
+      "familyIds": [
+        "family-f-translation"
+      ],
+      "type": "single-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "translation"
+      ],
+      "notation": "letters",
+      "prompt": {
+        "en": "What is the Solfège name for the note 'F'?",
+        "es": "¿Cuál es el nombre en Solfeo de la nota 'F'?"
+      },
+      "subPrompt": {
+        "en": "Select the corresponding syllable.",
+        "es": "Selecciona la sílaba correspondiente."
+      },
+      "options": [
+        {
+          "id": "opt-fa",
+          "label": {
+            "en": "Fa",
+            "es": "Fa"
+          }
+        },
+        {
+          "id": "opt-mi",
+          "label": {
+            "en": "Mi",
+            "es": "Mi"
+          }
+        },
+        {
+          "id": "opt-sol",
+          "label": {
+            "en": "Sol",
+            "es": "Sol"
+          }
+        },
+        {
+          "id": "opt-si",
+          "label": {
+            "en": "Si",
+            "es": "Si"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-fa"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "'F' corresponds to 'Fa' in the Solfège system.",
+          "es": "'F' corresponde a 'Fa' en el sistema de Solfeo."
+        },
+        "hint": {
+          "en": "Series: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si.",
+          "es": "Serie: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+        },
+        "mnemonic": {
+          "en": "F = Fa",
+          "es": "F = Fa"
+        }
+      }
+    },
+    {
+      "id": "c01-q-solfege-fa-to-letter",
+      "familyIds": [
+        "family-f-translation"
+      ],
+      "type": "single-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "translation"
+      ],
+      "notation": "solfege",
+      "prompt": {
+        "en": "Which Anglo-Saxon letter represents the note 'Fa'?",
+        "es": "¿Qué letra anglosajona representa la nota 'Fa'?"
+      },
+      "subPrompt": {
+        "en": "Select the corresponding letter symbol.",
+        "es": "Selecciona la letra de cifrado correspondiente."
+      },
+      "options": [
+        {
+          "id": "opt-f",
+          "label": {
+            "en": "F",
+            "es": "F"
+          }
+        },
+        {
+          "id": "opt-e",
+          "label": {
+            "en": "E",
+            "es": "E"
+          }
+        },
+        {
+          "id": "opt-g",
+          "label": {
+            "en": "G",
+            "es": "G"
+          }
+        },
+        {
+          "id": "opt-b",
+          "label": {
+            "en": "B",
+            "es": "B"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-f"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "'Fa' is represented by 'F' in Anglo-Saxon notation.",
+          "es": "'Fa' se representa con la letra 'F' en notación anglosajona."
+        },
+        "hint": {
+          "en": "Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.",
+          "es": "Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B."
+        },
+        "mnemonic": {
+          "en": "Fa is F.",
+          "es": "Fa es F."
+        }
+      }
+    },
+    {
+      "id": "c01-q-g-to-solfege",
+      "familyIds": [
+        "family-g-translation"
+      ],
+      "type": "single-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "translation"
+      ],
+      "notation": "letters",
+      "prompt": {
+        "en": "What is the Solfège name for the note 'G'?",
+        "es": "¿Cuál es el nombre en Solfeo de la nota 'G'?"
+      },
+      "subPrompt": {
+        "en": "Select the corresponding syllable.",
+        "es": "Selecciona la sílaba correspondiente."
+      },
+      "options": [
+        {
+          "id": "opt-sol",
+          "label": {
+            "en": "Sol",
+            "es": "Sol"
+          }
+        },
+        {
+          "id": "opt-fa",
+          "label": {
+            "en": "Fa",
+            "es": "Fa"
+          }
+        },
+        {
+          "id": "opt-la",
+          "label": {
+            "en": "La",
+            "es": "La"
+          }
+        },
+        {
+          "id": "opt-do",
+          "label": {
+            "en": "Do",
+            "es": "Do"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-sol"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "'G' corresponds to 'Sol' in the Solfège system.",
+          "es": "'G' corresponde a 'Sol' en el sistema de Solfeo."
+        },
+        "hint": {
+          "en": "Series: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si.",
+          "es": "Serie: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+        },
+        "mnemonic": {
+          "en": "G = Sol",
+          "es": "G = Sol"
+        }
+      }
+    },
+    {
+      "id": "c01-q-solfege-sol-to-letter",
+      "familyIds": [
+        "family-g-translation"
+      ],
+      "type": "single-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "translation"
+      ],
+      "notation": "solfege",
+      "prompt": {
+        "en": "Which Anglo-Saxon letter represents the note 'Sol'?",
+        "es": "¿Qué letra anglosajona representa la nota 'Sol'?"
+      },
+      "subPrompt": {
+        "en": "Select the corresponding letter symbol.",
+        "es": "Selecciona la letra de cifrado correspondiente."
+      },
+      "options": [
+        {
+          "id": "opt-g",
+          "label": {
+            "en": "G",
+            "es": "G"
+          }
+        },
+        {
+          "id": "opt-f",
+          "label": {
+            "en": "F",
+            "es": "F"
+          }
+        },
+        {
+          "id": "opt-a",
+          "label": {
+            "en": "A",
+            "es": "A"
+          }
+        },
+        {
+          "id": "opt-c",
+          "label": {
+            "en": "C",
+            "es": "C"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-g"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "'Sol' is represented by 'G' in Anglo-Saxon notation.",
+          "es": "'Sol' se representa con la letra 'G' en notación anglosajona."
+        },
+        "hint": {
+          "en": "Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.",
+          "es": "Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B."
+        },
+        "mnemonic": {
+          "en": "Sol is G.",
+          "es": "Sol es G."
+        }
+      }
+    },
+    {
+      "id": "c01-q-a-to-solfege",
+      "familyIds": [
+        "family-a-translation"
+      ],
+      "type": "single-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "translation"
+      ],
+      "notation": "letters",
+      "prompt": {
+        "en": "What is the Solfège name for the note 'A'?",
+        "es": "¿Cuál es el nombre en Solfeo de la nota 'A'?"
+      },
+      "subPrompt": {
+        "en": "Select the corresponding syllable.",
+        "es": "Selecciona la sílaba correspondiente."
+      },
+      "options": [
+        {
+          "id": "opt-la",
+          "label": {
+            "en": "La",
+            "es": "La"
+          }
+        },
+        {
+          "id": "opt-sol",
+          "label": {
+            "en": "Sol",
+            "es": "Sol"
+          }
+        },
+        {
+          "id": "opt-si",
+          "label": {
+            "en": "Si",
+            "es": "Si"
+          }
+        },
+        {
+          "id": "opt-re",
+          "label": {
+            "en": "Re",
+            "es": "Re"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-la"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "'A' corresponds to 'La' in the Solfège system.",
+          "es": "'A' corresponde a 'La' en el sistema de Solfeo."
+        },
+        "hint": {
+          "en": "Series: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si.",
+          "es": "Serie: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+        },
+        "mnemonic": {
+          "en": "A = La",
+          "es": "A = La"
+        }
+      }
+    },
+    {
+      "id": "c01-q-solfege-la-to-letter",
+      "familyIds": [
+        "family-a-translation"
+      ],
+      "type": "single-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "translation"
+      ],
+      "notation": "solfege",
+      "prompt": {
+        "en": "Which Anglo-Saxon letter represents the note 'La'?",
+        "es": "¿Qué letra anglosajona representa la nota 'La'?"
+      },
+      "subPrompt": {
+        "en": "Select the corresponding letter symbol.",
+        "es": "Selecciona la letra de cifrado correspondiente."
+      },
+      "options": [
+        {
+          "id": "opt-a",
+          "label": {
+            "en": "A",
+            "es": "A"
+          }
+        },
+        {
+          "id": "opt-g",
+          "label": {
+            "en": "G",
+            "es": "G"
+          }
+        },
+        {
+          "id": "opt-b",
+          "label": {
+            "en": "B",
+            "es": "B"
+          }
+        },
+        {
+          "id": "opt-d",
+          "label": {
+            "en": "D",
+            "es": "D"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-a"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "'La' is represented by 'A' in Anglo-Saxon notation.",
+          "es": "'La' se representa con la letra 'A' en notación anglosajona."
+        },
+        "hint": {
+          "en": "Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.",
+          "es": "Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B."
+        },
+        "mnemonic": {
+          "en": "La is A.",
+          "es": "La es A."
+        }
+      }
+    },
+    {
+      "id": "c01-q-b-to-solfege",
+      "familyIds": [
+        "family-b-translation"
+      ],
+      "type": "single-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "translation"
+      ],
+      "notation": "letters",
+      "prompt": {
+        "en": "What is the Solfège name for the note 'B'?",
+        "es": "¿Cuál es el nombre en Solfeo de la nota 'B'?"
+      },
+      "subPrompt": {
+        "en": "Select the corresponding syllable.",
+        "es": "Selecciona la sílaba correspondiente."
+      },
+      "options": [
+        {
+          "id": "opt-si",
+          "label": {
+            "en": "Si",
+            "es": "Si"
+          }
+        },
+        {
+          "id": "opt-la",
+          "label": {
+            "en": "La",
+            "es": "La"
+          }
+        },
+        {
+          "id": "opt-do",
+          "label": {
+            "en": "Do",
+            "es": "Do"
+          }
+        },
+        {
+          "id": "opt-mi",
+          "label": {
+            "en": "Mi",
+            "es": "Mi"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-si"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "'B' corresponds to 'Si' in the Solfège system.",
+          "es": "'B' corresponde a 'Si' en el sistema de Solfeo."
+        },
+        "hint": {
+          "en": "Series: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si.",
+          "es": "Serie: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+        },
+        "mnemonic": {
+          "en": "B = Si",
+          "es": "B = Si"
+        }
+      }
+    },
+    {
+      "id": "c01-q-solfege-si-to-letter",
+      "familyIds": [
+        "family-b-translation"
+      ],
+      "type": "single-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "translation"
+      ],
+      "notation": "solfege",
+      "prompt": {
+        "en": "Which Anglo-Saxon letter represents the note 'Si'?",
+        "es": "¿Qué letra anglosajona representa la nota 'Si'?"
+      },
+      "subPrompt": {
+        "en": "Select the corresponding letter symbol.",
+        "es": "Selecciona la letra de cifrado correspondiente."
+      },
+      "options": [
+        {
+          "id": "opt-b",
+          "label": {
+            "en": "B",
+            "es": "B"
+          }
+        },
+        {
+          "id": "opt-a",
+          "label": {
+            "en": "A",
+            "es": "A"
+          }
+        },
+        {
+          "id": "opt-c",
+          "label": {
+            "en": "C",
+            "es": "C"
+          }
+        },
+        {
+          "id": "opt-e",
+          "label": {
+            "en": "E",
+            "es": "E"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-b"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "'Si' is represented by 'B' in Anglo-Saxon notation.",
+          "es": "'Si' se representa con la letra 'B' en notación anglosajona."
+        },
+        "hint": {
+          "en": "Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.",
+          "es": "Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B."
+        },
+        "mnemonic": {
+          "en": "Si is B.",
+          "es": "Si es B."
+        }
+      }
+    },
+    {
+      "id": "c01-q-natural-half-steps",
+      "familyIds": [
+        "family-natural-half-steps"
+      ],
+      "type": "multiple-choice",
+      "course": 1,
+      "difficulty": "intermediate",
+      "topics": [
+        "theory",
+        "notes"
+      ],
+      "notation": "dual",
+      "prompt": {
+        "en": "Which pairs of natural notes are separated by only a half step (semitone)?",
+        "es": "¿Cuáles pares de notas naturales están separados por solo un semitono?"
+      },
+      "subPrompt": {
+        "en": "Select all correct pairs (all-or-nothing evaluation).",
+        "es": "Selecciona todos los pares correctos (evaluación todo o nada)."
+      },
+      "options": [
+        {
+          "id": "opt-b-c",
+          "label": {
+            "en": "B - C",
+            "es": "Si - Do"
+          }
+        },
+        {
+          "id": "opt-e-f",
+          "label": {
+            "en": "E - F",
+            "es": "Mi - Fa"
+          }
+        },
+        {
+          "id": "opt-c-d",
+          "label": {
+            "en": "C - D",
+            "es": "Do - Re"
+          }
+        },
+        {
+          "id": "opt-g-a",
+          "label": {
+            "en": "G - A",
+            "es": "Sol - La"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-b-c",
+        "opt-e-f"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "In the natural diatonic scale, only B-C and E-F have no accidental between them; they are separated by a natural half step (semitone). All other adjacent natural notes have a whole step between them.",
+          "es": "En la escala diatónica natural, únicamente Si-Do (B-C) y Mi-Fa (E-F) no tienen alteración intermedia; están separados por un semitono natural. Todas las demás notas naturales adyacentes están a un tono completo de distancia."
+        },
+        "mnemonic": {
+          "en": "Remember: B-C and E-F have no sharps/flats in between!",
+          "es": "Recuerda: Si y Mi dan el paso corto (semitono) a la siguiente (Do y Fa)."
+        }
+      }
+    },
+    {
+      "id": "c01-q-guitar-standard-strings",
+      "familyIds": [
+        "family-guitar-open-strings"
+      ],
+      "type": "multiple-choice",
+      "course": 1,
+      "difficulty": "beginner",
+      "topics": [
+        "notes",
+        "theory"
+      ],
+      "notation": "letters",
+      "prompt": {
+        "en": "Which of these notes belong to standard guitar tuning (E-A-D-G-B-E)?",
+        "es": "¿Cuáles de estas notas pertenecen a la afinación estándar de guitarra (E-A-D-G-B-E)?"
+      },
+      "options": [
+        {
+          "id": "opt-e",
+          "label": {
+            "en": "E",
+            "es": "E"
+          }
+        },
+        {
+          "id": "opt-a",
+          "label": {
+            "en": "A",
+            "es": "A"
+          }
+        },
+        {
+          "id": "opt-f-sharp",
+          "label": {
+            "en": "F#",
+            "es": "F#"
+          }
+        },
+        {
+          "id": "opt-c-sharp",
+          "label": {
+            "en": "C#",
+            "es": "C#"
+          }
+        }
+      ],
+      "correctAnswer": [
+        "opt-e",
+        "opt-a"
+      ],
+      "remediation": {
+        "explanation": {
+          "en": "Standard guitar tuning from 6th to 1st string is E - A - D - G - B - E. Both E and A are open string notes.",
+          "es": "La afinación estándar de la 6ª a la 1ª cuerda es E - A - D - G - B - E. Tanto E como A son cuerdas al aire."
+        },
+        "mnemonic": {
+          "en": "Eddie Ate Dynamite, Good Bye Eddie",
+          "es": "E - A - D - G - B - E (Mi - La - Re - Sol - Si - Mi)"
+        }
+      }
+    }
+  ]
+}

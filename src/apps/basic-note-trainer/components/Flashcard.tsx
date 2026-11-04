@@ -3,8 +3,13 @@
 import React from 'react';
 import { FlashcardQuestion, CardStatus, Language } from '../types';
 import { OptionButton } from './OptionButton';
-import { Lightbulb, ArrowRight, BookOpen, CheckCircle } from 'lucide-react';
+import { BookOpen, CheckCircle } from 'lucide-react';
 import { ChromaticScaleVisualizer } from './ChromaticScaleVisualizer';
+import {
+  MnemonicBanner,
+  ActionNextButton,
+  FeedbackBanner,
+} from '@/core/ui/questions';
 
 export interface FlashcardProps {
   card: FlashcardQuestion;
@@ -58,9 +63,19 @@ export const Flashcard: React.FC<FlashcardProps> = ({
 
   // Compact In-Place Recovery View (eliminates vertical overflow in embed mode)
   if (compact && status === 'SOLVED_AFTER_ERROR') {
+    const scaleMarkerIndex = card.explanation.indexOf('🎼');
+    const mainExplanation =
+      scaleMarkerIndex !== -1
+        ? card.explanation.slice(0, scaleMarkerIndex).trim()
+        : card.explanation.trim();
+    const scaleText =
+      scaleMarkerIndex !== -1
+        ? card.explanation.slice(scaleMarkerIndex).trim()
+        : null;
+
     return (
       <div
-        className="w-full max-w-md mx-auto flex flex-col items-center bg-neutral-900/95 border border-amber-500/40 rounded-2xl p-4 sm:p-5 shadow-2xl backdrop-blur-md animate-fadeIn transition-all"
+        className="w-full max-w-md mx-auto flex flex-col items-center bg-slate-900/95 border border-amber-500/40 rounded-2xl p-4 sm:p-5 shadow-2xl backdrop-blur-md animate-fadeIn transition-all"
         role="region"
         aria-label={isEs ? 'Explicación pedagógica' : 'Pedagogical explanation'}
       >
@@ -70,7 +85,7 @@ export const Flashcard: React.FC<FlashcardProps> = ({
             <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
             <span>{isEs ? '¡Correcto tras revisión!' : 'Correct on review!'}</span>
           </div>
-          <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-neutral-800 text-neutral-300">
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700/60">
             {card.noteReference}
           </span>
         </div>
@@ -78,9 +93,9 @@ export const Flashcard: React.FC<FlashcardProps> = ({
         {/* Theoretical Explanation with Pre-Line Formatting */}
         <div className="w-full space-y-1 text-left mb-2.5">
           <div className="flex items-start gap-2">
-            <BookOpen className="w-4 h-4 text-neutral-400 mt-0.5 shrink-0" />
-            <div className="text-xs sm:text-sm text-neutral-200 leading-snug whitespace-pre-line font-sans">
-              {card.explanation}
+            <BookOpen className="w-4 h-4 text-slate-400 mt-0.5 shrink-0" />
+            <div className="text-xs sm:text-sm text-slate-200 leading-snug whitespace-pre-line font-sans">
+              {mainExplanation}
             </div>
           </div>
         </div>
@@ -95,40 +110,48 @@ export const Flashcard: React.FC<FlashcardProps> = ({
           />
         )}
 
+        {/* Optional Collapsible Text Scale Reference */}
+        {scaleText && (
+          <details className="w-full mb-2.5 group rounded-xl bg-slate-950/60 border border-slate-800 p-2 text-xs text-slate-300 transition-all">
+            <summary className="cursor-pointer font-medium text-amber-400 hover:text-amber-300 flex items-center justify-between select-none list-none outline-none">
+              <span className="flex items-center gap-1.5">
+                <span>🎼</span>
+                <span>{isEs ? 'Ver escala en texto' : 'View scale text'}</span>
+              </span>
+              <span className="text-[10px] text-slate-400 group-open:rotate-180 transition-transform duration-200">
+                ▼
+              </span>
+            </summary>
+            <div className="mt-1.5 pt-1.5 border-t border-slate-800/80 text-[10px] leading-relaxed whitespace-pre-line font-mono text-slate-300 overflow-x-auto max-h-36 overflow-y-auto">
+              {scaleText}
+            </div>
+          </details>
+        )}
+
         {/* Mnemonic Banner */}
-        <div className="w-full px-3 py-2 rounded-xl bg-amber-950/30 border border-amber-800/40 text-amber-200 text-xs sm:text-sm font-medium flex items-center gap-2 mb-3">
-          <span className="text-sm select-none">💡</span>
-          <span className="leading-tight">{card.mnemonic}</span>
-        </div>
+        <MnemonicBanner mnemonic={card.mnemonic} compact={true} />
 
         {/* Compact Next Card Action Button */}
         {onNextCard && (
-          <button
-            type="button"
+          <ActionNextButton
+            label={isEs ? 'Siguiente tarjeta' : 'Next Card'}
             onClick={onNextCard}
             autoFocus
-            className="w-full min-h-[44px] py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-[0.99] text-neutral-950 font-bold text-sm transition-all shadow-md shadow-amber-500/20 flex items-center justify-center gap-2 select-none focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-neutral-950"
-          >
-            <span>{isEs ? 'Siguiente tarjeta' : 'Next Card'}</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          />
         )}
       </div>
     );
   }
 
-  const containerPadding = compact ? 'p-3.5 sm:p-4' : 'p-5 md:p-8';
-  const promptMinHeight = compact ? 'min-h-[44px]' : 'min-h-[56px]';
-  const promptTextSize = compact ? 'text-lg sm:text-xl' : 'text-xl md:text-2xl';
+  const promptMinHeight = compact ? 'min-h-[44px]' : 'min-h-[52px]';
+  const promptTextSize = compact ? 'text-lg sm:text-xl' : 'text-xl sm:text-2xl';
 
   return (
-    <div
-      className={`w-full max-w-md mx-auto flex flex-col items-center bg-neutral-900/70 border border-neutral-800 rounded-2xl ${containerPadding} shadow-xl backdrop-blur-sm transition-all`}
-    >
+    <div className="w-full flex flex-col items-center max-w-md mx-auto">
       {/* Category Tag & Difficulty Badge */}
-      <div className={`flex items-center gap-2 ${compact ? 'mb-2' : 'mb-4'}`}>
+      <div className={`flex items-center justify-center gap-2 ${compact ? 'mb-2' : 'mb-3'}`}>
         <span
-          className={`text-[11px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${
+          className={`text-xs uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full border ${
             card.category === 'translation'
               ? 'bg-amber-500/10 text-amber-400 border-amber-500/20'
               : card.category === 'accidentals'
@@ -138,37 +161,34 @@ export const Flashcard: React.FC<FlashcardProps> = ({
         >
           {categoryLabel}
         </span>
-        <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-neutral-800 text-neutral-400">
+        <span className="text-xs font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700/60">
           {difficultyLabel}
         </span>
       </div>
 
       {/* Primary Prompt */}
       <h2
-        className={`${promptTextSize} font-bold text-center text-neutral-100 ${promptMinHeight} flex items-center justify-center mb-1 leading-snug`}
+        className={`${promptTextSize} font-black text-center text-white tracking-tight ${promptMinHeight} flex items-center justify-center mb-1 leading-snug`}
       >
         {card.prompt}
       </h2>
 
       {/* Sub-prompt / Secondary Context */}
       {card.subPrompt && (
-        <p className={`text-xs sm:text-sm text-neutral-400 ${compact ? 'mb-3' : 'mb-6'} text-center font-medium`}>
+        <p className={`text-xs sm:text-sm text-slate-400 ${compact ? 'mb-2.5' : 'mb-4'} text-center font-medium`}>
           {card.subPrompt}
         </p>
       )}
 
       {/* Retry Hint Notification */}
       {status === 'RETRYING' && (
-        <div
-          className={`w-full ${compact ? 'mb-3 py-1.5 px-2.5 text-[11px]' : 'mb-4 py-2 px-3 text-xs'} rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-300 text-center flex items-center justify-center gap-1.5 animate-fadeIn`}
-        >
-          <span>💡</span>
-          <span>{card.hint}</span>
-        </div>
+        <FeedbackBanner variant="hint" compact={compact}>
+          {card.hint}
+        </FeedbackBanner>
       )}
 
       {/* 2x2 Options Grid */}
-      <div className={`grid grid-cols-2 ${compact ? 'gap-2.5' : 'gap-3'} w-full ${compact ? 'mt-1' : 'mt-2'}`}>
+      <div className={`w-full max-w-[340px] grid grid-cols-2 ${compact ? 'gap-2' : 'gap-2.5'} mt-2`}>
         {card.options.map((option, index) => {
           const isCorrectAnswer = isResolved && option === card.correctAnswer;
           const isChosenIncorrect = disabledOptions.includes(option);

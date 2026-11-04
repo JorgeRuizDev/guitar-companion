@@ -120,3 +120,14 @@ tests/
 ## Complexity Tracking
 
 No constitutional violations. Zero-mock guest mode and lightweight native SVG components prevent unnecessary complexity.
+
+---
+
+## Migration Addendum (Spec 004 - Interactive Quiz Framework)
+
+- **Status**: Migrated / Integrated.
+- **Reference**: [Interactive Quiz Framework Spec](../../specs/004-interactive-quiz-framework/spec.md).
+- **Architecture**:
+  - The 22 beginner open chords from `chordCatalog.ts` are cataloged and exported in modular JSON pack `src/content/quizzes/topics/open-chords.json` with sister questions ("identify" and "draw") sharing `familyIds`.
+  - Visual diagram `FretboardDiagram` is registered with the decoupled visual registry (`visualRegistry.register('fretboard-diagram', FretboardDiagramAdapter)`).
+  - Backward compatibility: 100% maintained for existing routes (`/basic-chord-trainer`, `/basic-chord-trainer/embed`), URL parameters, and interactive chord editor.

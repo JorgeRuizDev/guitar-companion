@@ -46,7 +46,7 @@ export const DrawChallenge: React.FC<DrawChallengeProps> = ({
   const isIncorrect = status === 'EVALUATED_INCORRECT';
   const isSkipped = status === 'SKIPPED';
 
-  const prompt = formatPromptTitle(targetChord, lang, 'draw');
+  const prompt = formatPromptTitle(targetChord, lang, 'draw', challenge.notation);
 
   return (
     <div className="w-full flex flex-col items-center max-w-md mx-auto">

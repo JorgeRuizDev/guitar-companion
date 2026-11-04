@@ -20,7 +20,7 @@ The Interactive Learning & Quiz Framework is a domain-agnostic, JSON-driven lear
 
 **Target Platform**: Mobile web, desktop browsers, and embedded webviews ($\ge 320$px width, ultra-compact embed mode fitting $\le 420$px height).
 
-**Project Type**: Reusable core infrastructure engine (`@/core/quiz`) + generic showcase app route (`/quiz`) + migration adapters for existing apps.
+**Project Type**: Reusable core infrastructure engine (`@/core/quiz`) + unified visual question component library (`@/core/ui/questions`) + migration adapters for existing apps. (Standalone route `/quiz` deferred/removed for now).
 
 **Performance Goals**: Candidate pool filtering $< 50$ms for up to 5,000 questions, instant touch responses ($< 16$ms frame budget), zero Cumulative Layout Shift (CLS $< 0.05$).
 
@@ -74,7 +74,17 @@ specs/004-interactive-quiz-framework/
 ```text
 src/
 ├── core/
-│   └── quiz/                        # [NEW] Domain-Agnostic Quiz Engine
+│   ├── ui/
+│   │   └── questions/               # [NEW] Extracted & Homogenized Visual Question UI
+│   │       ├── QuestionCard.tsx     # Mobile-first bounded card container
+│   │       ├── QuestionHeader.tsx   # Category/topic/difficulty badges & prompt
+│   │       ├── StimulusContainer.tsx# Stimulus container preventing overflow
+│   │       ├── ActionNextButton.tsx # Uniform amber gradient CTA button
+│   │       ├── MnemonicBanner.tsx   # Consistent mnemonic trick callout
+│   │       ├── FeedbackBanner.tsx   # In-place hint and feedback alerts
+│   │       └── index.ts
+│   │
+│   └── quiz/                        # Domain-Agnostic Quiz Engine
 │       ├── types/
 │       │   ├── schema.ts            # Zod schemas & inferred TypeScript types
 │       │   ├── session.ts           # State machine interfaces & action types
@@ -107,10 +117,7 @@ src/
 │
 ├── app/
 │   └── (apps)/
-│       └── quiz/                    # [NEW] Unified Quiz App & Embed Route
-│           ├── page.tsx             # Public SSR route with SEO metadata
-│           └── embed/
-│               └── page.tsx         # Clean embed view for webviews
+│       └── quiz/                    # [DEFERRED] Temporarily removed from routing
 │
 └── apps/
     ├── basic-note-trainer/          # [MIGRATED] Adapts to consume @/core/quiz & JSON packs

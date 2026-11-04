@@ -138,4 +138,19 @@ describe('Trainer Session State Machine & Reducer (User Story 3)', () => {
 
     expect(stateAfterSolved.stats.okeys).toBe(1);
   });
+
+  it('guarantees that subsequent cards do not repeat the same note family or reverse translation', () => {
+    let currentState = createInitialSessionState(baseConfig);
+
+    // Run 50 sequential transitions and assert that no two consecutive questions share the same noteReference
+    for (let i = 0; i < 50; i++) {
+      const prevNote = currentState.currentCard.noteReference;
+      currentState = trainerSessionReducer(currentState, {
+        type: 'NEXT_CARD',
+        config: baseConfig,
+      });
+      const newNote = currentState.currentCard.noteReference;
+      expect(newNote).not.toBe(prevNote);
+    }
+  });
 });

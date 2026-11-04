@@ -52,10 +52,14 @@ export type PracticeMode = 'alternate' | 'draw' | 'identify';
 
 export type ChallengeType = 'draw' | 'identify';
 
+export type ChallengeNotation = 'letters' | 'solfege';
+
 export interface PracticeChallenge {
   id: string;
   targetChord: ChordDefinition;
   type: ChallengeType;
+  notation?: ChallengeNotation;
+  familyId?: string;
   // Multiple-choice options for 'identify' mode (exactly 4 unique chords)
   options?: [ChordDefinition, ChordDefinition, ChordDefinition, ChordDefinition];
 }

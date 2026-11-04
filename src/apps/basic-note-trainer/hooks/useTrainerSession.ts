@@ -26,6 +26,7 @@ export interface TrainerSessionState {
   showExplanation: boolean;
   isFirstAttemptSuccess: boolean;
   reviewQueue: string[];
+  recentNotes: string[];
   stats: SessionStats;
 }
 
@@ -42,14 +43,16 @@ export function calculateAccuracy(okeys: number, failures: number): number {
 }
 
 export function createInitialSessionState(config: TrainerConfig): TrainerSessionState {
+  const initialCard = generateCard(config, []);
   return {
-    currentCard: generateCard(config, []),
+    currentCard: initialCard,
     status: 'IDLE',
     attemptsOnCurrentCard: 0,
     disabledOptions: [],
     showExplanation: false,
     isFirstAttemptSuccess: false,
     reviewQueue: [],
+    recentNotes: [initialCard.noteReference],
     stats: {
       okeys: 0,
       failures: 0,
@@ -150,7 +153,10 @@ export function trainerSessionReducer(
       // Dequeue resolved note from reviewQueue
       const resolvedNote = state.currentCard.noteReference;
       const filteredQueue = state.reviewQueue.filter((n) => n !== resolvedNote);
-      const nextCard = generateCard(action.config, filteredQueue);
+      // Keep a buffer of the last 4 notes so sister questions and the same note family are spaced out
+      const prevRecent = state.recentNotes || [];
+      const updatedRecent = [resolvedNote, ...prevRecent.filter((n) => n !== resolvedNote)].slice(0, 4);
+      const nextCard = generateCard(action.config, filteredQueue, updatedRecent);
 
       return {
         ...state,
@@ -161,6 +167,7 @@ export function trainerSessionReducer(
         showExplanation: false,
         isFirstAttemptSuccess: false,
         reviewQueue: filteredQueue,
+        recentNotes: updatedRecent,
         stats: {
           ...state.stats,
           totalCardsSeen: state.stats.totalCardsSeen + 1,
