@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QuizQuestionPack",
+  "description": "Schema definition for external quiz question packs in Guitar Companion",
+  "type": "object",
+  "required": ["packId", "course", "questions"],
+  "properties": {
+    "packId": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "course": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "topics": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "course",
+          "difficulty",
+          "topics",
+          "notation",
+          "prompt",
+          "options",
+          "correctAnswer",
+          "remediation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "familyIds": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "type": {
+            "type": "string",
+            "enum": ["single-choice", "multiple-choice", "interactive-visual"]
+          },
+          "course": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": ["beginner", "intermediate", "advanced"]
+          },
+          "topics": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "notation": {
+            "type": "string",
+            "enum": ["letters", "solfege", "dual", "neutral"]
+          },
+          "prompt": {
+            "type": "object",
+            "required": ["en", "es"],
+            "properties": {
+              "en": { "type": "string" },
+              "es": { "type": "string" }
+            }
+          },
+          "subPrompt": {
+            "type": "object",
+            "properties": {
+              "en": { "type": "string" },
+              "es": { "type": "string" }
+            }
+          },
+          "stimulus": {
+            "type": "object",
+            "required": ["visualType"],
+            "properties": {
+              "visualType": { "type": "string" },
+              "visualProps": { "type": "object" }
+            }
+          },
+          "options": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["id", "label"],
+              "properties": {
+                "id": { "type": "string" },
+                "label": {
+                  "type": "object",
+                  "required": ["en", "es"],
+                  "properties": {
+                    "en": { "type": "string" },
+                    "es": { "type": "string" }
+                  }
+                },
+                "visualCue": {
+                  "type": "object",
+                  "properties": {
+                    "visualType": { "type": "string" },
+                    "visualProps": { "type": "object" }
+                  }
+                }
+              }
+            }
+          },
+          "correctAnswer": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "remediation": {
+            "type": "object",
+            "required": ["explanation"],
+            "properties": {
+              "explanation": {
+                "type": "object",
+                "required": ["en", "es"],
+                "properties": {
+                  "en": { "type": "string" },
+                  "es": { "type": "string" }
+                }
+              },
+              "hint": {
+                "type": "object",
+                "properties": {
+                  "en": { "type": "string" },
+                  "es": { "type": "string" }
+                }
+              },
+              "mnemonic": {
+                "type": "object",
+                "properties": {
+                  "en": { "type": "string" },
+                  "es": { "type": "string" }
+                }
+              },
+              "visualExplanation": {
+                "type": "object",
+                "properties": {
+                  "visualType": { "type": "string" },
+                  "visualProps": { "type": "object" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
