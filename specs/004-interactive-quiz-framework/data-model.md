@@ -118,7 +118,9 @@ export interface Question {
 ```typescript
 export interface QuestionPackEntry {
   packId: string;
-  filePath: string;
+  dirPath?: string;
+  filePath?: string;
+  path?: string;
   course: number;
   topics: string[];
   questionCount: number;
@@ -130,6 +132,13 @@ export interface QuestionPackManifest {
   packs: QuestionPackEntry[];
 }
 ```
+
+### 1.4 Directory-Based YAML Question Pack Decomposition
+To optimize for LLM authoring, reduce token overhead, and maintain atomic Git diffs:
+* Each question pack is stored as a directory containing modular `.yml` files (e.g. `src/content/quizzes/topics/open-chords/`).
+* **Rule**: Each `.yml` file contains between 1 and 15 questions maximum.
+* **Governance Rule**: No pack directory may contain more than 15 `.yml` files in the project content (enforced strictly via unit test in `validatePacks.test.ts`).
+* The engine `loadPack` / `loadPackFromDir` dynamically reads, parses via `yaml`, and aggregates all questions without hardcoded file count limits in engine code.
 
 ---
 

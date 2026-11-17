@@ -1,0 +1,1216 @@
+- id: chord-f-beginner-draw-solfege
+  familyIds:
+    - family-chord-f-beginner
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: solfege
+  prompt:
+    en: Draw the F major chord
+    es: Dibuja el acorde de Fa Mayor
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-f-beginner
+      label:
+        en: Fa Major
+        es: Fa Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: f-beginner
+          symbol: F
+          solfegeName: Fa Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-fmaj7
+      label:
+        en: Fa maj7
+        es: Fa maj7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: fmaj7
+          symbol: Fmaj7
+          solfegeName: Fa maj7
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-cadd9
+      label:
+        en: Do add9
+        es: Do add9
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: cadd9
+          symbol: Cadd9
+          solfegeName: Do add9
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 3
+              finger: 4
+    - id: opt-diag-dsus2
+      label:
+        en: Re sus2
+        es: Re sus2
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: dsus2
+          symbol: Dsus2
+          solfegeName: Re sus2
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+  correctAnswer:
+    - opt-diag-f-beginner
+  remediation:
+    explanation:
+      en: F major is voiced on the guitar fretboard as shown in this diagram.
+      es: El acorde de Fa Mayor se digita en la guitarra como se muestra en este
+        diagrama.
+    hint:
+      en: Look at the root on string 4 and the open/muted strings.
+      es: Observa la tónica en la cuerda 4 y las cuerdas al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: f-beginner
+        symbol: F
+        solfegeName: Fa Mayor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: fretted
+            fret: 1
+            finger: 1
+- id: chord-f-beginner-draw-letters
+  familyIds:
+    - family-chord-f-beginner
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: letters
+  prompt:
+    en: Draw the F chord
+    es: Dibuja el acorde de F
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-f-beginner
+      label:
+        en: F major
+        es: F Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: f-beginner
+          symbol: F
+          solfegeName: Fa Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-fmaj7
+      label:
+        en: Fmaj7
+        es: Fmaj7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: fmaj7
+          symbol: Fmaj7
+          solfegeName: Fa maj7
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-cadd9
+      label:
+        en: Cadd9
+        es: Cadd9
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: cadd9
+          symbol: Cadd9
+          solfegeName: Do add9
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 3
+              finger: 4
+    - id: opt-diag-dsus2
+      label:
+        en: Dsus2
+        es: Dsus2
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: dsus2
+          symbol: Dsus2
+          solfegeName: Re sus2
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+  correctAnswer:
+    - opt-diag-f-beginner
+  remediation:
+    explanation:
+      en: F (F major) is voiced on the fretboard as shown in this diagram.
+      es: El acorde F (F Mayor) se digita en la guitarra como se muestra en el
+        diagrama.
+    hint:
+      en: Notice the placement of fingers and which strings are muted.
+      es: Presta atención a las cuerdas pulsadas y cuáles se dejan al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: f-beginner
+        symbol: F
+        solfegeName: Fa Mayor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: fretted
+            fret: 1
+            finger: 1
+- id: chord-f-beginner-identify-letters
+  familyIds:
+    - family-chord-f-beginner
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: letters
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: f-beginner
+      symbol: F
+      solfegeName: Fa Mayor
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 4
+          state: fretted
+          fret: 3
+          finger: 3
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 2
+          state: fretted
+          fret: 1
+          finger: 1
+        - stringNumber: 1
+          state: fretted
+          fret: 1
+          finger: 1
+  options:
+    - id: opt-letters-f-beginner
+      label:
+        en: F major
+        es: F Mayor
+    - id: opt-letters-fmaj7
+      label:
+        en: Fmaj7
+        es: Fmaj7
+    - id: opt-letters-cadd9
+      label:
+        en: Cadd9
+        es: Cadd9
+    - id: opt-letters-dsus2
+      label:
+        en: Dsus2
+        es: Dsus2
+  correctAnswer:
+    - opt-letters-f-beginner
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to the F major (F) chord.
+      es: Esta figura en el diapasón corresponde al acorde de F Mayor (F).
+    hint:
+      en: Check the bass root on string 4.
+      es: Comprueba la tónica en la cuerda 4.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: f-beginner
+        symbol: F
+        solfegeName: Fa Mayor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: fretted
+            fret: 1
+            finger: 1
+- id: chord-f-beginner-identify-solfege
+  familyIds:
+    - family-chord-f-beginner
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: solfege
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: f-beginner
+      symbol: F
+      solfegeName: Fa Mayor
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 4
+          state: fretted
+          fret: 3
+          finger: 3
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 2
+          state: fretted
+          fret: 1
+          finger: 1
+        - stringNumber: 1
+          state: fretted
+          fret: 1
+          finger: 1
+  options:
+    - id: opt-solfege-f-beginner
+      label:
+        en: Fa Major
+        es: Fa Mayor
+    - id: opt-solfege-fmaj7
+      label:
+        en: Fa maj7
+        es: Fa maj7
+    - id: opt-solfege-cadd9
+      label:
+        en: Do add9
+        es: Do add9
+    - id: opt-solfege-dsus2
+      label:
+        en: Re sus2
+        es: Re sus2
+  correctAnswer:
+    - opt-solfege-f-beginner
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to Fa Major.
+      es: Esta figura en el diapasón corresponde al acorde de Fa Mayor.
+    hint:
+      en: The lowest root note is on string 4.
+      es: La nota tónica más grave se encuentra en la cuerda 4.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: f-beginner
+        symbol: F
+        solfegeName: Fa Mayor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: fretted
+            fret: 1
+            finger: 1
+- id: chord-fmaj7-draw-solfege
+  familyIds:
+    - family-chord-fmaj7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: solfege
+  prompt:
+    en: Draw the Fmaj7 chord
+    es: Dibuja el acorde de Fa maj7
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-fmaj7
+      label:
+        en: Fa maj7
+        es: Fa maj7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: fmaj7
+          symbol: Fmaj7
+          solfegeName: Fa maj7
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-f-beginner
+      label:
+        en: Fa Major
+        es: Fa Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: f-beginner
+          symbol: F
+          solfegeName: Fa Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-cadd9
+      label:
+        en: Do add9
+        es: Do add9
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: cadd9
+          symbol: Cadd9
+          solfegeName: Do add9
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 3
+              finger: 4
+    - id: opt-diag-dsus2
+      label:
+        en: Re sus2
+        es: Re sus2
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: dsus2
+          symbol: Dsus2
+          solfegeName: Re sus2
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+  correctAnswer:
+    - opt-diag-fmaj7
+  remediation:
+    explanation:
+      en: Fmaj7 is voiced on the guitar fretboard as shown in this diagram.
+      es: El acorde de Fa maj7 se digita en la guitarra como se muestra en este
+        diagrama.
+    hint:
+      en: Look at the root on string 4 and the open/muted strings.
+      es: Observa la tónica en la cuerda 4 y las cuerdas al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: fmaj7
+        symbol: Fmaj7
+        solfegeName: Fa maj7
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-fmaj7-draw-letters
+  familyIds:
+    - family-chord-fmaj7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: letters
+  prompt:
+    en: Draw the Fmaj7 chord
+    es: Dibuja el acorde de Fmaj7
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-fmaj7
+      label:
+        en: Fmaj7
+        es: Fmaj7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: fmaj7
+          symbol: Fmaj7
+          solfegeName: Fa maj7
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-f-beginner
+      label:
+        en: F major
+        es: F Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: f-beginner
+          symbol: F
+          solfegeName: Fa Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-cadd9
+      label:
+        en: Cadd9
+        es: Cadd9
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: cadd9
+          symbol: Cadd9
+          solfegeName: Do add9
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 3
+              finger: 4
+    - id: opt-diag-dsus2
+      label:
+        en: Dsus2
+        es: Dsus2
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: dsus2
+          symbol: Dsus2
+          solfegeName: Re sus2
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+  correctAnswer:
+    - opt-diag-fmaj7
+  remediation:
+    explanation:
+      en: Fmaj7 (Fmaj7) is voiced on the fretboard as shown in this diagram.
+      es: El acorde Fmaj7 (Fmaj7) se digita en la guitarra como se muestra en el
+        diagrama.
+    hint:
+      en: Notice the placement of fingers and which strings are muted.
+      es: Presta atención a las cuerdas pulsadas y cuáles se dejan al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: fmaj7
+        symbol: Fmaj7
+        solfegeName: Fa maj7
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-fmaj7-identify-letters
+  familyIds:
+    - family-chord-fmaj7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: letters
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: fmaj7
+      symbol: Fmaj7
+      solfegeName: Fa maj7
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 4
+          state: fretted
+          fret: 3
+          finger: 3
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 2
+          state: fretted
+          fret: 1
+          finger: 1
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-letters-fmaj7
+      label:
+        en: Fmaj7
+        es: Fmaj7
+    - id: opt-letters-f-beginner
+      label:
+        en: F major
+        es: F Mayor
+    - id: opt-letters-cadd9
+      label:
+        en: Cadd9
+        es: Cadd9
+    - id: opt-letters-dsus2
+      label:
+        en: Dsus2
+        es: Dsus2
+  correctAnswer:
+    - opt-letters-fmaj7
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to the Fmaj7 (Fmaj7) chord.
+      es: Esta figura en el diapasón corresponde al acorde de Fmaj7 (Fmaj7).
+    hint:
+      en: Check the bass root on string 4.
+      es: Comprueba la tónica en la cuerda 4.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: fmaj7
+        symbol: Fmaj7
+        solfegeName: Fa maj7
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-fmaj7-identify-solfege
+  familyIds:
+    - family-chord-fmaj7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: solfege
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: fmaj7
+      symbol: Fmaj7
+      solfegeName: Fa maj7
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 4
+          state: fretted
+          fret: 3
+          finger: 3
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 2
+          state: fretted
+          fret: 1
+          finger: 1
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-solfege-fmaj7
+      label:
+        en: Fa maj7
+        es: Fa maj7
+    - id: opt-solfege-f-beginner
+      label:
+        en: Fa Major
+        es: Fa Mayor
+    - id: opt-solfege-cadd9
+      label:
+        en: Do add9
+        es: Do add9
+    - id: opt-solfege-dsus2
+      label:
+        en: Re sus2
+        es: Re sus2
+  correctAnswer:
+    - opt-solfege-fmaj7
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to Fa maj7.
+      es: Esta figura en el diapasón corresponde al acorde de Fa maj7.
+    hint:
+      en: The lowest root note is on string 4.
+      es: La nota tónica más grave se encuentra en la cuerda 4.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: fmaj7
+        symbol: Fmaj7
+        solfegeName: Fa maj7
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null

@@ -3,7 +3,8 @@
   "packs": [
     {
       "packId": "course-01-notes",
-      "filePath": "src/content/quizzes/courses/course-01-notes.json",
+      "dirPath": "src/content/quizzes/courses/course-01-notes",
+      "filePath": "src/content/quizzes/courses/course-01-notes",
       "course": 1,
       "topics": ["notes", "translation", "theory"],
       "questionCount": 16,
@@ -11,7 +12,8 @@
     },
     {
       "packId": "course-02-accidentals",
-      "filePath": "src/content/quizzes/courses/course-02-accidentals.json",
+      "dirPath": "src/content/quizzes/courses/course-02-accidentals",
+      "filePath": "src/content/quizzes/courses/course-02-accidentals",
       "course": 2,
       "topics": ["accidentals", "semitones", "theory"],
       "questionCount": 8,
@@ -19,7 +21,8 @@
     },
     {
       "packId": "open-chords",
-      "filePath": "src/content/quizzes/topics/open-chords.json",
+      "dirPath": "src/content/quizzes/topics/open-chords",
+      "filePath": "src/content/quizzes/topics/open-chords",
       "course": 3,
       "topics": ["chords", "open-chords"],
       "questionCount": 88,

@@ -274,6 +274,7 @@ Task: "T026 [P] [US4] Implement carousel draw and multi-family exclusion algorit
 
 - Every task strictly complies with `- [ ] [TaskID] [P?] [Story?] Description with file path`.
 - Core engine (`@/core/quiz/`) remains 100% domain-agnostic (Constitution Principle VII).
-- Content lives exclusively in modular JSON files under `src/content/quizzes/`.
+- Content lives in modular directories containing atomic `.yml` files (10-15 questions max per file) under `src/content/quizzes/`.
+- Project content directories are enforced by unit tests to contain <= 15 YAML files each (with no file limit in engine code).
 - Guest persistence strictly sets `ownerId: null` in compliance with Zero-Mock UI (Constitution Principle IV).
 - Mandatory Docker reload (`bun run docker:reload`) and health check included as definition of done.

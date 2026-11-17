@@ -1,0 +1,1216 @@
+- id: chord-g-major-draw-solfege
+  familyIds:
+    - family-chord-g-major
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-major
+  notation: solfege
+  prompt:
+    en: Draw the G major chord
+    es: Dibuja el acorde de Sol Mayor
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-g-major
+      label:
+        en: Sol Major
+        es: Sol Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: g-major
+          symbol: G
+          solfegeName: Sol Mayor
+          strings:
+            - stringNumber: 6
+              state: fretted
+              fret: 3
+              finger: 2
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: fretted
+              fret: 3
+              finger: 3
+    - id: opt-diag-c-major
+      label:
+        en: Do Major
+        es: Do Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c-major
+          symbol: C
+          solfegeName: Do Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-d-major
+      label:
+        en: Re Major
+        es: Re Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d-major
+          symbol: D
+          solfegeName: Re Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 2
+              finger: 2
+    - id: opt-diag-e-major
+      label:
+        en: Mi Major
+        es: Mi Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e-major
+          symbol: E
+          solfegeName: Mi Mayor
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+  correctAnswer:
+    - opt-diag-g-major
+  remediation:
+    explanation:
+      en: G major is voiced on the guitar fretboard as shown in this diagram.
+      es: El acorde de Sol Mayor se digita en la guitarra como se muestra en este
+        diagrama.
+    hint:
+      en: Look at the root on string 6 and the open/muted strings.
+      es: Observa la tónica en la cuerda 6 y las cuerdas al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: g-major
+        symbol: G
+        solfegeName: Sol Mayor
+        strings:
+          - stringNumber: 6
+            state: fretted
+            fret: 3
+            finger: 2
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: fretted
+            fret: 3
+            finger: 3
+- id: chord-g-major-draw-letters
+  familyIds:
+    - family-chord-g-major
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-major
+  notation: letters
+  prompt:
+    en: Draw the G chord
+    es: Dibuja el acorde de G
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-g-major
+      label:
+        en: G major
+        es: G Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: g-major
+          symbol: G
+          solfegeName: Sol Mayor
+          strings:
+            - stringNumber: 6
+              state: fretted
+              fret: 3
+              finger: 2
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: fretted
+              fret: 3
+              finger: 3
+    - id: opt-diag-c-major
+      label:
+        en: C major
+        es: C Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c-major
+          symbol: C
+          solfegeName: Do Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-d-major
+      label:
+        en: D major
+        es: D Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d-major
+          symbol: D
+          solfegeName: Re Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 2
+              finger: 2
+    - id: opt-diag-e-major
+      label:
+        en: E major
+        es: E Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e-major
+          symbol: E
+          solfegeName: Mi Mayor
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+  correctAnswer:
+    - opt-diag-g-major
+  remediation:
+    explanation:
+      en: G (G major) is voiced on the fretboard as shown in this diagram.
+      es: El acorde G (G Mayor) se digita en la guitarra como se muestra en el
+        diagrama.
+    hint:
+      en: Notice the placement of fingers and which strings are muted.
+      es: Presta atención a las cuerdas pulsadas y cuáles se dejan al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: g-major
+        symbol: G
+        solfegeName: Sol Mayor
+        strings:
+          - stringNumber: 6
+            state: fretted
+            fret: 3
+            finger: 2
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: fretted
+            fret: 3
+            finger: 3
+- id: chord-g-major-identify-letters
+  familyIds:
+    - family-chord-g-major
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-major
+  notation: letters
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: g-major
+      symbol: G
+      solfegeName: Sol Mayor
+      strings:
+        - stringNumber: 6
+          state: fretted
+          fret: 3
+          finger: 2
+        - stringNumber: 5
+          state: fretted
+          fret: 2
+          finger: 1
+        - stringNumber: 4
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 3
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 2
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 1
+          state: fretted
+          fret: 3
+          finger: 3
+  options:
+    - id: opt-letters-g-major
+      label:
+        en: G major
+        es: G Mayor
+    - id: opt-letters-c-major
+      label:
+        en: C major
+        es: C Mayor
+    - id: opt-letters-d-major
+      label:
+        en: D major
+        es: D Mayor
+    - id: opt-letters-e-major
+      label:
+        en: E major
+        es: E Mayor
+  correctAnswer:
+    - opt-letters-g-major
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to the G major (G) chord.
+      es: Esta figura en el diapasón corresponde al acorde de G Mayor (G).
+    hint:
+      en: Check the bass root on string 6.
+      es: Comprueba la tónica en la cuerda 6.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: g-major
+        symbol: G
+        solfegeName: Sol Mayor
+        strings:
+          - stringNumber: 6
+            state: fretted
+            fret: 3
+            finger: 2
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: fretted
+            fret: 3
+            finger: 3
+- id: chord-g-major-identify-solfege
+  familyIds:
+    - family-chord-g-major
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-major
+  notation: solfege
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: g-major
+      symbol: G
+      solfegeName: Sol Mayor
+      strings:
+        - stringNumber: 6
+          state: fretted
+          fret: 3
+          finger: 2
+        - stringNumber: 5
+          state: fretted
+          fret: 2
+          finger: 1
+        - stringNumber: 4
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 3
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 2
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 1
+          state: fretted
+          fret: 3
+          finger: 3
+  options:
+    - id: opt-solfege-g-major
+      label:
+        en: Sol Major
+        es: Sol Mayor
+    - id: opt-solfege-c-major
+      label:
+        en: Do Major
+        es: Do Mayor
+    - id: opt-solfege-d-major
+      label:
+        en: Re Major
+        es: Re Mayor
+    - id: opt-solfege-e-major
+      label:
+        en: Mi Major
+        es: Mi Mayor
+  correctAnswer:
+    - opt-solfege-g-major
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to Sol Major.
+      es: Esta figura en el diapasón corresponde al acorde de Sol Mayor.
+    hint:
+      en: The lowest root note is on string 6.
+      es: La nota tónica más grave se encuentra en la cuerda 6.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: g-major
+        symbol: G
+        solfegeName: Sol Mayor
+        strings:
+          - stringNumber: 6
+            state: fretted
+            fret: 3
+            finger: 2
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: fretted
+            fret: 3
+            finger: 3
+- id: chord-a-major-draw-solfege
+  familyIds:
+    - family-chord-a-major
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-major
+  notation: solfege
+  prompt:
+    en: Draw the A major chord
+    es: Dibuja el acorde de La Mayor
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-a-major
+      label:
+        en: La Major
+        es: La Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: a-major
+          symbol: A
+          solfegeName: La Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-c-major
+      label:
+        en: Do Major
+        es: Do Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c-major
+          symbol: C
+          solfegeName: Do Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-d-major
+      label:
+        en: Re Major
+        es: Re Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d-major
+          symbol: D
+          solfegeName: Re Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 2
+              finger: 2
+    - id: opt-diag-e-major
+      label:
+        en: Mi Major
+        es: Mi Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e-major
+          symbol: E
+          solfegeName: Mi Mayor
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+  correctAnswer:
+    - opt-diag-a-major
+  remediation:
+    explanation:
+      en: A major is voiced on the guitar fretboard as shown in this diagram.
+      es: El acorde de La Mayor se digita en la guitarra como se muestra en este
+        diagrama.
+    hint:
+      en: Look at the root on string 5 and the open/muted strings.
+      es: Observa la tónica en la cuerda 5 y las cuerdas al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: a-major
+        symbol: A
+        solfegeName: La Mayor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-a-major-draw-letters
+  familyIds:
+    - family-chord-a-major
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-major
+  notation: letters
+  prompt:
+    en: Draw the A chord
+    es: Dibuja el acorde de A
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-a-major
+      label:
+        en: A major
+        es: A Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: a-major
+          symbol: A
+          solfegeName: La Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-c-major
+      label:
+        en: C major
+        es: C Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c-major
+          symbol: C
+          solfegeName: Do Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-d-major
+      label:
+        en: D major
+        es: D Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d-major
+          symbol: D
+          solfegeName: Re Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 2
+              finger: 2
+    - id: opt-diag-e-major
+      label:
+        en: E major
+        es: E Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e-major
+          symbol: E
+          solfegeName: Mi Mayor
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+  correctAnswer:
+    - opt-diag-a-major
+  remediation:
+    explanation:
+      en: A (A major) is voiced on the fretboard as shown in this diagram.
+      es: El acorde A (A Mayor) se digita en la guitarra como se muestra en el
+        diagrama.
+    hint:
+      en: Notice the placement of fingers and which strings are muted.
+      es: Presta atención a las cuerdas pulsadas y cuáles se dejan al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: a-major
+        symbol: A
+        solfegeName: La Mayor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-a-major-identify-letters
+  familyIds:
+    - family-chord-a-major
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-major
+  notation: letters
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: a-major
+      symbol: A
+      solfegeName: La Mayor
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 4
+          state: fretted
+          fret: 2
+          finger: 1
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 2
+          state: fretted
+          fret: 2
+          finger: 3
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-letters-a-major
+      label:
+        en: A major
+        es: A Mayor
+    - id: opt-letters-c-major
+      label:
+        en: C major
+        es: C Mayor
+    - id: opt-letters-d-major
+      label:
+        en: D major
+        es: D Mayor
+    - id: opt-letters-e-major
+      label:
+        en: E major
+        es: E Mayor
+  correctAnswer:
+    - opt-letters-a-major
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to the A major (A) chord.
+      es: Esta figura en el diapasón corresponde al acorde de A Mayor (A).
+    hint:
+      en: Check the bass root on string 5.
+      es: Comprueba la tónica en la cuerda 5.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: a-major
+        symbol: A
+        solfegeName: La Mayor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-a-major-identify-solfege
+  familyIds:
+    - family-chord-a-major
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-major
+  notation: solfege
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: a-major
+      symbol: A
+      solfegeName: La Mayor
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 4
+          state: fretted
+          fret: 2
+          finger: 1
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 2
+          state: fretted
+          fret: 2
+          finger: 3
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-solfege-a-major
+      label:
+        en: La Major
+        es: La Mayor
+    - id: opt-solfege-c-major
+      label:
+        en: Do Major
+        es: Do Mayor
+    - id: opt-solfege-d-major
+      label:
+        en: Re Major
+        es: Re Mayor
+    - id: opt-solfege-e-major
+      label:
+        en: Mi Major
+        es: Mi Mayor
+  correctAnswer:
+    - opt-solfege-a-major
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to La Major.
+      es: Esta figura en el diapasón corresponde al acorde de La Mayor.
+    hint:
+      en: The lowest root note is on string 5.
+      es: La nota tónica más grave se encuentra en la cuerda 5.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: a-major
+        symbol: A
+        solfegeName: La Mayor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null

@@ -1,0 +1,1821 @@
+- id: chord-c7-draw-solfege
+  familyIds:
+    - family-chord-c7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-7th
+  notation: solfege
+  prompt:
+    en: Draw the C7 chord
+    es: Dibuja el acorde de Do 7ª
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-c7
+      label:
+        en: Do 7th
+        es: Do 7ª
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c7
+          symbol: C7
+          solfegeName: Do 7ª
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: fretted
+              fret: 3
+              finger: 4
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-d7
+      label:
+        en: Re 7th
+        es: Re 7ª
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d7
+          symbol: D7
+          solfegeName: Re 7ª
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 2
+              finger: 3
+    - id: opt-diag-e7
+      label:
+        en: Mi 7th
+        es: Mi 7ª
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e7
+          symbol: E7
+          solfegeName: Mi 7ª
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-g7
+      label:
+        en: Sol 7th
+        es: Sol 7ª
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: g7
+          symbol: G7
+          solfegeName: Sol 7ª
+          strings:
+            - stringNumber: 6
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+  correctAnswer:
+    - opt-diag-c7
+  remediation:
+    explanation:
+      en: C7 is voiced on the guitar fretboard as shown in this diagram.
+      es: El acorde de Do 7ª se digita en la guitarra como se muestra en este
+        diagrama.
+    hint:
+      en: Look at the root on string 5 and the open/muted strings.
+      es: Observa la tónica en la cuerda 5 y las cuerdas al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: c7
+        symbol: C7
+        solfegeName: Do 7ª
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 3
+            state: fretted
+            fret: 3
+            finger: 4
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-c7-draw-letters
+  familyIds:
+    - family-chord-c7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-7th
+  notation: letters
+  prompt:
+    en: Draw the C7 chord
+    es: Dibuja el acorde de C7
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-c7
+      label:
+        en: C7
+        es: C7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c7
+          symbol: C7
+          solfegeName: Do 7ª
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: fretted
+              fret: 3
+              finger: 4
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-d7
+      label:
+        en: D7
+        es: D7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d7
+          symbol: D7
+          solfegeName: Re 7ª
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 2
+              finger: 3
+    - id: opt-diag-e7
+      label:
+        en: E7
+        es: E7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e7
+          symbol: E7
+          solfegeName: Mi 7ª
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-g7
+      label:
+        en: G7
+        es: G7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: g7
+          symbol: G7
+          solfegeName: Sol 7ª
+          strings:
+            - stringNumber: 6
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+  correctAnswer:
+    - opt-diag-c7
+  remediation:
+    explanation:
+      en: C7 (C7) is voiced on the fretboard as shown in this diagram.
+      es: El acorde C7 (C7) se digita en la guitarra como se muestra en el diagrama.
+    hint:
+      en: Notice the placement of fingers and which strings are muted.
+      es: Presta atención a las cuerdas pulsadas y cuáles se dejan al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: c7
+        symbol: C7
+        solfegeName: Do 7ª
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 3
+            state: fretted
+            fret: 3
+            finger: 4
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-c7-identify-letters
+  familyIds:
+    - family-chord-c7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-7th
+  notation: letters
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: c7
+      symbol: C7
+      solfegeName: Do 7ª
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: fretted
+          fret: 3
+          finger: 3
+        - stringNumber: 4
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 3
+          state: fretted
+          fret: 3
+          finger: 4
+        - stringNumber: 2
+          state: fretted
+          fret: 1
+          finger: 1
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-letters-c7
+      label:
+        en: C7
+        es: C7
+    - id: opt-letters-d7
+      label:
+        en: D7
+        es: D7
+    - id: opt-letters-e7
+      label:
+        en: E7
+        es: E7
+    - id: opt-letters-g7
+      label:
+        en: G7
+        es: G7
+  correctAnswer:
+    - opt-letters-c7
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to the C7 (C7) chord.
+      es: Esta figura en el diapasón corresponde al acorde de C7 (C7).
+    hint:
+      en: Check the bass root on string 5.
+      es: Comprueba la tónica en la cuerda 5.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: c7
+        symbol: C7
+        solfegeName: Do 7ª
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 3
+            state: fretted
+            fret: 3
+            finger: 4
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-c7-identify-solfege
+  familyIds:
+    - family-chord-c7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-7th
+  notation: solfege
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: c7
+      symbol: C7
+      solfegeName: Do 7ª
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: fretted
+          fret: 3
+          finger: 3
+        - stringNumber: 4
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 3
+          state: fretted
+          fret: 3
+          finger: 4
+        - stringNumber: 2
+          state: fretted
+          fret: 1
+          finger: 1
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-solfege-c7
+      label:
+        en: Do 7th
+        es: Do 7ª
+    - id: opt-solfege-d7
+      label:
+        en: Re 7th
+        es: Re 7ª
+    - id: opt-solfege-e7
+      label:
+        en: Mi 7th
+        es: Mi 7ª
+    - id: opt-solfege-g7
+      label:
+        en: Sol 7th
+        es: Sol 7ª
+  correctAnswer:
+    - opt-solfege-c7
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to Do 7th.
+      es: Esta figura en el diapasón corresponde al acorde de Do 7ª.
+    hint:
+      en: The lowest root note is on string 5.
+      es: La nota tónica más grave se encuentra en la cuerda 5.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: c7
+        symbol: C7
+        solfegeName: Do 7ª
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 3
+            state: fretted
+            fret: 3
+            finger: 4
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-d7-draw-solfege
+  familyIds:
+    - family-chord-d7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-7th
+  notation: solfege
+  prompt:
+    en: Draw the D7 chord
+    es: Dibuja el acorde de Re 7ª
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-d7
+      label:
+        en: Re 7th
+        es: Re 7ª
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d7
+          symbol: D7
+          solfegeName: Re 7ª
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 2
+              finger: 3
+    - id: opt-diag-c7
+      label:
+        en: Do 7th
+        es: Do 7ª
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c7
+          symbol: C7
+          solfegeName: Do 7ª
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: fretted
+              fret: 3
+              finger: 4
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-e7
+      label:
+        en: Mi 7th
+        es: Mi 7ª
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e7
+          symbol: E7
+          solfegeName: Mi 7ª
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-g7
+      label:
+        en: Sol 7th
+        es: Sol 7ª
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: g7
+          symbol: G7
+          solfegeName: Sol 7ª
+          strings:
+            - stringNumber: 6
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+  correctAnswer:
+    - opt-diag-d7
+  remediation:
+    explanation:
+      en: D7 is voiced on the guitar fretboard as shown in this diagram.
+      es: El acorde de Re 7ª se digita en la guitarra como se muestra en este
+        diagrama.
+    hint:
+      en: Look at the root on string 4 and the open/muted strings.
+      es: Observa la tónica en la cuerda 4 y las cuerdas al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: d7
+        symbol: D7
+        solfegeName: Re 7ª
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: fretted
+            fret: 2
+            finger: 3
+- id: chord-d7-draw-letters
+  familyIds:
+    - family-chord-d7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-7th
+  notation: letters
+  prompt:
+    en: Draw the D7 chord
+    es: Dibuja el acorde de D7
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-d7
+      label:
+        en: D7
+        es: D7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d7
+          symbol: D7
+          solfegeName: Re 7ª
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 2
+              finger: 3
+    - id: opt-diag-c7
+      label:
+        en: C7
+        es: C7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c7
+          symbol: C7
+          solfegeName: Do 7ª
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: fretted
+              fret: 3
+              finger: 4
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-e7
+      label:
+        en: E7
+        es: E7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e7
+          symbol: E7
+          solfegeName: Mi 7ª
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-g7
+      label:
+        en: G7
+        es: G7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: g7
+          symbol: G7
+          solfegeName: Sol 7ª
+          strings:
+            - stringNumber: 6
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+  correctAnswer:
+    - opt-diag-d7
+  remediation:
+    explanation:
+      en: D7 (D7) is voiced on the fretboard as shown in this diagram.
+      es: El acorde D7 (D7) se digita en la guitarra como se muestra en el diagrama.
+    hint:
+      en: Notice the placement of fingers and which strings are muted.
+      es: Presta atención a las cuerdas pulsadas y cuáles se dejan al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: d7
+        symbol: D7
+        solfegeName: Re 7ª
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: fretted
+            fret: 2
+            finger: 3
+- id: chord-d7-identify-letters
+  familyIds:
+    - family-chord-d7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-7th
+  notation: letters
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: d7
+      symbol: D7
+      solfegeName: Re 7ª
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 4
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 2
+          state: fretted
+          fret: 1
+          finger: 1
+        - stringNumber: 1
+          state: fretted
+          fret: 2
+          finger: 3
+  options:
+    - id: opt-letters-d7
+      label:
+        en: D7
+        es: D7
+    - id: opt-letters-c7
+      label:
+        en: C7
+        es: C7
+    - id: opt-letters-e7
+      label:
+        en: E7
+        es: E7
+    - id: opt-letters-g7
+      label:
+        en: G7
+        es: G7
+  correctAnswer:
+    - opt-letters-d7
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to the D7 (D7) chord.
+      es: Esta figura en el diapasón corresponde al acorde de D7 (D7).
+    hint:
+      en: Check the bass root on string 4.
+      es: Comprueba la tónica en la cuerda 4.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: d7
+        symbol: D7
+        solfegeName: Re 7ª
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: fretted
+            fret: 2
+            finger: 3
+- id: chord-d7-identify-solfege
+  familyIds:
+    - family-chord-d7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-7th
+  notation: solfege
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: d7
+      symbol: D7
+      solfegeName: Re 7ª
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 4
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 2
+          state: fretted
+          fret: 1
+          finger: 1
+        - stringNumber: 1
+          state: fretted
+          fret: 2
+          finger: 3
+  options:
+    - id: opt-solfege-d7
+      label:
+        en: Re 7th
+        es: Re 7ª
+    - id: opt-solfege-c7
+      label:
+        en: Do 7th
+        es: Do 7ª
+    - id: opt-solfege-e7
+      label:
+        en: Mi 7th
+        es: Mi 7ª
+    - id: opt-solfege-g7
+      label:
+        en: Sol 7th
+        es: Sol 7ª
+  correctAnswer:
+    - opt-solfege-d7
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to Re 7th.
+      es: Esta figura en el diapasón corresponde al acorde de Re 7ª.
+    hint:
+      en: The lowest root note is on string 4.
+      es: La nota tónica más grave se encuentra en la cuerda 4.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: d7
+        symbol: D7
+        solfegeName: Re 7ª
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: fretted
+            fret: 2
+            finger: 3
+- id: chord-e7-draw-solfege
+  familyIds:
+    - family-chord-e7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-7th
+  notation: solfege
+  prompt:
+    en: Draw the E7 chord
+    es: Dibuja el acorde de Mi 7ª
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-e7
+      label:
+        en: Mi 7th
+        es: Mi 7ª
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e7
+          symbol: E7
+          solfegeName: Mi 7ª
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-c7
+      label:
+        en: Do 7th
+        es: Do 7ª
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c7
+          symbol: C7
+          solfegeName: Do 7ª
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: fretted
+              fret: 3
+              finger: 4
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-d7
+      label:
+        en: Re 7th
+        es: Re 7ª
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d7
+          symbol: D7
+          solfegeName: Re 7ª
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 2
+              finger: 3
+    - id: opt-diag-g7
+      label:
+        en: Sol 7th
+        es: Sol 7ª
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: g7
+          symbol: G7
+          solfegeName: Sol 7ª
+          strings:
+            - stringNumber: 6
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+  correctAnswer:
+    - opt-diag-e7
+  remediation:
+    explanation:
+      en: E7 is voiced on the guitar fretboard as shown in this diagram.
+      es: El acorde de Mi 7ª se digita en la guitarra como se muestra en este
+        diagrama.
+    hint:
+      en: Look at the root on string 6 and the open/muted strings.
+      es: Observa la tónica en la cuerda 6 y las cuerdas al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: e7
+        symbol: E7
+        solfegeName: Mi 7ª
+        strings:
+          - stringNumber: 6
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-e7-draw-letters
+  familyIds:
+    - family-chord-e7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-7th
+  notation: letters
+  prompt:
+    en: Draw the E7 chord
+    es: Dibuja el acorde de E7
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-e7
+      label:
+        en: E7
+        es: E7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e7
+          symbol: E7
+          solfegeName: Mi 7ª
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-c7
+      label:
+        en: C7
+        es: C7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c7
+          symbol: C7
+          solfegeName: Do 7ª
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: fretted
+              fret: 3
+              finger: 4
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-d7
+      label:
+        en: D7
+        es: D7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d7
+          symbol: D7
+          solfegeName: Re 7ª
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 2
+              finger: 3
+    - id: opt-diag-g7
+      label:
+        en: G7
+        es: G7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: g7
+          symbol: G7
+          solfegeName: Sol 7ª
+          strings:
+            - stringNumber: 6
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+  correctAnswer:
+    - opt-diag-e7
+  remediation:
+    explanation:
+      en: E7 (E7) is voiced on the fretboard as shown in this diagram.
+      es: El acorde E7 (E7) se digita en la guitarra como se muestra en el diagrama.
+    hint:
+      en: Notice the placement of fingers and which strings are muted.
+      es: Presta atención a las cuerdas pulsadas y cuáles se dejan al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: e7
+        symbol: E7
+        solfegeName: Mi 7ª
+        strings:
+          - stringNumber: 6
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-e7-identify-letters
+  familyIds:
+    - family-chord-e7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-7th
+  notation: letters
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: e7
+      symbol: E7
+      solfegeName: Mi 7ª
+      strings:
+        - stringNumber: 6
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 5
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 4
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 3
+          state: fretted
+          fret: 1
+          finger: 1
+        - stringNumber: 2
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-letters-e7
+      label:
+        en: E7
+        es: E7
+    - id: opt-letters-c7
+      label:
+        en: C7
+        es: C7
+    - id: opt-letters-d7
+      label:
+        en: D7
+        es: D7
+    - id: opt-letters-g7
+      label:
+        en: G7
+        es: G7
+  correctAnswer:
+    - opt-letters-e7
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to the E7 (E7) chord.
+      es: Esta figura en el diapasón corresponde al acorde de E7 (E7).
+    hint:
+      en: Check the bass root on string 6.
+      es: Comprueba la tónica en la cuerda 6.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: e7
+        symbol: E7
+        solfegeName: Mi 7ª
+        strings:
+          - stringNumber: 6
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-e7-identify-solfege
+  familyIds:
+    - family-chord-e7
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-7th
+  notation: solfege
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: e7
+      symbol: E7
+      solfegeName: Mi 7ª
+      strings:
+        - stringNumber: 6
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 5
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 4
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 3
+          state: fretted
+          fret: 1
+          finger: 1
+        - stringNumber: 2
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-solfege-e7
+      label:
+        en: Mi 7th
+        es: Mi 7ª
+    - id: opt-solfege-c7
+      label:
+        en: Do 7th
+        es: Do 7ª
+    - id: opt-solfege-d7
+      label:
+        en: Re 7th
+        es: Re 7ª
+    - id: opt-solfege-g7
+      label:
+        en: Sol 7th
+        es: Sol 7ª
+  correctAnswer:
+    - opt-solfege-e7
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to Mi 7th.
+      es: Esta figura en el diapasón corresponde al acorde de Mi 7ª.
+    hint:
+      en: The lowest root note is on string 6.
+      es: La nota tónica más grave se encuentra en la cuerda 6.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: e7
+        symbol: E7
+        solfegeName: Mi 7ª
+        strings:
+          - stringNumber: 6
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null

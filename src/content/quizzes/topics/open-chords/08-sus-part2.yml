@@ -1,0 +1,1824 @@
+- id: chord-asus2-draw-solfege
+  familyIds:
+    - family-chord-asus2
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: solfege
+  prompt:
+    en: Draw the Asus2 chord
+    es: Dibuja el acorde de La sus2
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-asus2
+      label:
+        en: La sus2
+        es: La sus2
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: asus2
+          symbol: Asus2
+          solfegeName: La sus2
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-f-beginner
+      label:
+        en: Fa Major
+        es: Fa Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: f-beginner
+          symbol: F
+          solfegeName: Fa Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-fmaj7
+      label:
+        en: Fa maj7
+        es: Fa maj7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: fmaj7
+          symbol: Fmaj7
+          solfegeName: Fa maj7
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-cadd9
+      label:
+        en: Do add9
+        es: Do add9
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: cadd9
+          symbol: Cadd9
+          solfegeName: Do add9
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 3
+              finger: 4
+  correctAnswer:
+    - opt-diag-asus2
+  remediation:
+    explanation:
+      en: Asus2 is voiced on the guitar fretboard as shown in this diagram.
+      es: El acorde de La sus2 se digita en la guitarra como se muestra en este
+        diagrama.
+    hint:
+      en: Look at the root on string 5 and the open/muted strings.
+      es: Observa la tónica en la cuerda 5 y las cuerdas al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: asus2
+        symbol: Asus2
+        solfegeName: La sus2
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-asus2-draw-letters
+  familyIds:
+    - family-chord-asus2
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: letters
+  prompt:
+    en: Draw the Asus2 chord
+    es: Dibuja el acorde de Asus2
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-asus2
+      label:
+        en: Asus2
+        es: Asus2
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: asus2
+          symbol: Asus2
+          solfegeName: La sus2
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-f-beginner
+      label:
+        en: F major
+        es: F Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: f-beginner
+          symbol: F
+          solfegeName: Fa Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-fmaj7
+      label:
+        en: Fmaj7
+        es: Fmaj7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: fmaj7
+          symbol: Fmaj7
+          solfegeName: Fa maj7
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-cadd9
+      label:
+        en: Cadd9
+        es: Cadd9
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: cadd9
+          symbol: Cadd9
+          solfegeName: Do add9
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 3
+              finger: 4
+  correctAnswer:
+    - opt-diag-asus2
+  remediation:
+    explanation:
+      en: Asus2 (Asus2) is voiced on the fretboard as shown in this diagram.
+      es: El acorde Asus2 (Asus2) se digita en la guitarra como se muestra en el
+        diagrama.
+    hint:
+      en: Notice the placement of fingers and which strings are muted.
+      es: Presta atención a las cuerdas pulsadas y cuáles se dejan al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: asus2
+        symbol: Asus2
+        solfegeName: La sus2
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-asus2-identify-letters
+  familyIds:
+    - family-chord-asus2
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: letters
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: asus2
+      symbol: Asus2
+      solfegeName: La sus2
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 4
+          state: fretted
+          fret: 2
+          finger: 1
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 2
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-letters-asus2
+      label:
+        en: Asus2
+        es: Asus2
+    - id: opt-letters-f-beginner
+      label:
+        en: F major
+        es: F Mayor
+    - id: opt-letters-fmaj7
+      label:
+        en: Fmaj7
+        es: Fmaj7
+    - id: opt-letters-cadd9
+      label:
+        en: Cadd9
+        es: Cadd9
+  correctAnswer:
+    - opt-letters-asus2
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to the Asus2 (Asus2) chord.
+      es: Esta figura en el diapasón corresponde al acorde de Asus2 (Asus2).
+    hint:
+      en: Check the bass root on string 5.
+      es: Comprueba la tónica en la cuerda 5.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: asus2
+        symbol: Asus2
+        solfegeName: La sus2
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-asus2-identify-solfege
+  familyIds:
+    - family-chord-asus2
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: solfege
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: asus2
+      symbol: Asus2
+      solfegeName: La sus2
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 4
+          state: fretted
+          fret: 2
+          finger: 1
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 2
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-solfege-asus2
+      label:
+        en: La sus2
+        es: La sus2
+    - id: opt-solfege-f-beginner
+      label:
+        en: Fa Major
+        es: Fa Mayor
+    - id: opt-solfege-fmaj7
+      label:
+        en: Fa maj7
+        es: Fa maj7
+    - id: opt-solfege-cadd9
+      label:
+        en: Do add9
+        es: Do add9
+  correctAnswer:
+    - opt-solfege-asus2
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to La sus2.
+      es: Esta figura en el diapasón corresponde al acorde de La sus2.
+    hint:
+      en: The lowest root note is on string 5.
+      es: La nota tónica más grave se encuentra en la cuerda 5.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: asus2
+        symbol: Asus2
+        solfegeName: La sus2
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-asus4-draw-solfege
+  familyIds:
+    - family-chord-asus4
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: solfege
+  prompt:
+    en: Draw the Asus4 chord
+    es: Dibuja el acorde de La sus4
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-asus4
+      label:
+        en: La sus4
+        es: La sus4
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: asus4
+          symbol: Asus4
+          solfegeName: La sus4
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-f-beginner
+      label:
+        en: Fa Major
+        es: Fa Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: f-beginner
+          symbol: F
+          solfegeName: Fa Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-fmaj7
+      label:
+        en: Fa maj7
+        es: Fa maj7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: fmaj7
+          symbol: Fmaj7
+          solfegeName: Fa maj7
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-cadd9
+      label:
+        en: Do add9
+        es: Do add9
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: cadd9
+          symbol: Cadd9
+          solfegeName: Do add9
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 3
+              finger: 4
+  correctAnswer:
+    - opt-diag-asus4
+  remediation:
+    explanation:
+      en: Asus4 is voiced on the guitar fretboard as shown in this diagram.
+      es: El acorde de La sus4 se digita en la guitarra como se muestra en este
+        diagrama.
+    hint:
+      en: Look at the root on string 5 and the open/muted strings.
+      es: Observa la tónica en la cuerda 5 y las cuerdas al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: asus4
+        symbol: Asus4
+        solfegeName: La sus4
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-asus4-draw-letters
+  familyIds:
+    - family-chord-asus4
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: letters
+  prompt:
+    en: Draw the Asus4 chord
+    es: Dibuja el acorde de Asus4
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-asus4
+      label:
+        en: Asus4
+        es: Asus4
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: asus4
+          symbol: Asus4
+          solfegeName: La sus4
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-f-beginner
+      label:
+        en: F major
+        es: F Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: f-beginner
+          symbol: F
+          solfegeName: Fa Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-fmaj7
+      label:
+        en: Fmaj7
+        es: Fmaj7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: fmaj7
+          symbol: Fmaj7
+          solfegeName: Fa maj7
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-cadd9
+      label:
+        en: Cadd9
+        es: Cadd9
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: cadd9
+          symbol: Cadd9
+          solfegeName: Do add9
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 3
+              finger: 4
+  correctAnswer:
+    - opt-diag-asus4
+  remediation:
+    explanation:
+      en: Asus4 (Asus4) is voiced on the fretboard as shown in this diagram.
+      es: El acorde Asus4 (Asus4) se digita en la guitarra como se muestra en el
+        diagrama.
+    hint:
+      en: Notice the placement of fingers and which strings are muted.
+      es: Presta atención a las cuerdas pulsadas y cuáles se dejan al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: asus4
+        symbol: Asus4
+        solfegeName: La sus4
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-asus4-identify-letters
+  familyIds:
+    - family-chord-asus4
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: letters
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: asus4
+      symbol: Asus4
+      solfegeName: La sus4
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 4
+          state: fretted
+          fret: 2
+          finger: 1
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 2
+          state: fretted
+          fret: 3
+          finger: 3
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-letters-asus4
+      label:
+        en: Asus4
+        es: Asus4
+    - id: opt-letters-f-beginner
+      label:
+        en: F major
+        es: F Mayor
+    - id: opt-letters-fmaj7
+      label:
+        en: Fmaj7
+        es: Fmaj7
+    - id: opt-letters-cadd9
+      label:
+        en: Cadd9
+        es: Cadd9
+  correctAnswer:
+    - opt-letters-asus4
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to the Asus4 (Asus4) chord.
+      es: Esta figura en el diapasón corresponde al acorde de Asus4 (Asus4).
+    hint:
+      en: Check the bass root on string 5.
+      es: Comprueba la tónica en la cuerda 5.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: asus4
+        symbol: Asus4
+        solfegeName: La sus4
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-asus4-identify-solfege
+  familyIds:
+    - family-chord-asus4
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: solfege
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: asus4
+      symbol: Asus4
+      solfegeName: La sus4
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 4
+          state: fretted
+          fret: 2
+          finger: 1
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 2
+          state: fretted
+          fret: 3
+          finger: 3
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-solfege-asus4
+      label:
+        en: La sus4
+        es: La sus4
+    - id: opt-solfege-f-beginner
+      label:
+        en: Fa Major
+        es: Fa Mayor
+    - id: opt-solfege-fmaj7
+      label:
+        en: Fa maj7
+        es: Fa maj7
+    - id: opt-solfege-cadd9
+      label:
+        en: Do add9
+        es: Do add9
+  correctAnswer:
+    - opt-solfege-asus4
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to La sus4.
+      es: Esta figura en el diapasón corresponde al acorde de La sus4.
+    hint:
+      en: The lowest root note is on string 5.
+      es: La nota tónica más grave se encuentra en la cuerda 5.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: asus4
+        symbol: Asus4
+        solfegeName: La sus4
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 1
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-esus4-draw-solfege
+  familyIds:
+    - family-chord-esus4
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: solfege
+  prompt:
+    en: Draw the Esus4 chord
+    es: Dibuja el acorde de Mi sus4
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-esus4
+      label:
+        en: Mi sus4
+        es: Mi sus4
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: esus4
+          symbol: Esus4
+          solfegeName: Mi sus4
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 4
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-f-beginner
+      label:
+        en: Fa Major
+        es: Fa Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: f-beginner
+          symbol: F
+          solfegeName: Fa Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-fmaj7
+      label:
+        en: Fa maj7
+        es: Fa maj7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: fmaj7
+          symbol: Fmaj7
+          solfegeName: Fa maj7
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-cadd9
+      label:
+        en: Do add9
+        es: Do add9
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: cadd9
+          symbol: Cadd9
+          solfegeName: Do add9
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 3
+              finger: 4
+  correctAnswer:
+    - opt-diag-esus4
+  remediation:
+    explanation:
+      en: Esus4 is voiced on the guitar fretboard as shown in this diagram.
+      es: El acorde de Mi sus4 se digita en la guitarra como se muestra en este
+        diagrama.
+    hint:
+      en: Look at the root on string 6 and the open/muted strings.
+      es: Observa la tónica en la cuerda 6 y las cuerdas al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: esus4
+        symbol: Esus4
+        solfegeName: Mi sus4
+        strings:
+          - stringNumber: 6
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 4
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-esus4-draw-letters
+  familyIds:
+    - family-chord-esus4
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: letters
+  prompt:
+    en: Draw the Esus4 chord
+    es: Dibuja el acorde de Esus4
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-esus4
+      label:
+        en: Esus4
+        es: Esus4
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: esus4
+          symbol: Esus4
+          solfegeName: Mi sus4
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 4
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-f-beginner
+      label:
+        en: F major
+        es: F Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: f-beginner
+          symbol: F
+          solfegeName: Fa Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-fmaj7
+      label:
+        en: Fmaj7
+        es: Fmaj7
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: fmaj7
+          symbol: Fmaj7
+          solfegeName: Fa maj7
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-cadd9
+      label:
+        en: Cadd9
+        es: Cadd9
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: cadd9
+          symbol: Cadd9
+          solfegeName: Do add9
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 1
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 3
+              finger: 4
+  correctAnswer:
+    - opt-diag-esus4
+  remediation:
+    explanation:
+      en: Esus4 (Esus4) is voiced on the fretboard as shown in this diagram.
+      es: El acorde Esus4 (Esus4) se digita en la guitarra como se muestra en el
+        diagrama.
+    hint:
+      en: Notice the placement of fingers and which strings are muted.
+      es: Presta atención a las cuerdas pulsadas y cuáles se dejan al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: esus4
+        symbol: Esus4
+        solfegeName: Mi sus4
+        strings:
+          - stringNumber: 6
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 4
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-esus4-identify-letters
+  familyIds:
+    - family-chord-esus4
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: letters
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: esus4
+      symbol: Esus4
+      solfegeName: Mi sus4
+      strings:
+        - stringNumber: 6
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 5
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 4
+          state: fretted
+          fret: 2
+          finger: 3
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 4
+        - stringNumber: 2
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-letters-esus4
+      label:
+        en: Esus4
+        es: Esus4
+    - id: opt-letters-f-beginner
+      label:
+        en: F major
+        es: F Mayor
+    - id: opt-letters-fmaj7
+      label:
+        en: Fmaj7
+        es: Fmaj7
+    - id: opt-letters-cadd9
+      label:
+        en: Cadd9
+        es: Cadd9
+  correctAnswer:
+    - opt-letters-esus4
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to the Esus4 (Esus4) chord.
+      es: Esta figura en el diapasón corresponde al acorde de Esus4 (Esus4).
+    hint:
+      en: Check the bass root on string 6.
+      es: Comprueba la tónica en la cuerda 6.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: esus4
+        symbol: Esus4
+        solfegeName: Mi sus4
+        strings:
+          - stringNumber: 6
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 4
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-esus4-identify-solfege
+  familyIds:
+    - family-chord-esus4
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-variation
+  notation: solfege
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: esus4
+      symbol: Esus4
+      solfegeName: Mi sus4
+      strings:
+        - stringNumber: 6
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 5
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 4
+          state: fretted
+          fret: 2
+          finger: 3
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 4
+        - stringNumber: 2
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-solfege-esus4
+      label:
+        en: Mi sus4
+        es: Mi sus4
+    - id: opt-solfege-f-beginner
+      label:
+        en: Fa Major
+        es: Fa Mayor
+    - id: opt-solfege-fmaj7
+      label:
+        en: Fa maj7
+        es: Fa maj7
+    - id: opt-solfege-cadd9
+      label:
+        en: Do add9
+        es: Do add9
+  correctAnswer:
+    - opt-solfege-esus4
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to Mi sus4.
+      es: Esta figura en el diapasón corresponde al acorde de Mi sus4.
+    hint:
+      en: The lowest root note is on string 6.
+      es: La nota tónica más grave se encuentra en la cuerda 6.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: esus4
+        symbol: Esus4
+        solfegeName: Mi sus4
+        strings:
+          - stringNumber: 6
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 4
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null

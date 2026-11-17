@@ -1,0 +1,1824 @@
+- id: chord-a-minor-draw-solfege
+  familyIds:
+    - family-chord-a-minor
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-minor
+  notation: solfege
+  prompt:
+    en: Draw the A minor chord
+    es: Dibuja el acorde de La menor
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-a-minor
+      label:
+        en: La minor
+        es: La menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: a-minor
+          symbol: Am
+          solfegeName: La menor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-d-minor
+      label:
+        en: Re minor
+        es: Re menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d-minor
+          symbol: Dm
+          solfegeName: Re menor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-e-minor
+      label:
+        en: Mi minor
+        es: Mi menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e-minor
+          symbol: Em
+          solfegeName: Mi menor
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-c-major
+      label:
+        en: Do Major
+        es: Do Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c-major
+          symbol: C
+          solfegeName: Do Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+  correctAnswer:
+    - opt-diag-a-minor
+  remediation:
+    explanation:
+      en: A minor is voiced on the guitar fretboard as shown in this diagram.
+      es: El acorde de La menor se digita en la guitarra como se muestra en este
+        diagrama.
+    hint:
+      en: Look at the root on string 5 and the open/muted strings.
+      es: Observa la tónica en la cuerda 5 y las cuerdas al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: a-minor
+        symbol: Am
+        solfegeName: La menor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-a-minor-draw-letters
+  familyIds:
+    - family-chord-a-minor
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-minor
+  notation: letters
+  prompt:
+    en: Draw the Am chord
+    es: Dibuja el acorde de Am
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-a-minor
+      label:
+        en: A minor
+        es: A menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: a-minor
+          symbol: Am
+          solfegeName: La menor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-d-minor
+      label:
+        en: D minor
+        es: D menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d-minor
+          symbol: Dm
+          solfegeName: Re menor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-e-minor
+      label:
+        en: E minor
+        es: E menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e-minor
+          symbol: Em
+          solfegeName: Mi menor
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-c-major
+      label:
+        en: C major
+        es: C Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c-major
+          symbol: C
+          solfegeName: Do Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+  correctAnswer:
+    - opt-diag-a-minor
+  remediation:
+    explanation:
+      en: Am (A minor) is voiced on the fretboard as shown in this diagram.
+      es: El acorde Am (A menor) se digita en la guitarra como se muestra en el
+        diagrama.
+    hint:
+      en: Notice the placement of fingers and which strings are muted.
+      es: Presta atención a las cuerdas pulsadas y cuáles se dejan al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: a-minor
+        symbol: Am
+        solfegeName: La menor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-a-minor-identify-letters
+  familyIds:
+    - family-chord-a-minor
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-minor
+  notation: letters
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: a-minor
+      symbol: Am
+      solfegeName: La menor
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 4
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 3
+        - stringNumber: 2
+          state: fretted
+          fret: 1
+          finger: 1
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-letters-a-minor
+      label:
+        en: A minor
+        es: A menor
+    - id: opt-letters-d-minor
+      label:
+        en: D minor
+        es: D menor
+    - id: opt-letters-e-minor
+      label:
+        en: E minor
+        es: E menor
+    - id: opt-letters-c-major
+      label:
+        en: C major
+        es: C Mayor
+  correctAnswer:
+    - opt-letters-a-minor
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to the A minor (Am) chord.
+      es: Esta figura en el diapasón corresponde al acorde de A menor (Am).
+    hint:
+      en: Check the bass root on string 5.
+      es: Comprueba la tónica en la cuerda 5.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: a-minor
+        symbol: Am
+        solfegeName: La menor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-a-minor-identify-solfege
+  familyIds:
+    - family-chord-a-minor
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-minor
+  notation: solfege
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: a-minor
+      symbol: Am
+      solfegeName: La menor
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 4
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 3
+        - stringNumber: 2
+          state: fretted
+          fret: 1
+          finger: 1
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-solfege-a-minor
+      label:
+        en: La minor
+        es: La menor
+    - id: opt-solfege-d-minor
+      label:
+        en: Re minor
+        es: Re menor
+    - id: opt-solfege-e-minor
+      label:
+        en: Mi minor
+        es: Mi menor
+    - id: opt-solfege-c-major
+      label:
+        en: Do Major
+        es: Do Mayor
+  correctAnswer:
+    - opt-solfege-a-minor
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to La minor.
+      es: Esta figura en el diapasón corresponde al acorde de La menor.
+    hint:
+      en: The lowest root note is on string 5.
+      es: La nota tónica más grave se encuentra en la cuerda 5.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: a-minor
+        symbol: Am
+        solfegeName: La menor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 2
+            state: fretted
+            fret: 1
+            finger: 1
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-d-minor-draw-solfege
+  familyIds:
+    - family-chord-d-minor
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-minor
+  notation: solfege
+  prompt:
+    en: Draw the D minor chord
+    es: Dibuja el acorde de Re menor
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-d-minor
+      label:
+        en: Re minor
+        es: Re menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d-minor
+          symbol: Dm
+          solfegeName: Re menor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-a-minor
+      label:
+        en: La minor
+        es: La menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: a-minor
+          symbol: Am
+          solfegeName: La menor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-e-minor
+      label:
+        en: Mi minor
+        es: Mi menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e-minor
+          symbol: Em
+          solfegeName: Mi menor
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-c-major
+      label:
+        en: Do Major
+        es: Do Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c-major
+          symbol: C
+          solfegeName: Do Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+  correctAnswer:
+    - opt-diag-d-minor
+  remediation:
+    explanation:
+      en: D minor is voiced on the guitar fretboard as shown in this diagram.
+      es: El acorde de Re menor se digita en la guitarra como se muestra en este
+        diagrama.
+    hint:
+      en: Look at the root on string 4 and the open/muted strings.
+      es: Observa la tónica en la cuerda 4 y las cuerdas al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: d-minor
+        symbol: Dm
+        solfegeName: Re menor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 1
+            state: fretted
+            fret: 1
+            finger: 1
+- id: chord-d-minor-draw-letters
+  familyIds:
+    - family-chord-d-minor
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-minor
+  notation: letters
+  prompt:
+    en: Draw the Dm chord
+    es: Dibuja el acorde de Dm
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-d-minor
+      label:
+        en: D minor
+        es: D menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d-minor
+          symbol: Dm
+          solfegeName: Re menor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-a-minor
+      label:
+        en: A minor
+        es: A menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: a-minor
+          symbol: Am
+          solfegeName: La menor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-e-minor
+      label:
+        en: E minor
+        es: E menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e-minor
+          symbol: Em
+          solfegeName: Mi menor
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-c-major
+      label:
+        en: C major
+        es: C Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c-major
+          symbol: C
+          solfegeName: Do Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+  correctAnswer:
+    - opt-diag-d-minor
+  remediation:
+    explanation:
+      en: Dm (D minor) is voiced on the fretboard as shown in this diagram.
+      es: El acorde Dm (D menor) se digita en la guitarra como se muestra en el
+        diagrama.
+    hint:
+      en: Notice the placement of fingers and which strings are muted.
+      es: Presta atención a las cuerdas pulsadas y cuáles se dejan al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: d-minor
+        symbol: Dm
+        solfegeName: Re menor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 1
+            state: fretted
+            fret: 1
+            finger: 1
+- id: chord-d-minor-identify-letters
+  familyIds:
+    - family-chord-d-minor
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-minor
+  notation: letters
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: d-minor
+      symbol: Dm
+      solfegeName: Re menor
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 4
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 2
+          state: fretted
+          fret: 3
+          finger: 3
+        - stringNumber: 1
+          state: fretted
+          fret: 1
+          finger: 1
+  options:
+    - id: opt-letters-d-minor
+      label:
+        en: D minor
+        es: D menor
+    - id: opt-letters-a-minor
+      label:
+        en: A minor
+        es: A menor
+    - id: opt-letters-e-minor
+      label:
+        en: E minor
+        es: E menor
+    - id: opt-letters-c-major
+      label:
+        en: C major
+        es: C Mayor
+  correctAnswer:
+    - opt-letters-d-minor
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to the D minor (Dm) chord.
+      es: Esta figura en el diapasón corresponde al acorde de D menor (Dm).
+    hint:
+      en: Check the bass root on string 4.
+      es: Comprueba la tónica en la cuerda 4.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: d-minor
+        symbol: Dm
+        solfegeName: Re menor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 1
+            state: fretted
+            fret: 1
+            finger: 1
+- id: chord-d-minor-identify-solfege
+  familyIds:
+    - family-chord-d-minor
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-minor
+  notation: solfege
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: d-minor
+      symbol: Dm
+      solfegeName: Re menor
+      strings:
+        - stringNumber: 6
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 5
+          state: muted
+          fret: null
+          finger: null
+        - stringNumber: 4
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 3
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 2
+          state: fretted
+          fret: 3
+          finger: 3
+        - stringNumber: 1
+          state: fretted
+          fret: 1
+          finger: 1
+  options:
+    - id: opt-solfege-d-minor
+      label:
+        en: Re minor
+        es: Re menor
+    - id: opt-solfege-a-minor
+      label:
+        en: La minor
+        es: La menor
+    - id: opt-solfege-e-minor
+      label:
+        en: Mi minor
+        es: Mi menor
+    - id: opt-solfege-c-major
+      label:
+        en: Do Major
+        es: Do Mayor
+  correctAnswer:
+    - opt-solfege-d-minor
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to Re minor.
+      es: Esta figura en el diapasón corresponde al acorde de Re menor.
+    hint:
+      en: The lowest root note is on string 4.
+      es: La nota tónica más grave se encuentra en la cuerda 4.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: d-minor
+        symbol: Dm
+        solfegeName: Re menor
+        strings:
+          - stringNumber: 6
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 5
+            state: muted
+            fret: null
+            finger: null
+          - stringNumber: 4
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 3
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 2
+            state: fretted
+            fret: 3
+            finger: 3
+          - stringNumber: 1
+            state: fretted
+            fret: 1
+            finger: 1
+- id: chord-e-minor-draw-solfege
+  familyIds:
+    - family-chord-e-minor
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-minor
+  notation: solfege
+  prompt:
+    en: Draw the E minor chord
+    es: Dibuja el acorde de Mi menor
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-e-minor
+      label:
+        en: Mi minor
+        es: Mi menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e-minor
+          symbol: Em
+          solfegeName: Mi menor
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-a-minor
+      label:
+        en: La minor
+        es: La menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: a-minor
+          symbol: Am
+          solfegeName: La menor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-d-minor
+      label:
+        en: Re minor
+        es: Re menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d-minor
+          symbol: Dm
+          solfegeName: Re menor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-c-major
+      label:
+        en: Do Major
+        es: Do Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c-major
+          symbol: C
+          solfegeName: Do Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+  correctAnswer:
+    - opt-diag-e-minor
+  remediation:
+    explanation:
+      en: E minor is voiced on the guitar fretboard as shown in this diagram.
+      es: El acorde de Mi menor se digita en la guitarra como se muestra en este
+        diagrama.
+    hint:
+      en: Look at the root on string 6 and the open/muted strings.
+      es: Observa la tónica en la cuerda 6 y las cuerdas al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: e-minor
+        symbol: Em
+        solfegeName: Mi menor
+        strings:
+          - stringNumber: 6
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 3
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-e-minor-draw-letters
+  familyIds:
+    - family-chord-e-minor
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-minor
+  notation: letters
+  prompt:
+    en: Draw the Em chord
+    es: Dibuja el acorde de Em
+  subPrompt:
+    en: Select the correct fretboard diagram and finger placement.
+    es: Selecciona la digitación correcta en el diapasón.
+  options:
+    - id: opt-diag-e-minor
+      label:
+        en: E minor
+        es: E menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: e-minor
+          symbol: Em
+          solfegeName: Mi menor
+          strings:
+            - stringNumber: 6
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-a-minor
+      label:
+        en: A minor
+        es: A menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: a-minor
+          symbol: Am
+          solfegeName: La menor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 3
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+    - id: opt-diag-d-minor
+      label:
+        en: D minor
+        es: D menor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: d-minor
+          symbol: Dm
+          solfegeName: Re menor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 4
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 3
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 2
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 1
+              state: fretted
+              fret: 1
+              finger: 1
+    - id: opt-diag-c-major
+      label:
+        en: C major
+        es: C Mayor
+      visualCue:
+        visualType: fretboard-diagram
+        visualProps:
+          chordId: c-major
+          symbol: C
+          solfegeName: Do Mayor
+          strings:
+            - stringNumber: 6
+              state: muted
+              fret: null
+              finger: null
+            - stringNumber: 5
+              state: fretted
+              fret: 3
+              finger: 3
+            - stringNumber: 4
+              state: fretted
+              fret: 2
+              finger: 2
+            - stringNumber: 3
+              state: open
+              fret: 0
+              finger: null
+            - stringNumber: 2
+              state: fretted
+              fret: 1
+              finger: 1
+            - stringNumber: 1
+              state: open
+              fret: 0
+              finger: null
+  correctAnswer:
+    - opt-diag-e-minor
+  remediation:
+    explanation:
+      en: Em (E minor) is voiced on the fretboard as shown in this diagram.
+      es: El acorde Em (E menor) se digita en la guitarra como se muestra en el
+        diagrama.
+    hint:
+      en: Notice the placement of fingers and which strings are muted.
+      es: Presta atención a las cuerdas pulsadas y cuáles se dejan al aire o muteadas.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: e-minor
+        symbol: Em
+        solfegeName: Mi menor
+        strings:
+          - stringNumber: 6
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 3
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-e-minor-identify-letters
+  familyIds:
+    - family-chord-e-minor
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-minor
+  notation: letters
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: e-minor
+      symbol: Em
+      solfegeName: Mi menor
+      strings:
+        - stringNumber: 6
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 5
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 4
+          state: fretted
+          fret: 2
+          finger: 3
+        - stringNumber: 3
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 2
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-letters-e-minor
+      label:
+        en: E minor
+        es: E menor
+    - id: opt-letters-a-minor
+      label:
+        en: A minor
+        es: A menor
+    - id: opt-letters-d-minor
+      label:
+        en: D minor
+        es: D menor
+    - id: opt-letters-c-major
+      label:
+        en: C major
+        es: C Mayor
+  correctAnswer:
+    - opt-letters-e-minor
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to the E minor (Em) chord.
+      es: Esta figura en el diapasón corresponde al acorde de E menor (Em).
+    hint:
+      en: Check the bass root on string 6.
+      es: Comprueba la tónica en la cuerda 6.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: e-minor
+        symbol: Em
+        solfegeName: Mi menor
+        strings:
+          - stringNumber: 6
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 3
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null
+- id: chord-e-minor-identify-solfege
+  familyIds:
+    - family-chord-e-minor
+  type: single-choice
+  course: 3
+  difficulty: beginner
+  topics:
+    - chords
+    - open-chords
+    - open-minor
+  notation: solfege
+  prompt:
+    en: Which chord corresponds to this diagram?
+    es: ¿A qué acorde corresponde este dibujo?
+  subPrompt:
+    en: Look at the finger placement and open/muted strings.
+    es: Observa la digitación y las cuerdas al aire o muteadas.
+  stimulus:
+    visualType: fretboard-diagram
+    visualProps:
+      chordId: e-minor
+      symbol: Em
+      solfegeName: Mi menor
+      strings:
+        - stringNumber: 6
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 5
+          state: fretted
+          fret: 2
+          finger: 2
+        - stringNumber: 4
+          state: fretted
+          fret: 2
+          finger: 3
+        - stringNumber: 3
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 2
+          state: open
+          fret: 0
+          finger: null
+        - stringNumber: 1
+          state: open
+          fret: 0
+          finger: null
+  options:
+    - id: opt-solfege-e-minor
+      label:
+        en: Mi minor
+        es: Mi menor
+    - id: opt-solfege-a-minor
+      label:
+        en: La minor
+        es: La menor
+    - id: opt-solfege-d-minor
+      label:
+        en: Re minor
+        es: Re menor
+    - id: opt-solfege-c-major
+      label:
+        en: Do Major
+        es: Do Mayor
+  correctAnswer:
+    - opt-solfege-e-minor
+  remediation:
+    explanation:
+      en: This fretboard shape corresponds to Mi minor.
+      es: Esta figura en el diapasón corresponde al acorde de Mi menor.
+    hint:
+      en: The lowest root note is on string 6.
+      es: La nota tónica más grave se encuentra en la cuerda 6.
+    visualExplanation:
+      visualType: fretboard-diagram
+      visualProps:
+        chordId: e-minor
+        symbol: Em
+        solfegeName: Mi menor
+        strings:
+          - stringNumber: 6
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 5
+            state: fretted
+            fret: 2
+            finger: 2
+          - stringNumber: 4
+            state: fretted
+            fret: 2
+            finger: 3
+          - stringNumber: 3
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 2
+            state: open
+            fret: 0
+            finger: null
+          - stringNumber: 1
+            state: open
+            fret: 0
+            finger: null

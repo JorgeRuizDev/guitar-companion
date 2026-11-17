@@ -1,0 +1,360 @@
+- id: c01-q-c-to-solfege
+  familyIds:
+    - family-c-translation
+  type: single-choice
+  course: 1
+  difficulty: beginner
+  topics:
+    - notes
+    - translation
+  notation: letters
+  prompt:
+    en: What is the Solfège name for the note 'C'?
+    es: ¿Cuál es el nombre en Solfeo de la nota 'C'?
+  subPrompt:
+    en: Select the corresponding syllable.
+    es: Selecciona la sílaba correspondiente.
+  options:
+    - id: opt-do
+      label:
+        en: Do
+        es: Do
+    - id: opt-re
+      label:
+        en: Re
+        es: Re
+    - id: opt-mi
+      label:
+        en: Mi
+        es: Mi
+    - id: opt-la
+      label:
+        en: La
+        es: La
+  correctAnswer:
+    - opt-do
+  remediation:
+    explanation:
+      en: "'C' corresponds to 'Do' in the Solfège system."
+      es: "'C' corresponde a 'Do' en el sistema de Solfeo."
+    hint:
+      en: "Series: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+      es: "Serie: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+    mnemonic:
+      en: C = Do
+      es: C = Do
+- id: c01-q-solfege-do-to-letter
+  familyIds:
+    - family-c-translation
+  type: single-choice
+  course: 1
+  difficulty: beginner
+  topics:
+    - notes
+    - translation
+  notation: solfege
+  prompt:
+    en: Which Anglo-Saxon letter represents the note 'Do'?
+    es: ¿Qué letra anglosajona representa la nota 'Do'?
+  subPrompt:
+    en: Select the corresponding letter symbol.
+    es: Selecciona la letra de cifrado correspondiente.
+  options:
+    - id: opt-c
+      label:
+        en: C
+        es: C
+    - id: opt-d
+      label:
+        en: D
+        es: D
+    - id: opt-e
+      label:
+        en: E
+        es: E
+    - id: opt-f
+      label:
+        en: F
+        es: F
+  correctAnswer:
+    - opt-c
+  remediation:
+    explanation:
+      en: "'Do' is represented by 'C' in Anglo-Saxon notation."
+      es: "'Do' se representa con la letra 'C' en notación anglosajona."
+    hint:
+      en: Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.
+      es: Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.
+    mnemonic:
+      en: Do is C.
+      es: Do es C.
+- id: c01-q-d-to-solfege
+  familyIds:
+    - family-d-translation
+  type: single-choice
+  course: 1
+  difficulty: beginner
+  topics:
+    - notes
+    - translation
+  notation: letters
+  prompt:
+    en: What is the Solfège name for the note 'D'?
+    es: ¿Cuál es el nombre en Solfeo de la nota 'D'?
+  subPrompt:
+    en: Select the corresponding syllable.
+    es: Selecciona la sílaba correspondiente.
+  options:
+    - id: opt-re
+      label:
+        en: Re
+        es: Re
+    - id: opt-do
+      label:
+        en: Do
+        es: Do
+    - id: opt-mi
+      label:
+        en: Mi
+        es: Mi
+    - id: opt-fa
+      label:
+        en: Fa
+        es: Fa
+  correctAnswer:
+    - opt-re
+  remediation:
+    explanation:
+      en: "'D' corresponds to 'Re' in the Solfège system."
+      es: "'D' corresponde a 'Re' en el sistema de Solfeo."
+    hint:
+      en: "Series: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+      es: "Serie: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+    mnemonic:
+      en: D = Re
+      es: D = Re
+- id: c01-q-solfege-re-to-letter
+  familyIds:
+    - family-d-translation
+  type: single-choice
+  course: 1
+  difficulty: beginner
+  topics:
+    - notes
+    - translation
+  notation: solfege
+  prompt:
+    en: Which Anglo-Saxon letter represents the note 'Re'?
+    es: ¿Qué letra anglosajona representa la nota 'Re'?
+  subPrompt:
+    en: Select the corresponding letter symbol.
+    es: Selecciona la letra de cifrado correspondiente.
+  options:
+    - id: opt-d
+      label:
+        en: D
+        es: D
+    - id: opt-c
+      label:
+        en: C
+        es: C
+    - id: opt-e
+      label:
+        en: E
+        es: E
+    - id: opt-g
+      label:
+        en: G
+        es: G
+  correctAnswer:
+    - opt-d
+  remediation:
+    explanation:
+      en: "'Re' is represented by 'D' in Anglo-Saxon notation."
+      es: "'Re' se representa con la letra 'D' en notación anglosajona."
+    hint:
+      en: Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.
+      es: Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.
+    mnemonic:
+      en: Re is D.
+      es: Re es D.
+- id: c01-q-e-to-solfege
+  familyIds:
+    - family-e-translation
+  type: single-choice
+  course: 1
+  difficulty: beginner
+  topics:
+    - notes
+    - translation
+  notation: letters
+  prompt:
+    en: What is the Solfège name for the note 'E'?
+    es: ¿Cuál es el nombre en Solfeo de la nota 'E'?
+  subPrompt:
+    en: Select the corresponding syllable.
+    es: Selecciona la sílaba correspondiente.
+  options:
+    - id: opt-mi
+      label:
+        en: Mi
+        es: Mi
+    - id: opt-re
+      label:
+        en: Re
+        es: Re
+    - id: opt-fa
+      label:
+        en: Fa
+        es: Fa
+    - id: opt-sol
+      label:
+        en: Sol
+        es: Sol
+  correctAnswer:
+    - opt-mi
+  remediation:
+    explanation:
+      en: "'E' corresponds to 'Mi' in the Solfège system."
+      es: "'E' corresponde a 'Mi' en el sistema de Solfeo."
+    hint:
+      en: "Series: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+      es: "Serie: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+    mnemonic:
+      en: E = Mi
+      es: E = Mi
+- id: c01-q-solfege-mi-to-letter
+  familyIds:
+    - family-e-translation
+  type: single-choice
+  course: 1
+  difficulty: beginner
+  topics:
+    - notes
+    - translation
+  notation: solfege
+  prompt:
+    en: Which Anglo-Saxon letter represents the note 'Mi'?
+    es: ¿Qué letra anglosajona representa la nota 'Mi'?
+  subPrompt:
+    en: Select the corresponding letter symbol.
+    es: Selecciona la letra de cifrado correspondiente.
+  options:
+    - id: opt-e
+      label:
+        en: E
+        es: E
+    - id: opt-d
+      label:
+        en: D
+        es: D
+    - id: opt-f
+      label:
+        en: F
+        es: F
+    - id: opt-a
+      label:
+        en: A
+        es: A
+  correctAnswer:
+    - opt-e
+  remediation:
+    explanation:
+      en: "'Mi' is represented by 'E' in Anglo-Saxon notation."
+      es: "'Mi' se representa con la letra 'E' en notación anglosajona."
+    hint:
+      en: Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.
+      es: Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.
+    mnemonic:
+      en: Mi is E.
+      es: Mi es E.
+- id: c01-q-f-to-solfege
+  familyIds:
+    - family-f-translation
+  type: single-choice
+  course: 1
+  difficulty: beginner
+  topics:
+    - notes
+    - translation
+  notation: letters
+  prompt:
+    en: What is the Solfège name for the note 'F'?
+    es: ¿Cuál es el nombre en Solfeo de la nota 'F'?
+  subPrompt:
+    en: Select the corresponding syllable.
+    es: Selecciona la sílaba correspondiente.
+  options:
+    - id: opt-fa
+      label:
+        en: Fa
+        es: Fa
+    - id: opt-mi
+      label:
+        en: Mi
+        es: Mi
+    - id: opt-sol
+      label:
+        en: Sol
+        es: Sol
+    - id: opt-si
+      label:
+        en: Si
+        es: Si
+  correctAnswer:
+    - opt-fa
+  remediation:
+    explanation:
+      en: "'F' corresponds to 'Fa' in the Solfège system."
+      es: "'F' corresponde a 'Fa' en el sistema de Solfeo."
+    hint:
+      en: "Series: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+      es: "Serie: C=Do, D=Re, E=Mi, F=Fa, G=Sol, A=La, B=Si."
+    mnemonic:
+      en: F = Fa
+      es: F = Fa
+- id: c01-q-solfege-fa-to-letter
+  familyIds:
+    - family-f-translation
+  type: single-choice
+  course: 1
+  difficulty: beginner
+  topics:
+    - notes
+    - translation
+  notation: solfege
+  prompt:
+    en: Which Anglo-Saxon letter represents the note 'Fa'?
+    es: ¿Qué letra anglosajona representa la nota 'Fa'?
+  subPrompt:
+    en: Select the corresponding letter symbol.
+    es: Selecciona la letra de cifrado correspondiente.
+  options:
+    - id: opt-f
+      label:
+        en: F
+        es: F
+    - id: opt-e
+      label:
+        en: E
+        es: E
+    - id: opt-g
+      label:
+        en: G
+        es: G
+    - id: opt-b
+      label:
+        en: B
+        es: B
+  correctAnswer:
+    - opt-f
+  remediation:
+    explanation:
+      en: "'Fa' is represented by 'F' in Anglo-Saxon notation."
+      es: "'Fa' se representa con la letra 'F' en notación anglosajona."
+    hint:
+      en: Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.
+      es: Do=C, Re=D, Mi=E, Fa=F, Sol=G, La=A, Si=B.
+    mnemonic:
+      en: Fa is F.
+      es: Fa es F.

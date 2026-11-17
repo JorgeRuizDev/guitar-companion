@@ -77,7 +77,9 @@ export type QuestionPack = z.infer<typeof QuestionPackSchema>;
 
 export const QuestionPackEntrySchema = z.object({
   packId: z.string(),
-  filePath: z.string(),
+  filePath: z.string().optional(),
+  dirPath: z.string().optional(),
+  path: z.string().optional(),
   course: z.number().int().min(1),
   topics: z.array(z.string()),
   questionCount: z.number().int().min(0),

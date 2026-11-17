@@ -1,16 +1,19 @@
 import { describe, it, expect } from 'vitest';
-import fs from 'node:fs';
 import path from 'node:path';
-import type { QuestionPack } from '@/core/quiz/types/schema';
 import { drawNextEligible } from '@/core/quiz/engine/carousel';
+import { loadPack } from '@/core/quiz/engine/packLoader';
 
 describe('Chord & Note Questions Family Segregation & Mutual Exclusion', () => {
   const contentDir = path.resolve(process.cwd(), 'src/content/quizzes');
-  const openChordsPath = path.join(contentDir, 'topics/open-chords.json');
-  const course01Path = path.join(contentDir, 'courses/course-01-notes.json');
+  const openChordsDir = path.join(contentDir, 'topics/open-chords');
+  const course01Dir = path.join(contentDir, 'courses/course-01-notes');
 
   it('guarantees open-chords questions do not use combined dual format (e.g. Am (La Menor))', () => {
-    const raw = JSON.parse(fs.readFileSync(openChordsPath, 'utf-8')) as QuestionPack;
+    const raw = loadPack(openChordsDir, {
+      packId: 'open-chords',
+      course: 3,
+      topics: ['chords', 'open-chords'],
+    });
 
     for (const q of raw.questions) {
       // Must not contain combined notation pattern like "Am (La menor)" or "C (Do Mayor)"
@@ -25,7 +28,11 @@ describe('Chord & Note Questions Family Segregation & Mutual Exclusion', () => {
   });
 
   it('guarantees each chord has draw and identify variants sharing the same familyId', () => {
-    const raw = JSON.parse(fs.readFileSync(openChordsPath, 'utf-8')) as QuestionPack;
+    const raw = loadPack(openChordsDir, {
+      packId: 'open-chords',
+      course: 3,
+      topics: ['chords', 'open-chords'],
+    });
 
     // Test a-minor specifically as per user requirement
     const amQuestions = raw.questions.filter((q) =>
@@ -69,7 +76,11 @@ describe('Chord & Note Questions Family Segregation & Mutual Exclusion', () => {
   });
 
   it('excludes all sister questions for a chord once any variant is drawn in a session', () => {
-    const raw = JSON.parse(fs.readFileSync(openChordsPath, 'utf-8')) as QuestionPack;
+    const raw = loadPack(openChordsDir, {
+      packId: 'open-chords',
+      course: 3,
+      topics: ['chords', 'open-chords'],
+    });
     const amQuestions = raw.questions.filter((q) =>
       q.familyIds?.includes('family-chord-a-minor')
     );
@@ -90,7 +101,11 @@ describe('Chord & Note Questions Family Segregation & Mutual Exclusion', () => {
   });
 
   it('guarantees note translation questions for G and Sol share the same family and exclude each other', () => {
-    const raw = JSON.parse(fs.readFileSync(course01Path, 'utf-8')) as QuestionPack;
+    const raw = loadPack(course01Dir, {
+      packId: 'course-01-notes',
+      course: 1,
+      topics: ['notes', 'translation', 'theory'],
+    });
 
     const gQuestions = raw.questions.filter((q) =>
       q.familyIds?.includes('family-g-translation')

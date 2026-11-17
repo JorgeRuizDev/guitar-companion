@@ -18,8 +18,8 @@
   - *Decision*: Gamified Continuous Flow (No Artificial 20-Question Rounds). Sessions behave like a casual game playable in quick 20-30 second bursts while waiting, or sustained indefinitely. Questions are continuously drawn and randomized from the eligible filter pool, limited in length only by the total number of available questions in that pool (exhaustion) or until the player chooses to stop.
 - **Q3 (Multiple-Select Scoring & Feedback)**: How should multiple-select questions evaluate correctness and present feedback when a learner submits their choices?
   - *Decision*: Option A (All-or-Nothing with Diagnostic Breakdown). Full success is awarded only if all correct options and zero incorrect options are picked. Any discrepancy counts as an incorrect attempt, and the remediation card explicitly flags false positives (incorrect choices picked) and false negatives (omitted correct choices) alongside the conceptual explanation.
-- **Q4 (Question Pack Organization & Manifest)**: How should question JSON files be structured and organized in the project repository?
-  - *Decision*: Option A (Modular Course & Topic Packs with Central Manifest). Questions are authored across modular JSON pack files organized by course and topic (e.g., `src/content/quizzes/courses/*.json`, `src/content/quizzes/topics/*.json`), cataloged in a lightweight index manifest (`manifest.json`) that provides pack metadata, course tags, and topic indices for fast filtering and lazy-loading.
+- **Q4 (Question Pack Organization, Manifest & YAML Decomposition)**: How should question pack files be structured and organized in the project repository?
+  - *Decision*: Modular Course & Topic Directory Packs with Central Manifest and YAML Decomposition. To optimize for LLM authoring, token efficiency (-35% tokens vs JSON), human readability (multiline strings with `|`), and atomic diffs, questions are authored across modular directories by course and topic (e.g., `src/content/quizzes/courses/course-01-notes/`, `src/content/quizzes/topics/open-chords/`). Each directory contains atomic `.yml` files with 10 to 15 questions maximum. Packs are cataloged in an index manifest (`manifest.json`) registering pack metadata (`dirPath`/`filePath`), course tags, and topic indices. An internal project governance rule enforces a maximum of 15 `.yml` files per pack directory, strictly verified by unit tests (while keeping the underlying engine code unconstrained).
 - **Q5 (Remediation Timing & Review Buffer Policy)**: How should learning and remediation be timed when a user makes mistakes?
   - *Decision*: Immediate In-Place Remediation (No Post-Session Review Queue). The learning process happens immediately when a user fails: the rich pedagogical explanation and visual cues are presented right then. No delayed review buffer is queued for later.
 - **Q6 (Multiple Sister Question Families)**: Can a question belong to multiple sister question families simultaneously?
@@ -174,7 +174,7 @@ As a maintainer and learner, I want `basic-note-trainer` and `basic-chord-traine
 
 ### Functional Requirements
 
-- **FR-001**: System MUST load question banks exclusively from external modular JSON pack files organized by courses and topics, indexed by a lightweight manifest (`manifest.json`); no question data or option lists may be hardcoded in application logic.
+- **FR-001**: System MUST load question banks from external modular pack directories (containing `.yml`/`.yaml` files with 10-15 items max) or legacy files, indexed by a lightweight manifest (`manifest.json`); no question data or option lists may be hardcoded in application logic. Pack directories MUST NOT exceed 15 YAML files in project content (enforced via project test).
 - **FR-002**: Question schemas MUST be validated at runtime and build time using strict typed validation (e.g., Zod), rejecting invalid structures with descriptive diagnostics.
 - **FR-003**: System MUST support multiple question interaction types, including at least:
   - `single-choice`: Multiple-choice with exactly one correct option.
@@ -249,9 +249,9 @@ As a maintainer and learner, I want `basic-note-trainer` and `basic-chord-traine
   - `stats`: Live metrics (`hits`, `misses`, `streak`, `accuracy`, `completedCount`).
   - `status`: Lifecycle status (`IDLE` | `ANSWERING` | `EVALUATED` | `COMPLETED`).
 - **`VisualComponentRegistry`**: Decoupled registry mapping semantic string keys (`visualType`) to React components capable of rendering stimuli or interactive response areas.
-- **`QuestionPackManifest`**: Catalog index (`manifest.json`) registering all available pack files.
+- **`QuestionPackManifest`**: Catalog index (`manifest.json`) registering all available pack directories and files.
   - `version`: Manifest schema version.
-  - `packs`: Array of pack descriptor entries, each containing `packId`, `filePath`, `courseId`, `topics`, `questionCount`, and `supportedNotations`.
+  - `packs`: Array of pack descriptor entries, each containing `packId`, `dirPath`/`filePath`, `course`, `topics`, `questionCount`, and `supportedNotations`.
 
 ---
 

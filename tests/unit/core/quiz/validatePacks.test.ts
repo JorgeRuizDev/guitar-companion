@@ -1,11 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
+import yaml from 'yaml';
 import {
   QuestionPackManifestSchema,
-  QuestionPackSchema,
   QuestionSchema,
 } from '@/core/quiz/types/schema';
+import { loadPack } from '@/core/quiz/engine/packLoader';
 
 describe('Question Pack & Manifest Validation', () => {
   const contentDir = path.resolve(process.cwd(), 'src/content/quizzes');
@@ -19,20 +20,86 @@ describe('Question Pack & Manifest Validation', () => {
     expect(result.success).toBe(true);
   });
 
-  it('validates all registered pack JSON files conform to QuestionPackSchema', () => {
+  it('validates all registered pack directories and YAML files conform to QuestionPackSchema', () => {
     const manifestContent = fs.readFileSync(manifestPath, 'utf-8');
     const manifest = JSON.parse(manifestContent);
 
     for (const packEntry of manifest.packs) {
-      const packFullPath = path.resolve(process.cwd(), packEntry.filePath);
+      const packFullPath = path.resolve(
+        process.cwd(),
+        packEntry.dirPath || packEntry.filePath
+      );
       expect(fs.existsSync(packFullPath)).toBe(true);
 
-      const rawPack = JSON.parse(fs.readFileSync(packFullPath, 'utf-8'));
-      const parsedPack = QuestionPackSchema.parse(rawPack);
+      const parsedPack = loadPack(packFullPath, packEntry);
 
       expect(parsedPack.packId).toBe(packEntry.packId);
       expect(parsedPack.course).toBe(packEntry.course);
       expect(parsedPack.questions.length).toBe(packEntry.questionCount);
+    }
+  });
+
+  it('enforces internal organization rule: no pack directory contains more than 15 YAML files', () => {
+    const manifestContent = fs.readFileSync(manifestPath, 'utf-8');
+    const manifest = JSON.parse(manifestContent);
+
+    for (const packEntry of manifest.packs) {
+      const packFullPath = path.resolve(
+        process.cwd(),
+        packEntry.dirPath || packEntry.filePath
+      );
+      expect(fs.existsSync(packFullPath)).toBe(true);
+
+      if (fs.statSync(packFullPath).isDirectory()) {
+        const ymlFiles = fs
+          .readdirSync(packFullPath)
+          .filter((file) => /\.(ya?ml)$/i.test(file));
+
+        expect(
+          ymlFiles.length,
+          `Directory ${packFullPath} contains ${ymlFiles.length} YAML files, exceeding the limit of 15`
+        ).toBeLessThanOrEqual(15);
+      }
+    }
+  });
+
+  it('enforces internal organization rule: each YAML file contains at most 15 questions', () => {
+    const manifestContent = fs.readFileSync(manifestPath, 'utf-8');
+    const manifest = JSON.parse(manifestContent);
+
+    for (const packEntry of manifest.packs) {
+      const packFullPath = path.resolve(
+        process.cwd(),
+        packEntry.dirPath || packEntry.filePath
+      );
+      expect(fs.existsSync(packFullPath)).toBe(true);
+
+      if (fs.statSync(packFullPath).isDirectory()) {
+        const ymlFiles = fs
+          .readdirSync(packFullPath)
+          .filter((file) => /\.(ya?ml)$/i.test(file));
+
+        for (const file of ymlFiles) {
+          const filePath = path.join(packFullPath, file);
+          const content = fs.readFileSync(filePath, 'utf-8');
+          const parsed = yaml.parse(content);
+          const questions = Array.isArray(parsed)
+            ? parsed
+            : Array.isArray(parsed?.questions)
+            ? parsed.questions
+            : [];
+
+          expect(
+            questions.length,
+            `File ${filePath} contains ${questions.length} questions, expected at least 1`
+          ).toBeGreaterThan(0);
+
+          expect(
+            questions.length,
+            `File ${filePath} contains ${questions.length} questions, exceeding maximum of 15`
+          ).toBeLessThanOrEqual(15);
+        }
+      }
     }
   });
 
@@ -42,10 +109,16 @@ describe('Question Pack & Manifest Validation', () => {
     const seenIds = new Set<string>();
 
     for (const packEntry of manifest.packs) {
-      const packFullPath = path.resolve(process.cwd(), packEntry.filePath);
-      const rawPack = JSON.parse(fs.readFileSync(packFullPath, 'utf-8'));
-      for (const question of rawPack.questions) {
-        expect(seenIds.has(question.id)).toBe(false);
+      const packFullPath = path.resolve(
+        process.cwd(),
+        packEntry.dirPath || packEntry.filePath
+      );
+      const pack = loadPack(packFullPath, packEntry);
+      for (const question of pack.questions) {
+        expect(
+          seenIds.has(question.id),
+          `Duplicate question ID found: ${question.id}`
+        ).toBe(false);
         seenIds.add(question.id);
       }
     }
