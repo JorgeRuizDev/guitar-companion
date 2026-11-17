@@ -24,7 +24,7 @@ export const CHORD_NAMES_MAP: Record<
   'g7': { en: 'G7', esLetters: 'G7', esSolfege: 'Sol 7ª', enSolfege: 'Sol 7th' },
   'a7': { en: 'A7', esLetters: 'A7', esSolfege: 'La 7ª', enSolfege: 'La 7th' },
   'b7': { en: 'B7', esLetters: 'B7', esSolfege: 'Si 7ª', enSolfege: 'Si 7th' },
-  'f-beginner': { en: 'F major', esLetters: 'F Mayor', esSolfege: 'Fa Mayor', enSolfege: 'Fa Major' },
+  'f-beginner': { en: 'F major (open)', esLetters: 'F Mayor (abierto)', esSolfege: 'Fa Mayor (abierto)', enSolfege: 'Fa Major (open)' },
   'fmaj7': { en: 'Fmaj7', esLetters: 'Fmaj7', esSolfege: 'Fa maj7', enSolfege: 'Fa maj7' },
   'cadd9': { en: 'Cadd9', esLetters: 'Cadd9', esSolfege: 'Do add9', enSolfege: 'Do add9' },
   'dsus2': { en: 'Dsus2', esLetters: 'Dsus2', esSolfege: 'Re sus2', enSolfege: 'Re sus2' },
@@ -32,6 +32,15 @@ export const CHORD_NAMES_MAP: Record<
   'asus2': { en: 'Asus2', esLetters: 'Asus2', esSolfege: 'La sus2', enSolfege: 'La sus2' },
   'asus4': { en: 'Asus4', esLetters: 'Asus4', esSolfege: 'La sus4', enSolfege: 'La sus4' },
   'esus4': { en: 'Esus4', esLetters: 'Esus4', esSolfege: 'Mi sus4', enSolfege: 'Mi sus4' },
+  'f-major': { en: 'F major', esLetters: 'F Mayor', esSolfege: 'Fa Mayor', enSolfege: 'Fa Major' },
+  'f-minor': { en: 'F minor', esLetters: 'F menor', esSolfege: 'Fa menor', enSolfege: 'Fa minor' },
+  'f7': { en: 'F7', esLetters: 'F7', esSolfege: 'Fa 7ª', enSolfege: 'Fa 7th' },
+  'f-sharp-major': { en: 'F# major', esLetters: 'F# Mayor', esSolfege: 'Fa# Mayor', enSolfege: 'Fa# Major' },
+  'f-sharp-minor': { en: 'F# minor', esLetters: 'F# menor', esSolfege: 'Fa# menor', enSolfege: 'Fa# minor' },
+  'b-flat-major': { en: 'Bb major', esLetters: 'Bb Mayor', esSolfege: 'Si♭ Mayor', enSolfege: 'Si-flat Major' },
+  'b-flat-minor': { en: 'Bbm', esLetters: 'Bbm', esSolfege: 'Si♭ menor', enSolfege: 'Si-flat minor' },
+  'b-major': { en: 'B major', esLetters: 'B Mayor', esSolfege: 'Si Mayor', enSolfege: 'Si Major' },
+  'b-minor': { en: 'B minor', esLetters: 'B menor', esSolfege: 'Si menor', enSolfege: 'Si minor' },
 };
 
 /**

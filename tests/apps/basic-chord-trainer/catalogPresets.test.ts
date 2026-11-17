@@ -14,6 +14,12 @@ describe('User Story 5: Catalog Presets & Embed Link Generation', () => {
     expect(presetIds).toContain('first-three');
     expect(presetIds).toContain('open-minors');
     expect(presetIds).toContain('open-7ths');
+    expect(presetIds).toContain('barre-chords');
+
+    const barrePreset = CHORD_PRESETS.find((p) => p.id === 'barre-chords')!;
+    expect(barrePreset.chordSymbols).toContain('F');
+    expect(barrePreset.chordSymbols).toContain('Bm');
+    expect(barrePreset.chordSymbols).toContain('Bb');
 
     const fundamental = CHORD_PRESETS.find((p) => p.id === 'fundamental-trio')!;
     expect(fundamental.chordSymbols).toEqual(['G', 'C', 'D']);

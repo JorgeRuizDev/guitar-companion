@@ -129,8 +129,8 @@ export const BasicChordTrainerContainer: React.FC<BasicChordTrainerContainerProp
 
         <p className="max-w-2xl mx-auto text-sm sm:text-base text-slate-300 mt-2 sm:mt-3 leading-relaxed">
           {lang === 'es'
-            ? 'Domina los 22 acordes abiertos esenciales en la guitarra conectando la notación anglosajona (C, Am, G7) y el solfeo (Do Mayor, La menor, Sol 7ª) mediante práctica bidireccional.'
-            : 'Master the 22 essential beginner open guitar chords bridging Anglo-Saxon letter notation and Solfège through interactive fretboard drawing and visual identification.'}
+            ? 'Domina los acordes abiertos y con cejilla esenciales en la guitarra conectando la notación anglosajona (C, Am, F, Bm) y el solfeo (Do Mayor, La menor, Fa Mayor, Si menor) con pistas inteligentes y práctica interactiva.'
+            : 'Master essential open and barre guitar chords bridging Anglo-Saxon letter notation and Solfège through smart hints and interactive fretboard practice.'}
         </p>
       </header>
 

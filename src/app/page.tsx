@@ -107,8 +107,8 @@ export default function PlatformHomePage() {
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">
               {isEs
-                ? 'Domina los 22 acordes abiertos esenciales en la guitarra con notación dual (anglosajona y solfeo), dibujo interactivo en diapasón y reconocimiento rápido.'
-                : 'Master 22 essential beginner open guitar chords with dual notation (Anglo-Saxon and Solfège), interactive fretboard drawing, and rapid recognition drills.'}
+                ? 'Domina los acordes abiertos y con cejilla en la guitarra con notación dual (anglosajona y solfeo), pistas pedagógicas, dibujo interactivo en diapasón y reconocimiento rápido.'
+                : 'Master open and barre guitar chords with dual notation (Anglo-Saxon and Solfège), pedagogical hints, interactive fretboard drawing, and rapid recognition drills.'}
             </p>
           </div>
 

@@ -131,6 +131,11 @@ export function evaluateFretboard(
 
     explanationEn = `Discrepancy found on: ${incorrectStrings}. Check the correct diagram and fingerings.`;
     explanationEs = `Discrepancia en: ${incorrectStringsEs}. Revisa el diagrama y la digitación correcta.`;
+
+    if (targetChord.hint) {
+      explanationEn += ` Hint: ${targetChord.hint.en}`;
+      explanationEs += ` Pista: ${targetChord.hint.es}`;
+    }
   }
 
   return {
@@ -140,7 +145,36 @@ export function evaluateFretboard(
       en: explanationEn,
       es: explanationEs,
     },
+    hint: targetChord.hint,
   };
+}
+
+/**
+ * Applies or toggles a barre across a range of strings at the specified fret.
+ */
+export function applyBarreToFret(
+  current: UserFretboardState,
+  fret: number,
+  fromString: StringNumber = 6,
+  toString: StringNumber = 1
+): UserFretboardState {
+  const minStr = Math.min(fromString, toString);
+  const maxStr = Math.max(fromString, toString);
+
+  // Check if all strings in range are already fretted at this fret
+  const allFretted = current
+    .filter((s) => s.stringNumber >= minStr && s.stringNumber <= maxStr)
+    .every((s) => s.state === 'fretted' && s.fret === fret);
+
+  return current.map((str) => {
+    if (str.stringNumber >= minStr && str.stringNumber <= maxStr) {
+      if (allFretted) {
+        return { stringNumber: str.stringNumber, state: 'open' as const, fret: 0 };
+      }
+      return { stringNumber: str.stringNumber, state: 'fretted' as const, fret };
+    }
+    return str;
+  }) as UserFretboardState;
 }
 
 /**

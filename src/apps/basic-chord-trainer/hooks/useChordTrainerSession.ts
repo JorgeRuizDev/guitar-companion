@@ -25,6 +25,7 @@ import {
   createDefaultUserFretboardState,
   toggleFretDot,
   toggleNutState,
+  applyBarreToFret,
   evaluateFretboard,
   chordDefinitionToFretboardState,
 } from '../domain/fretboardEvaluator';
@@ -54,6 +55,7 @@ export interface ChordTrainerSessionState {
 export type ChordTrainerAction =
   | { type: 'TOGGLE_FRET'; stringNumber: StringNumber; fret: number }
   | { type: 'TOGGLE_NUT'; stringNumber: StringNumber }
+  | { type: 'APPLY_BARRE'; fret: number }
   | { type: 'CHECK_ANSWER' }
   | { type: 'SKIP_CHALLENGE' }
   | { type: 'SELECT_IDENTIFY_OPTION'; chord: ChordDefinition }
@@ -131,6 +133,25 @@ export function chordTrainerSessionReducer(
       return {
         ...state,
         userState: toggleNutState(state.userState, action.stringNumber),
+      };
+    }
+
+    case 'APPLY_BARRE': {
+      if (state.status !== 'PENDING' || state.challenge.type !== 'draw') {
+        return state;
+      }
+      const targetBarre = state.challenge.targetChord.barre;
+      const fromStr =
+        targetBarre && targetBarre.fret === action.fret
+          ? targetBarre.fromString
+          : 6;
+      const toStr =
+        targetBarre && targetBarre.fret === action.fret
+          ? targetBarre.toString
+          : 1;
+      return {
+        ...state,
+        userState: applyBarreToFret(state.userState, action.fret, fromStr, toStr),
       };
     }
 
@@ -343,6 +364,10 @@ export function useChordTrainerSession(
     dispatch({ type: 'TOGGLE_NUT', stringNumber });
   }, []);
 
+  const handleBarreClick = useCallback((fret: number) => {
+    dispatch({ type: 'APPLY_BARRE', fret });
+  }, []);
+
   const handleCheck = useCallback(() => {
     dispatch({ type: 'CHECK_ANSWER' });
   }, []);
@@ -381,6 +406,7 @@ export function useChordTrainerSession(
     mode: state.mode,
     handleFretClick,
     handleNutToggle,
+    handleBarreClick,
     handleCheck,
     handleSkip,
     handleSelectOption,

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ChallengeEvaluation,
   ChallengeStatus,
@@ -11,7 +11,14 @@ import {
 import { formatPromptTitle } from '../domain/dualNotation';
 import { FretboardDiagram } from './FretboardDiagram';
 import { NutStringToggle } from './NutStringToggle';
-import { Check, SkipForward, ArrowRight, AlertCircle, CheckCircle2 } from 'lucide-react';
+import {
+  Check,
+  SkipForward,
+  ArrowRight,
+  AlertCircle,
+  CheckCircle2,
+  Lightbulb,
+} from 'lucide-react';
 
 interface DrawChallengeProps {
   challenge: PracticeChallenge;
@@ -20,6 +27,7 @@ interface DrawChallengeProps {
   evaluation: ChallengeEvaluation | null;
   onFretClick: (stringNumber: StringNumber, fret: number) => void;
   onNutToggle: (stringNumber: StringNumber) => void;
+  onBarreClick?: (fret: number) => void;
   onCheck: () => void;
   onSkip: () => void;
   onNext: () => void;
@@ -34,6 +42,7 @@ export const DrawChallenge: React.FC<DrawChallengeProps> = ({
   evaluation,
   onFretClick,
   onNutToggle,
+  onBarreClick,
   onCheck,
   onSkip,
   onNext,
@@ -45,6 +54,13 @@ export const DrawChallenge: React.FC<DrawChallengeProps> = ({
   const isCorrect = status === 'EVALUATED_CORRECT';
   const isIncorrect = status === 'EVALUATED_INCORRECT';
   const isSkipped = status === 'SKIPPED';
+
+  const [showHintPending, setShowHintPending] = useState(false);
+
+  // Reset hint reveal on new chord
+  useEffect(() => {
+    setShowHintPending(false);
+  }, [targetChord.id]);
 
   const prompt = formatPromptTitle(targetChord, lang, 'draw', challenge.notation);
 
@@ -62,6 +78,36 @@ export const DrawChallenge: React.FC<DrawChallengeProps> = ({
           <p className="text-xs text-slate-400 max-w-xs mx-auto mt-1 line-clamp-1">
             {lang === 'es' ? targetChord.description.es : targetChord.description.en}
           </p>
+        )}
+
+        {/* Optional Hint Toggle while Pending */}
+        {isPending && targetChord.hint && !compact && (
+          <div className="mt-1 flex flex-col items-center">
+            <button
+              type="button"
+              onClick={() => setShowHintPending((prev) => !prev)}
+              className="inline-flex items-center gap-1 text-[11px] font-medium text-amber-400/80 hover:text-amber-300 transition-colors cursor-pointer"
+            >
+              <Lightbulb className="w-3 h-3 text-amber-400" />
+              <span>
+                {showHintPending
+                  ? lang === 'es'
+                    ? 'Ocultar pista'
+                    : 'Hide hint'
+                  : lang === 'es'
+                  ? '¿Necesitas una pista?'
+                  : 'Need a hint?'}
+              </span>
+            </button>
+            {showHintPending && (
+              <div className="mt-1 max-w-xs p-2 rounded-lg bg-amber-950/30 border border-amber-500/30 text-amber-200/90 text-xs text-left animate-in fade-in">
+                <span className="font-semibold text-amber-300">
+                  {lang === 'es' ? 'Pista: ' : 'Hint: '}
+                </span>
+                {lang === 'es' ? targetChord.hint.es : targetChord.hint.en}
+              </div>
+            )}
+          </div>
         )}
       </div>
 
@@ -84,34 +130,53 @@ export const DrawChallenge: React.FC<DrawChallengeProps> = ({
         compact={compact}
         onFretClick={onFretClick}
         onNutClick={onNutToggle}
+        onBarreClick={onBarreClick}
         lang={lang}
       />
 
-      {/* Feedback Banner on Evaluation */}
+      {/* Feedback & Hint Banner on Evaluation */}
       {!isPending && evaluation && (
-        <div
-          className={`w-full max-w-[280px] p-2.5 rounded-xl border mt-2 flex items-start gap-2 text-xs leading-snug animate-in fade-in slide-in-from-bottom-2 ${
-            isCorrect
-              ? 'bg-emerald-950/40 border-emerald-500/50 text-emerald-300'
-              : isSkipped
-              ? 'bg-amber-950/40 border-amber-500/50 text-amber-200'
-              : 'bg-rose-950/40 border-rose-500/50 text-rose-200'
-          }`}
-        >
-          {isCorrect ? (
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-          ) : (
-            <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+        <div className="w-full max-w-[280px] flex flex-col gap-1.5 mt-2 animate-in fade-in slide-in-from-bottom-2">
+          {/* Main Result Banner */}
+          <div
+            className={`w-full p-2.5 rounded-xl border flex items-start gap-2 text-xs leading-snug ${
+              isCorrect
+                ? 'bg-emerald-950/40 border-emerald-500/50 text-emerald-300'
+                : isSkipped
+                ? 'bg-amber-950/40 border-amber-500/50 text-amber-200'
+                : 'bg-rose-950/40 border-rose-500/50 text-rose-200'
+            }`}
+          >
+            {isCorrect ? (
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+            ) : (
+              <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+            )}
+            <p>
+              {isSkipped
+                ? lang === 'es'
+                  ? `Solución mostrada para ${targetChord.symbol} (${targetChord.solfegeName}).`
+                  : `Solution revealed for ${targetChord.symbol} (${targetChord.solfegeName}).`
+                : lang === 'es'
+                ? evaluation.explanation.es
+                : evaluation.explanation.en}
+            </p>
+          </div>
+
+          {/* Dedicated Hint Banner shown on Failure or Skip */}
+          {(!isCorrect || isSkipped) && targetChord.hint && (
+            <div className="w-full p-2.5 rounded-xl border bg-amber-950/40 border-amber-500/40 text-amber-200 text-xs leading-snug flex items-start gap-2 shadow-sm animate-in fade-in slide-in-from-bottom-1">
+              <Lightbulb className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+              <div>
+                <span className="font-bold text-amber-300 block mb-0.5">
+                  {lang === 'es' ? '💡 Pista:' : '💡 Hint:'}
+                </span>
+                <p className="text-amber-100/95">
+                  {lang === 'es' ? targetChord.hint.es : targetChord.hint.en}
+                </p>
+              </div>
+            </div>
           )}
-          <p>
-            {isSkipped
-              ? lang === 'es'
-                ? `Solución mostrada para ${targetChord.symbol} (${targetChord.solfegeName}).`
-                : `Solution revealed for ${targetChord.symbol} (${targetChord.solfegeName}).`
-              : lang === 'es'
-              ? evaluation.explanation.es
-              : evaluation.explanation.en}
-          </p>
         </div>
       )}
 

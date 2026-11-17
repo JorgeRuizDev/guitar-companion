@@ -20,12 +20,13 @@ export type ChordCategory =
   | 'open-major'
   | 'open-minor'
   | 'open-7th'
-  | 'open-variation';
+  | 'open-variation'
+  | 'barre';
 
 export interface ChordDefinition {
-  id: string; // e.g. "c-major", "a-minor", "f-beginner", "cadd9"
-  symbol: string; // Anglo-Saxon notation: e.g. "C", "Am", "G7", "Fmaj7"
-  solfegeName: string; // Solfège: e.g. "Do Mayor", "La menor", "Sol 7ª"
+  id: string; // e.g. "c-major", "a-minor", "f-major", "b-minor", "cadd9"
+  symbol: string; // Anglo-Saxon notation: e.g. "C", "Am", "G7", "F", "Bm"
+  solfegeName: string; // Solfège: e.g. "Do Mayor", "La menor", "Sol 7ª", "Fa Mayor", "Si menor"
   category: ChordCategory;
   // Strings ordered from 6 (Low E) down to 1 (High E)
   strings: [
@@ -43,6 +44,10 @@ export interface ChordDefinition {
     toString: StringNumber;
   } | null;
   description?: {
+    en: string;
+    es: string;
+  };
+  hint?: {
     en: string;
     es: string;
   };
@@ -98,6 +103,10 @@ export interface ChallengeEvaluation {
   isCorrect: boolean;
   stringResults?: StringVerificationResult[];
   explanation: {
+    en: string;
+    es: string;
+  };
+  hint?: {
     en: string;
     es: string;
   };

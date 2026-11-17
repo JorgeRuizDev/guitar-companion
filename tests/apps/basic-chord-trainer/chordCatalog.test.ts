@@ -7,8 +7,26 @@ import {
 } from '@/apps/basic-chord-trainer/domain/chordCatalog';
 
 describe('Chord Catalog Integrity & Theory', () => {
-  it('contains exactly 22 beginner open chords in the catalog', () => {
-    expect(CHORD_CATALOG).toHaveLength(22);
+  it('contains essential open chords and barre chords in the catalog', () => {
+    expect(CHORD_CATALOG).toHaveLength(30);
+  });
+
+  it('includes barre chords with valid barre definitions and pedagogical hints', () => {
+    const barreChords = CHORD_CATALOG.filter((c) => c.category === 'barre');
+    expect(barreChords.length).toBeGreaterThanOrEqual(9);
+
+    const fChord = getChordBySymbol('F');
+    expect(fChord).toBeDefined();
+    expect(fChord?.category).toBe('barre');
+    expect(fChord?.barre).toBeDefined();
+    expect(fChord?.barre?.fret).toBe(1);
+    expect(fChord?.hint?.es).toContain('E');
+
+    const bmChord = getChordBySymbol('Bm');
+    expect(bmChord).toBeDefined();
+    expect(bmChord?.category).toBe('barre');
+    expect(bmChord?.barre?.fret).toBe(2);
+    expect(bmChord?.hint?.es).toContain('Am');
   });
 
   it('guarantees unique IDs and unique symbols for all catalog chords', () => {

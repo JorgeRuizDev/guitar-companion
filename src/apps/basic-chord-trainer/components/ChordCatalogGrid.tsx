@@ -26,6 +26,10 @@ const CATEGORY_TITLES: Record<ChordCategory, { en: string; es: string }> = {
     en: 'Open Variations & Sus Chords',
     es: 'Variaciones Abiertas y Suspendidos',
   },
+  'barre': {
+    en: 'Barre Chords',
+    es: 'Acordes con Cejilla',
+  },
 };
 
 export const ChordCatalogGrid: React.FC<ChordCatalogGridProps> = ({
@@ -38,6 +42,7 @@ export const ChordCatalogGrid: React.FC<ChordCatalogGridProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<ChordCategory | 'all'>('all');
 
   const categories: ChordCategory[] = [
+    'barre',
     'open-major',
     'open-minor',
     'open-7th',
@@ -55,7 +60,7 @@ export const ChordCatalogGrid: React.FC<ChordCatalogGridProps> = ({
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
         <div>
           <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-2">
-            <span>{lang === 'es' ? 'Catálogo de Acordes Abiertos' : 'Open Chords Catalog'}</span>
+            <span>{lang === 'es' ? 'Catálogo de Acordes (Abiertos y Cejilla)' : 'Chords Catalog (Open & Barre)'}</span>
             <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-800 text-amber-400 font-mono border border-slate-700">
               {selectedChordIds.length} / {CHORD_CATALOG.length}
             </span>

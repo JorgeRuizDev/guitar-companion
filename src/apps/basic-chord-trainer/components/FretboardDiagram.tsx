@@ -17,6 +17,7 @@ export interface FretboardDiagramProps {
   compact?: boolean;
   onFretClick?: (stringNumber: StringNumber, fret: number) => void;
   onNutClick?: (stringNumber: StringNumber) => void;
+  onBarreClick?: (fret: number) => void;
   className?: string;
   lang?: 'en' | 'es';
 }
@@ -55,6 +56,7 @@ export const FretboardDiagram: React.FC<FretboardDiagramProps> = ({
   compact = false,
   onFretClick,
   onNutClick,
+  onBarreClick,
   className = '',
   lang = 'en',
 }) => {
@@ -138,20 +140,41 @@ export const FretboardDiagram: React.FC<FretboardDiagramProps> = ({
           strokeWidth="1"
         />
 
-        {/* Fret Number Labels along the Left Side */}
+        {/* Fret Number Labels along the Left Side (interactive for quick barre) */}
         {frets.map((fret) => (
-          <text
+          <g
             key={`fret-num-${fret}`}
-            x="20"
-            y={FRET_Y_BOUNDS[fret].mid + 5}
-            textAnchor="middle"
-            fill="#64748b"
-            fontSize="12"
-            fontFamily="monospace"
-            fontWeight="bold"
+            onClick={() => isInteractive && onBarreClick?.(fret)}
+            className={isInteractive && onBarreClick ? 'cursor-pointer hover:opacity-100 group' : ''}
           >
-            {fret}
-          </text>
+            {isInteractive && onBarreClick && (
+              <rect
+                x="4"
+                y={FRET_Y_BOUNDS[fret].top}
+                width="28"
+                height={FRET_Y_BOUNDS[fret].bottom - FRET_Y_BOUNDS[fret].top}
+                fill="transparent"
+                className="touch-manipulation"
+              >
+                <title>
+                  {lang === 'es'
+                    ? `Cejilla rápida en traste ${fret}`
+                    : `Quick barre on fret ${fret}`}
+                </title>
+              </rect>
+            )}
+            <text
+              x="20"
+              y={FRET_Y_BOUNDS[fret].mid + 5}
+              textAnchor="middle"
+              fill={isInteractive && onBarreClick ? '#cbd5e1' : '#64748b'}
+              fontSize="12"
+              fontFamily="monospace"
+              fontWeight="bold"
+            >
+              {fret}
+            </text>
+          </g>
         ))}
 
         {/* Strings (Vertical Lines with Gradient Thickness) */}
@@ -233,22 +256,61 @@ export const FretboardDiagram: React.FC<FretboardDiagramProps> = ({
           );
         })}
 
-        {/* Barre Visual Indicator (if applicable, e.g. F beginner on strings 1 & 2 fret 1) */}
-        {targetChord?.barre && (
-          <rect
-            x={STRING_X[targetChord.barre.toString] - 12}
-            y={FRET_Y_BOUNDS[targetChord.barre.fret].mid - 11}
-            width={
-              STRING_X[targetChord.barre.fromString] -
-              STRING_X[targetChord.barre.toString] +
-              24
-            }
-            height="22"
-            rx="11"
-            fill="#3b82f6"
-            opacity="0.3"
-          />
-        )}
+        {/* Barre Visual Indicator (when evaluated or in review mode) */}
+        {targetChord?.barre && (!isInteractive || evaluation !== null) && (() => {
+          const x1 = STRING_X[targetChord.barre.fromString];
+          const x2 = STRING_X[targetChord.barre.toString];
+          const minX = Math.min(x1, x2) - 12;
+          const maxX = Math.max(x1, x2) + 12;
+          const y = FRET_Y_BOUNDS[targetChord.barre.fret].mid - 11;
+          const isSuccess = evaluation?.isCorrect;
+          const isError = evaluation && !evaluation.isCorrect;
+          const barreColor = isSuccess ? '#10b981' : isError ? '#f59e0b' : '#3b82f6';
+
+          return (
+            <rect
+              x={minX}
+              y={y}
+              width={maxX - minX}
+              height="22"
+              rx="11"
+              fill={barreColor}
+              opacity="0.35"
+            />
+          );
+        })()}
+
+        {/* User Barre Connector Indicator (when 2 or more strings fretted at same fret) */}
+        {frets.map((fret) => {
+          const frettedStrings = fretboardState.filter(
+            (s) => s.state === 'fretted' && s.fret === fret
+          );
+          if (frettedStrings.length < 2) return null;
+
+          const xs = frettedStrings.map((s) => STRING_X[s.stringNumber]);
+          const minX = Math.min(...xs) - 12;
+          const maxX = Math.max(...xs) + 12;
+          const y = FRET_Y_BOUNDS[fret].mid - 11;
+          const isSuccess = evaluation?.isCorrect;
+          const isErr = frettedStrings.some((s) => {
+            const ev = getStringEval(s.stringNumber);
+            return ev && !ev.isCorrect;
+          });
+          const connectorColor = isSuccess ? '#10b981' : isErr ? '#ef4444' : '#f59e0b';
+
+          return (
+            <rect
+              key={`user-barre-connector-${fret}`}
+              x={minX}
+              y={y}
+              width={maxX - minX}
+              height="22"
+              rx="11"
+              fill={connectorColor}
+              opacity="0.25"
+            />
+          );
+        })}
 
         {/* User Fretted Dots */}
         {strings.map((strNum) => {

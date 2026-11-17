@@ -55,6 +55,7 @@ export const ChordTrainerApp: React.FC<ChordTrainerAppProps> = ({
     mode,
     handleFretClick,
     handleNutToggle,
+    handleBarreClick,
     handleCheck,
     handleSkip,
     handleSelectOption,
@@ -201,6 +202,7 @@ export const ChordTrainerApp: React.FC<ChordTrainerAppProps> = ({
             evaluation={evaluation}
             onFretClick={handleFretClick}
             onNutToggle={handleNutToggle}
+            onBarreClick={handleBarreClick}
             onCheck={handleCheck}
             onSkip={handleSkip}
             onNext={handleNext}
