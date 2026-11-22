@@ -6,6 +6,7 @@
 
 import {
   DifficultyLevel,
+  ExerciseType,
   Language,
   TrainerConfig,
   TrainerMode,
@@ -40,6 +41,10 @@ export function parseTrainerParams(searchParams?: RawSearchParams): TrainerConfi
   const embedParam = getParamValue(searchParams, 'embed');
   const langParam = getParamValue(searchParams, 'lang') || getParamValue(searchParams, 'locale');
   const compactParam = getParamValue(searchParams, 'compact');
+  const typesParam =
+    getParamValue(searchParams, 'types') ||
+    getParamValue(searchParams, 'exercises') ||
+    getParamValue(searchParams, 'submodes');
 
   const mode: TrainerMode =
     modeParam === 'translation' ||
@@ -71,5 +76,77 @@ export function parseTrainerParams(searchParams?: RawSearchParams): TrainerConfi
       ? false
       : embed; // defaults to true in embed mode
 
-  return { mode, direction, difficulty, embed, compact, lang };
+  let exerciseTypes: ExerciseType[] | undefined;
+  if (typesParam) {
+    const rawList = typesParam.split(',').map((s) => s.trim().toLowerCase());
+    const valid = rawList.filter(
+      (t): t is ExerciseType => t === 'translation' || t === 'accidentals' || t === 'intervals'
+    );
+    if (valid.length > 0) {
+      exerciseTypes = valid;
+    }
+  }
+
+  return {
+    mode,
+    direction,
+    difficulty,
+    embed,
+    compact,
+    lang,
+    ...(exerciseTypes ? { exerciseTypes } : {}),
+  };
+}
+
+/**
+ * Generates configured URL or embed link for Basic Note Trainer.
+ */
+export function generateEmbedUrl(
+  config: Partial<TrainerConfig> & { baseUrl?: string }
+): string {
+  const isEmbed = Boolean(config.embed);
+  const basePath = isEmbed ? '/basic-note-trainer/embed' : '/basic-note-trainer';
+
+  const params = new URLSearchParams();
+
+  if (config.mode && config.mode !== 'mixed') {
+    params.set('mode', config.mode);
+  }
+
+  // If in mixed mode (or unspecified mode which defaults to mixed),
+  // specify 'types' when customized (i.e. not all 3 types selected)
+  if (
+    (!config.mode || config.mode === 'mixed') &&
+    config.exerciseTypes &&
+    config.exerciseTypes.length > 0 &&
+    config.exerciseTypes.length < 3
+  ) {
+    params.set('types', config.exerciseTypes.join(','));
+  }
+
+  if (config.direction && config.direction !== 'both') {
+    params.set('direction', config.direction);
+  }
+
+  if (config.difficulty && config.difficulty !== 'beginner') {
+    params.set('difficulty', config.difficulty);
+  }
+
+  if (!isEmbed && config.compact) {
+    params.set('compact', 'true');
+  }
+
+  if (config.lang && config.lang !== 'en') {
+    params.set('lang', config.lang);
+  }
+
+  const queryString = params.toString();
+  const fullPath = queryString ? `${basePath}?${queryString}` : basePath;
+
+  if (config.baseUrl) {
+    const cleanBase = config.baseUrl.replace(/\/$/, '');
+    return `${cleanBase}${fullPath}`;
+  }
+
+  return fullPath;
 }

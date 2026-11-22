@@ -177,10 +177,10 @@ describe('Accidentals and Chromatic Sequence Questions (User Story 2)', () => {
       }
     });
 
-    it('generates both translation and accidentals cards when mode is "mixed"', () => {
+    it('generates translation, accidentals and interval cards when mode is "mixed"', () => {
       const categoriesSeen = new Set<string>();
 
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < 60; i++) {
         const card = generateCard({
           mode: 'mixed',
           direction: 'both',
@@ -193,6 +193,33 @@ describe('Accidentals and Chromatic Sequence Questions (User Story 2)', () => {
 
       expect(categoriesSeen.has('translation')).toBe(true);
       expect(categoriesSeen.has('accidentals') || categoriesSeen.has('sequence')).toBe(true);
+      expect(categoriesSeen.has('intervals')).toBe(true);
+    });
+
+    it('respects custom exerciseTypes in "mixed" mode', () => {
+      // Test only translation + intervals
+      for (let i = 0; i < 20; i++) {
+        const card = generateCard({
+          mode: 'mixed',
+          direction: 'both',
+          difficulty: 'intermediate',
+          embed: false,
+          exerciseTypes: ['translation', 'intervals'],
+        });
+        expect(['translation', 'intervals']).toContain(card.category);
+      }
+
+      // Test only intervals
+      for (let i = 0; i < 15; i++) {
+        const card = generateCard({
+          mode: 'mixed',
+          direction: 'both',
+          difficulty: 'intermediate',
+          embed: false,
+          exerciseTypes: ['intervals'],
+        });
+        expect(card.category).toBe('intervals');
+      }
     });
   });
 });

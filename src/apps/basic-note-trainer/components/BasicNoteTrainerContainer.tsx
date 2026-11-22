@@ -1,8 +1,15 @@
 'use client';
 
-import React from 'react';
-import { TrainerConfig } from '../types';
+import React, { useState, useEffect, useCallback } from 'react';
+import {
+  DifficultyLevel,
+  ExerciseType,
+  TrainerConfig,
+  TrainerMode,
+  TranslationDirection,
+} from '../types';
 import { NoteTrainerApp } from './NoteTrainerApp';
+import { EmbedLinkGenerator } from './EmbedLinkGenerator';
 import { useLanguage } from '@/core/i18n/LanguageContext';
 import { Music2, Sparkles, BookOpen, Repeat } from 'lucide-react';
 
@@ -14,19 +21,68 @@ export const BasicNoteTrainerContainer: React.FC<BasicNoteTrainerContainerProps>
   const { language } = useLanguage();
   const activeLang = config.lang ?? language ?? 'en';
   const isEs = activeLang === 'es';
-  const [currentMode, setCurrentMode] = React.useState(config.mode);
+
+  const [currentMode, setCurrentMode] = useState<TrainerMode>(config.mode);
+  const [exerciseTypes, setExerciseTypes] = useState<ExerciseType[]>(
+    config.exerciseTypes ?? ['translation', 'accidentals', 'intervals']
+  );
+  const [direction, setDirection] = useState<TranslationDirection>(config.direction ?? 'both');
+  const [difficulty, setDifficulty] = useState<DifficultyLevel>(config.difficulty ?? 'beginner');
+  const [sessionKey, setSessionKey] = useState(0);
 
   // Sync mode if initial config changes
-  React.useEffect(() => {
+  useEffect(() => {
     setCurrentMode(config.mode);
-  }, [config.mode]);
+    if (config.exerciseTypes) {
+      setExerciseTypes(config.exerciseTypes);
+    }
+    if (config.direction) {
+      setDirection(config.direction);
+    }
+    if (config.difficulty) {
+      setDifficulty(config.difficulty);
+    }
+  }, [config.mode, config.exerciseTypes, config.direction, config.difficulty]);
+
+  const handleApplyConfigFromGenerator = useCallback(
+    (newConfig: {
+      mode: TrainerMode;
+      exerciseTypes?: ExerciseType[];
+      direction?: TranslationDirection;
+      difficulty?: DifficultyLevel;
+    }) => {
+      setCurrentMode(newConfig.mode);
+      if (newConfig.exerciseTypes) {
+        setExerciseTypes(newConfig.exerciseTypes);
+      }
+      if (newConfig.direction) {
+        setDirection(newConfig.direction);
+      }
+      if (newConfig.difficulty) {
+        setDifficulty(newConfig.difficulty);
+      }
+      setSessionKey((k) => k + 1);
+      const trainerEl = document.getElementById('note-trainer-session');
+      trainerEl?.scrollIntoView({ behavior: 'smooth' });
+    },
+    []
+  );
 
   // Embed view (suppresses header & footer, minimal scrollable container)
   if (config.embed) {
     return (
       <div className="fixed inset-0 z-50 bg-slate-950 text-slate-100 flex flex-col justify-start items-center p-2 sm:p-3 overflow-y-auto overflow-x-hidden overscroll-y-contain select-none">
         <NoteTrainerApp
-          config={{ ...config, mode: currentMode, embed: true, compact: true, lang: activeLang }}
+          config={{
+            ...config,
+            mode: currentMode,
+            exerciseTypes,
+            direction,
+            difficulty,
+            embed: true,
+            compact: true,
+            lang: activeLang,
+          }}
           className="w-full"
         />
       </div>
@@ -75,7 +131,10 @@ export const BasicNoteTrainerContainer: React.FC<BasicNoteTrainerContainerProps>
             key={tab.id}
             type="button"
             data-testid={`mode-tab-${tab.id}`}
-            onClick={() => setCurrentMode(tab.id)}
+            onClick={() => {
+              setCurrentMode(tab.id);
+              setSessionKey((k) => k + 1);
+            }}
             className={`flex-1 py-1.5 px-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
               currentMode === tab.id
                 ? 'bg-amber-500 text-slate-950 shadow-sm'
@@ -89,7 +148,17 @@ export const BasicNoteTrainerContainer: React.FC<BasicNoteTrainerContainerProps>
 
       {/* Main Flashcard App Container */}
       <section id="note-trainer-session" className="w-full flex flex-col items-center mb-10">
-        <NoteTrainerApp key={`trainer-${currentMode}-${activeLang}`} config={{ ...config, mode: currentMode, lang: activeLang }} />
+        <NoteTrainerApp
+          key={`trainer-${sessionKey}-${currentMode}-${activeLang}-${exerciseTypes.join('-')}-${direction}-${difficulty}`}
+          config={{
+            ...config,
+            mode: currentMode,
+            exerciseTypes,
+            direction,
+            difficulty,
+            lang: activeLang,
+          }}
+        />
       </section>
 
       {/* Educational Guide & Mnemonic Reference */}
@@ -148,6 +217,16 @@ export const BasicNoteTrainerContainer: React.FC<BasicNoteTrainerContainerProps>
           </p>
         </div>
       </section>
+
+      {/* Embed Link Generator */}
+      <EmbedLinkGenerator
+        activeMode={currentMode}
+        activeExerciseTypes={exerciseTypes}
+        activeDirection={direction}
+        activeDifficulty={difficulty}
+        onApplyConfig={handleApplyConfigFromGenerator}
+        lang={activeLang}
+      />
     </div>
   );
 };

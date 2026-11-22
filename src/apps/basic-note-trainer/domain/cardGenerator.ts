@@ -13,6 +13,7 @@ import {
   TrainerConfig,
   TranslationDirection,
   Language,
+  ExerciseType,
 } from '../types';
 import {
   NATURAL_LETTERS,
@@ -29,6 +30,7 @@ import {
   getPreviousChromatic,
   INTERVAL_DEFINITIONS,
   calculateIntervalTargetNote,
+  identifyInterval,
   formatSemitonesText,
 } from './musicTheory';
 import {
@@ -822,9 +824,15 @@ export function generateCard(
       : generatePreviousChromaticQuestion(chosenLetter, lang);
   }
 
-  // Mixed mode: 50% translation, 50% accidentals/sequence
-  const roll = Math.random();
-  if (roll < 0.5) {
+  // Mixed mode: configurable via config.exerciseTypes, defaulting to all 3 categories (translation, accidentals, intervals)
+  const availableTypes: ExerciseType[] =
+    config.exerciseTypes && config.exerciseTypes.length > 0
+      ? config.exerciseTypes
+      : ['translation', 'accidentals', 'intervals'];
+
+  const selectedType = availableTypes[Math.floor(Math.random() * availableTypes.length)];
+
+  if (selectedType === 'translation') {
     return generateTranslationCard({
       direction: config.direction,
       letter: targetLetter,
@@ -833,6 +841,22 @@ export function generateCard(
     });
   }
 
+  if (selectedType === 'intervals') {
+    let intervalRoot: string | undefined;
+    if (targetLetter) {
+      intervalRoot =
+        config.direction === 'solfege-to-letters' || lang === 'es'
+          ? letterToSolfege(targetLetter)
+          : targetLetter;
+    }
+    return generateIntervalQuestion({
+      direction: config.direction,
+      rootNote: intervalRoot,
+      lang,
+    });
+  }
+
+  // Accidentals category
   const accidentalRoll = Math.random();
   if (accidentalRoll < 0.25) {
     return generateNaturalSemitoneQuestion(lang);
@@ -1187,6 +1211,64 @@ export function retranslateCard(card: FlashcardQuestion, lang: Language): Flashc
       explanation: `${baseExplanation}\n\n${getVisualScaleExplanation(lang, letter)}`,
       mnemonic,
     };
+  }
+
+  // 7. Intervals category
+  if (card.category === 'intervals') {
+    const isCalc = card.id.startsWith('interval_calc');
+    const [rootNote, otherNote] = card.noteReference.split('-');
+    if (rootNote && otherNote) {
+      const interval = identifyInterval(rootNote, otherNote);
+      if (interval) {
+        const semitonesText = formatSemitonesText(interval.semitones, lang);
+        const intervalName = isEs ? interval.nameEs : interval.nameEn;
+        if (isCalc) {
+          return {
+            ...card,
+            prompt: isEs
+              ? `¿Cuál es la ${intervalName} de ${rootNote}?`
+              : `What is the ${intervalName} of ${rootNote}?`,
+            subPrompt: isEs ? `Distancia: ${semitonesText}` : `Distance: ${semitonesText}`,
+            hint: isEs
+              ? `La ${intervalName} se encuentra a ${semitonesText} de ${rootNote}.`
+              : `The ${intervalName} is located ${semitonesText} above ${rootNote}.`,
+            explanation: isEs
+              ? `La ${intervalName} de ${rootNote} es ${card.correctAnswer} (${semitonesText}).`
+              : `The ${intervalName} of ${rootNote} is ${card.correctAnswer} (${semitonesText}).`,
+            mnemonic: isEs
+              ? `Recuerda: ${rootNote} y ${card.correctAnswer} forman una ${intervalName} (${interval.semitones} semitonos).`
+              : `Remember: ${rootNote} to ${card.correctAnswer} forms a ${intervalName} (${interval.semitones} semitones).`,
+          };
+        } else {
+          const newCorrectAnswer = intervalName;
+          const otherIntervals = INTERVAL_DEFINITIONS.filter(
+            (i) => i.id !== 'unison' && i.id !== interval.id
+          );
+          const shuffledOthers = shuffleArray(otherIntervals).slice(0, 3);
+          const distractors = shuffledOthers.map((i) => (isEs ? i.nameEs : i.nameEn));
+          const newOptions = shuffleArray([newCorrectAnswer, ...distractors]) as [string, string, string, string];
+
+          return {
+            ...card,
+            prompt: isEs
+              ? `¿Qué intervalo hay de ${rootNote} a ${otherNote}?`
+              : `What interval is ${otherNote} from ${rootNote}?`,
+            subPrompt: isEs ? `Distancia: ${semitonesText}` : `Distance: ${semitonesText}`,
+            hint: isEs
+              ? `De ${rootNote} a ${otherNote} hay una distancia de ${semitonesText}.`
+              : `From ${rootNote} to ${otherNote} is a distance of ${semitonesText}.`,
+            options: newOptions,
+            correctAnswer: newCorrectAnswer,
+            explanation: isEs
+              ? `El intervalo entre ${rootNote} y ${otherNote} es una ${newCorrectAnswer} (${semitonesText}).`
+              : `The interval from ${rootNote} to ${otherNote} is a ${newCorrectAnswer} (${semitonesText}).`,
+            mnemonic: isEs
+              ? `Fórmula: ${interval.shortName} = ${interval.semitones} semitonos.`
+              : `Formula: ${interval.shortName} = ${interval.semitones} semitones.`,
+          };
+        }
+      }
+    }
   }
 
   return card;

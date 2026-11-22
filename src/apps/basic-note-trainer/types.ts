@@ -24,6 +24,8 @@ export interface ChromaticNoteInfo {
 
 export type QuestionCategory = 'translation' | 'accidentals' | 'sequence' | 'intervals';
 
+export type ExerciseType = 'translation' | 'accidentals' | 'intervals';
+
 export type DifficultyLevel = 'beginner' | 'intermediate' | 'advanced';
 
 export type TrainerMode = 'translation' | 'accidentals' | 'mixed' | 'intervals';
@@ -103,6 +105,7 @@ export interface TrainerConfig {
   embed: boolean;
   compact?: boolean;
   lang?: Language;
+  exerciseTypes?: ExerciseType[];
 }
 
 // --- PostMessage Bridge Payloads ---
