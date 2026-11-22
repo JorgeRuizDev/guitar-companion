@@ -134,6 +134,34 @@ export const BasicChordTrainerContainer: React.FC<BasicChordTrainerContainerProp
         </p>
       </header>
 
+      {/* Mode Selector Tabs */}
+      <div className="w-full max-w-md mx-auto flex items-center justify-center p-1 mb-6 rounded-xl bg-slate-900/90 border border-slate-800 shadow-md">
+        {(
+          [
+            { id: 'alternate', labelEn: 'Alternate', labelEs: 'Alternado' },
+            { id: 'draw', labelEn: 'Draw', labelEs: 'Dibuja' },
+            { id: 'identify', labelEn: 'Identify', labelEs: 'Identifica' },
+            { id: 'chord-notes', labelEn: 'Chord Notes', labelEs: 'Notas del Acorde' },
+          ] as const
+        ).map((tab) => (
+          <button
+            key={tab.id}
+            type="button"
+            onClick={() => {
+              setMode(tab.id);
+              setSessionKey((k) => k + 1);
+            }}
+            className={`flex-1 py-1.5 px-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+              mode === tab.id
+                ? 'bg-amber-500 text-slate-950 shadow-sm'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            {lang === 'es' ? tab.labelEs : tab.labelEn}
+          </button>
+        ))}
+      </div>
+
       {/* Main Trainer Card Container */}
       <section id="chord-trainer-session" className="w-full flex justify-center mb-10">
         <ChordTrainerApp

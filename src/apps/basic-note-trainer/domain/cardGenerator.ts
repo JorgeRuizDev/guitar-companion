@@ -27,6 +27,9 @@ import {
   getChromaticIndex,
   getNextChromatic,
   getPreviousChromatic,
+  INTERVAL_DEFINITIONS,
+  calculateIntervalTargetNote,
+  formatSemitonesText,
 } from './musicTheory';
 import {
   getTranslationPedagogy,
@@ -596,6 +599,167 @@ export function generatePreviousChromaticQuestion(
   };
 }
 
+// --- Interval Card Generation ---
+
+export interface IntervalCardOptions {
+  direction?: TranslationDirection;
+  notation?: 'letters' | 'solfege';
+  lang?: Language;
+  intervalId?: string;
+  rootNote?: string;
+  type?: 'calculate-note' | 'identify-interval';
+}
+
+/**
+ * Generates an interval training question with dual notation and semitone distance explanations.
+ */
+export function generateIntervalQuestion(
+  options: IntervalCardOptions = {}
+): FlashcardQuestion {
+  const lang = options.lang ?? 'en';
+  const effectiveNotation: 'letters' | 'solfege' =
+    options.notation ??
+    (options.direction === 'solfege-to-letters' || lang === 'es'
+      ? 'solfege'
+      : 'letters');
+
+  const activeIntervals = INTERVAL_DEFINITIONS.filter(
+    (i) => i.id !== 'unison'
+  );
+
+  const interval = options.intervalId
+    ? INTERVAL_DEFINITIONS.find((i) => i.id === options.intervalId) ?? activeIntervals[0]
+    : activeIntervals[Math.floor(Math.random() * activeIntervals.length)];
+
+  const letterRoots: NaturalLetter[] = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+  const solfegeRoots: SolfegeNote[] = ['Do', 'Re', 'Mi', 'Fa', 'Sol', 'La', 'Si'];
+
+  const rootNote =
+    options.rootNote ??
+    (effectiveNotation === 'solfege'
+      ? solfegeRoots[Math.floor(Math.random() * solfegeRoots.length)]
+      : letterRoots[Math.floor(Math.random() * letterRoots.length)]);
+
+  const targetNote = calculateIntervalTargetNote(rootNote, interval, effectiveNotation);
+
+  const questionType =
+    options.type ?? (Math.random() < 0.6 ? 'calculate-note' : 'identify-interval');
+
+  const semitonesText = formatSemitonesText(interval.semitones, lang);
+  const intervalName = lang === 'es' ? interval.nameEs : interval.nameEn;
+
+  if (questionType === 'calculate-note') {
+    const correctAnswer = targetNote;
+    const pool = effectiveNotation === 'solfege' ? solfegeRoots : letterRoots;
+    const distractors = pickDistinctDistractors(
+      pool as string[],
+      correctAnswer,
+      3
+    );
+
+    const shuffledOptions = shuffleArray([correctAnswer, ...distractors]) as [
+      string,
+      string,
+      string,
+      string
+    ];
+
+    const prompt =
+      lang === 'es'
+        ? `¿Cuál es la ${intervalName} de ${rootNote}?`
+        : `What is the ${intervalName} of ${rootNote}?`;
+
+    const subPrompt =
+      lang === 'es'
+        ? `Distancia: ${semitonesText}`
+        : `Distance: ${semitonesText}`;
+
+    const hint =
+      lang === 'es'
+        ? `La ${intervalName} se encuentra a ${semitonesText} de ${rootNote}.`
+        : `The ${intervalName} is located ${semitonesText} above ${rootNote}.`;
+
+    const explanation =
+      lang === 'es'
+        ? `La ${intervalName} de ${rootNote} es ${correctAnswer} (${semitonesText}).`
+        : `The ${intervalName} of ${rootNote} is ${correctAnswer} (${semitonesText}).`;
+
+    const mnemonic =
+      lang === 'es'
+        ? `Recuerda: ${rootNote} y ${correctAnswer} forman una ${intervalName} (${interval.semitones} semitonos).`
+        : `Remember: ${rootNote} to ${correctAnswer} forms a ${intervalName} (${interval.semitones} semitones).`;
+
+    return {
+      id: createUniqueCardId('interval_calc'),
+      category: 'intervals',
+      prompt,
+      subPrompt,
+      options: shuffledOptions,
+      correctAnswer,
+      hint,
+      explanation,
+      mnemonic,
+      difficulty: interval.degree <= 5 ? 'beginner' : 'intermediate',
+      noteReference: `${rootNote}-${correctAnswer}`,
+    };
+  } else {
+    // identify-interval
+    const correctAnswer = intervalName;
+    const otherIntervals = activeIntervals.filter((i) => i.id !== interval.id);
+    const shuffledOthers = shuffleArray(otherIntervals);
+    const distractorIntervals = shuffledOthers.slice(0, 3);
+    const distractors = distractorIntervals.map((i) =>
+      lang === 'es' ? i.nameEs : i.nameEn
+    );
+
+    const shuffledOptions = shuffleArray([correctAnswer, ...distractors]) as [
+      string,
+      string,
+      string,
+      string
+    ];
+
+    const prompt =
+      lang === 'es'
+        ? `¿Qué intervalo hay de ${rootNote} a ${targetNote}?`
+        : `What interval is ${targetNote} from ${rootNote}?`;
+
+    const subPrompt =
+      lang === 'es'
+        ? `Distancia: ${semitonesText}`
+        : `Distance: ${semitonesText}`;
+
+    const hint =
+      lang === 'es'
+        ? `De ${rootNote} a ${targetNote} hay una distancia de ${semitonesText}.`
+        : `From ${rootNote} to ${targetNote} is a distance of ${semitonesText}.`;
+
+    const explanation =
+      lang === 'es'
+        ? `El intervalo entre ${rootNote} y ${targetNote} es una ${correctAnswer} (${semitonesText}).`
+        : `The interval from ${rootNote} to ${targetNote} is a ${correctAnswer} (${semitonesText}).`;
+
+    const mnemonic =
+      lang === 'es'
+        ? `Fórmula: ${interval.shortName} = ${interval.semitones} semitonos.`
+        : `Formula: ${interval.shortName} = ${interval.semitones} semitones.`;
+
+    return {
+      id: createUniqueCardId('interval_id'),
+      category: 'intervals',
+      prompt,
+      subPrompt,
+      options: shuffledOptions,
+      correctAnswer,
+      hint,
+      explanation,
+      mnemonic,
+      difficulty: interval.degree <= 5 ? 'beginner' : 'intermediate',
+      noteReference: `${rootNote}-${targetNote}`,
+    };
+  }
+}
+
 /**
  * Master card generator taking full trainer configuration into account.
  */
@@ -605,6 +769,14 @@ export function generateCard(
   excludeNotes: string[] = []
 ): FlashcardQuestion {
   const lang = config.lang ?? 'en';
+
+  // Intervals mode
+  if (config.mode === 'intervals') {
+    return generateIntervalQuestion({
+      direction: config.direction,
+      lang,
+    });
+  }
 
   // If reviewQueue has items, prioritize reinforcing missed notes
   let targetLetter: NaturalLetter | undefined;

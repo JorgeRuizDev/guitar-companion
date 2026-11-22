@@ -14,7 +14,13 @@ export interface FretboardDiagramProps {
   evaluation?: ChallengeEvaluation | null;
   isInteractive?: boolean;
   showFingerNumbers?: boolean;
+  showRootIndicator?: boolean;
   compact?: boolean;
+  harmonicLabels?: Partial<Record<StringNumber, string>>;
+  noteLabels?: Partial<Record<StringNumber, string | null>>;
+  highlightedStrings?: StringNumber[];
+  errorStrings?: StringNumber[];
+  onStringTargetClick?: (stringNumber: StringNumber) => void;
   onFretClick?: (stringNumber: StringNumber, fret: number) => void;
   onNutClick?: (stringNumber: StringNumber) => void;
   onBarreClick?: (fret: number) => void;
@@ -53,7 +59,13 @@ export const FretboardDiagram: React.FC<FretboardDiagramProps> = ({
   evaluation,
   isInteractive = true,
   showFingerNumbers = true,
+  showRootIndicator = true,
   compact = false,
+  harmonicLabels,
+  noteLabels,
+  highlightedStrings = [],
+  errorStrings = [],
+  onStringTargetClick,
   onFretClick,
   onNutClick,
   onBarreClick,
@@ -197,7 +209,7 @@ export const FretboardDiagram: React.FC<FretboardDiagramProps> = ({
           );
         })}
 
-        {/* Nut Indicators (O / X) Above the Nut Bar */}
+        {/* Nut Indicators (O / X / Assigned Note) Above the Nut Bar */}
         {strings.map((strNum) => {
           const x = STRING_X[strNum];
           const strState = fretboardState.find((s) => s.stringNumber === strNum);
@@ -205,19 +217,31 @@ export const FretboardDiagram: React.FC<FretboardDiagramProps> = ({
           const isMuted = state === 'muted';
           const isOpen = state === 'open';
           const stringEval = getStringEval(strNum);
-          const isErr = stringEval && !stringEval.isCorrect;
+          const isErr = (stringEval && !stringEval.isCorrect) || errorStrings.includes(strNum);
+          const assignedNote = noteLabels?.[strNum];
+          const harmonicLabel = harmonicLabels?.[strNum];
+          const isHighlighted = highlightedStrings.includes(strNum);
 
           let badgeColor = isErr ? '#f43f5e' : '#94a3b8';
           if (evaluation?.isCorrect) badgeColor = '#10b981';
 
+          const handleClick = () => {
+            if (onStringTargetClick && isOpen) {
+              onStringTargetClick(strNum);
+            } else if (isInteractive) {
+              onNutClick?.(strNum);
+            }
+          };
+
           return (
             <g
               key={`nut-indicator-${strNum}`}
-              onClick={() => isInteractive && onNutClick?.(strNum)}
-              className={isInteractive ? 'cursor-pointer hover:opacity-80' : ''}
+              data-testid={`nut-indicator-${strNum}`}
+              onClick={handleClick}
+              className={isInteractive || (onStringTargetClick && isOpen) ? 'cursor-pointer hover:opacity-80' : ''}
             >
-              {/* Hitbox for Nut toggle */}
-              {isInteractive && (
+              {/* Hitbox for Nut toggle / drop target */}
+              {(isInteractive || (onStringTargetClick && isOpen)) && (
                 <rect
                   x={x - 17}
                   y="4"
@@ -225,6 +249,7 @@ export const FretboardDiagram: React.FC<FretboardDiagramProps> = ({
                   height="36"
                   fill="transparent"
                   className="touch-manipulation"
+                  data-testid={`drop-target-${strNum}`}
                 />
               )}
 
@@ -242,15 +267,69 @@ export const FretboardDiagram: React.FC<FretboardDiagramProps> = ({
                   ✕
                 </text>
               ) : isOpen ? (
-                // Open 'O'
-                <circle
-                  cx={x}
-                  cy="21"
-                  r="6.5"
-                  fill="none"
-                  stroke={badgeColor}
-                  strokeWidth="2"
-                />
+                assignedNote ? (
+                  // Assigned Note Token at Open Nut
+                  <g filter="url(#dot-glow)">
+                    <circle
+                      cx={x}
+                      cy="21"
+                      r="12"
+                      fill={isErr ? '#ef4444' : harmonicLabel ? '#059669' : '#2563eb'}
+                      stroke={isErr ? '#fca5a5' : '#ffffff'}
+                      strokeWidth={isErr ? 2.5 : 1.5}
+                    />
+                    <text
+                      x={x}
+                      y={harmonicLabel ? 18.5 : 24.5}
+                      textAnchor="middle"
+                      fill="#ffffff"
+                      fontSize={assignedNote.length > 2 ? '9' : '11'}
+                      fontWeight="bold"
+                      fontFamily="sans-serif"
+                    >
+                      {assignedNote}
+                    </text>
+                    {harmonicLabel && (
+                      <text
+                        x={x}
+                        y="27"
+                        textAnchor="middle"
+                        fill={isErr ? '#fca5a5' : '#a7f3d0'}
+                        fontSize="7.5"
+                        fontWeight="extrabold"
+                        fontFamily="sans-serif"
+                      >
+                        {harmonicLabel}
+                      </text>
+                    )}
+                  </g>
+                ) : (
+                  // Open 'O' or interactive drop target prompt
+                  <g>
+                    <circle
+                      cx={x}
+                      cy="21"
+                      r={harmonicLabel ? 11 : isHighlighted ? 9 : 6.5}
+                      fill={harmonicLabel ? 'rgba(5, 150, 105, 0.25)' : isHighlighted ? 'rgba(245, 158, 11, 0.25)' : 'none'}
+                      stroke={harmonicLabel ? '#34d399' : isHighlighted ? '#f59e0b' : badgeColor}
+                      strokeWidth={harmonicLabel || isHighlighted ? 2 : 2}
+                      strokeDasharray={onStringTargetClick && !assignedNote && !harmonicLabel ? '3 2' : undefined}
+                    />
+                    {harmonicLabel && (
+                      <text
+                        x={x}
+                        y="24.5"
+                        textAnchor="middle"
+                        fill="#6ee7b7"
+                        fontSize="9"
+                        fontWeight="bold"
+                        fontFamily="sans-serif"
+                      >
+                        {harmonicLabel}
+                      </text>
+                    )}
+                  </g>
+                )
               ) : null}
             </g>
           );
@@ -269,6 +348,8 @@ export const FretboardDiagram: React.FC<FretboardDiagramProps> = ({
 
           return (
             <rect
+              key="target-barre-indicator"
+              data-testid="target-barre-indicator"
               x={minX}
               y={y}
               width={maxX - minX}
@@ -280,37 +361,55 @@ export const FretboardDiagram: React.FC<FretboardDiagramProps> = ({
           );
         })()}
 
-        {/* User Barre Connector Indicator (when 2 or more strings fretted at same fret) */}
-        {frets.map((fret) => {
-          const frettedStrings = fretboardState.filter(
-            (s) => s.state === 'fretted' && s.fret === fret
-          );
-          if (frettedStrings.length < 2) return null;
+        {/* User Barre Connector Indicator (in interactive mode when target chord requires a barre and user has placed it) */}
+        {isInteractive && evaluation === null && targetChord?.barre && (() => {
+          const b = targetChord.barre;
+          const minStr = Math.min(b.fromString, b.toString);
+          const maxStr = Math.max(b.fromString, b.toString);
 
-          const xs = frettedStrings.map((s) => STRING_X[s.stringNumber]);
-          const minX = Math.min(...xs) - 12;
-          const maxX = Math.max(...xs) + 12;
-          const y = FRET_Y_BOUNDS[fret].mid - 11;
-          const isSuccess = evaluation?.isCorrect;
-          const isErr = frettedStrings.some((s) => {
-            const ev = getStringEval(s.stringNumber);
-            return ev && !ev.isCorrect;
-          });
-          const connectorColor = isSuccess ? '#10b981' : isErr ? '#ef4444' : '#f59e0b';
+          // Check how many strings in the barre span are fretted at the barre fret
+          const frettedAtBarreFret = fretboardState.filter(
+            (s) =>
+              s.stringNumber >= minStr &&
+              s.stringNumber <= maxStr &&
+              s.state === 'fretted' &&
+              s.fret === b.fret
+          );
+
+          if (frettedAtBarreFret.length < 2) return null;
+
+          // Check if any string in the barre span breaks the barre (is open, muted, or fretted behind/lower than the barre fret)
+          const hasConflictingString = fretboardState.some(
+            (s) =>
+              s.stringNumber >= minStr &&
+              s.stringNumber <= maxStr &&
+              (s.state === 'open' ||
+                s.state === 'muted' ||
+                (s.state === 'fretted' && s.fret !== null && s.fret < b.fret))
+          );
+
+          if (hasConflictingString) return null;
+
+          const x1 = STRING_X[b.fromString];
+          const x2 = STRING_X[b.toString];
+          const minX = Math.min(x1, x2) - 12;
+          const maxX = Math.max(x1, x2) + 12;
+          const y = FRET_Y_BOUNDS[b.fret].mid - 11;
 
           return (
             <rect
-              key={`user-barre-connector-${fret}`}
+              key={`user-barre-connector-${b.fret}`}
+              data-testid={`user-barre-connector-${b.fret}`}
               x={minX}
               y={y}
               width={maxX - minX}
               height="22"
               rx="11"
-              fill={connectorColor}
+              fill="#f59e0b"
               opacity="0.25"
             />
           );
-        })}
+        })()}
 
         {/* User Fretted Dots */}
         {strings.map((strNum) => {
@@ -323,28 +422,87 @@ export const FretboardDiagram: React.FC<FretboardDiagramProps> = ({
           const x = STRING_X[strNum];
           const y = FRET_Y_BOUNDS[fret].mid;
           const stringEval = getStringEval(strNum);
-          const isErr = stringEval && !stringEval.isCorrect;
+          const isErr = (stringEval && !stringEval.isCorrect) || errorStrings.includes(strNum);
           const isSuccess = evaluation?.isCorrect;
           const finger = getFingerNumber(strNum, fret);
+          const assignedNote = noteLabels?.[strNum];
+          const harmonicLabel = harmonicLabels?.[strNum];
+          const isHighlighted = highlightedStrings.includes(strNum);
 
-          const dotColor = isSuccess
+          let dotColor = isSuccess
             ? '#10b981' // Green
             : isErr
             ? '#ef4444' // Red error
             : '#f59e0b'; // Amber interactive
 
+          if (assignedNote) {
+            dotColor = isErr ? '#ef4444' : harmonicLabel ? '#059669' : '#2563eb';
+          }
+
+          const handleDotClick = () => {
+            if (onStringTargetClick) {
+              onStringTargetClick(strNum);
+            }
+          };
+
           return (
-            <g key={`dot-${strNum}-${fret}`} filter="url(#dot-glow)">
+            <g
+              key={`dot-${strNum}-${fret}`}
+              filter="url(#dot-glow)"
+              data-testid={`drop-target-${strNum}`}
+              onClick={handleDotClick}
+              className={onStringTargetClick ? 'cursor-pointer hover:opacity-90' : ''}
+            >
               <circle
                 cx={x}
                 cy={y}
-                r="13"
+                r={isHighlighted || isErr ? 15 : 13}
                 fill={dotColor}
-                stroke="#ffffff"
-                strokeWidth="1.5"
+                stroke={isErr ? '#fca5a5' : isHighlighted ? '#f59e0b' : '#ffffff'}
+                strokeWidth={isErr || isHighlighted ? 2.5 : 1.5}
+                strokeDasharray={onStringTargetClick && !assignedNote ? '3 2' : undefined}
               />
-              {/* Finger Number Label */}
-              {showFingerNumbers && finger && (
+              {/* Note / Harmonic or Finger Label */}
+              {assignedNote ? (
+                <>
+                  <text
+                    x={x}
+                    y={harmonicLabel ? y - 1.5 : y + 4.5}
+                    textAnchor="middle"
+                    fill="#ffffff"
+                    fontSize={assignedNote.length > 2 ? '10' : '12'}
+                    fontWeight="bold"
+                    fontFamily="sans-serif"
+                  >
+                    {assignedNote}
+                  </text>
+                  {harmonicLabel && (
+                    <text
+                      x={x}
+                      y={y + 8}
+                      textAnchor="middle"
+                      fill={isErr ? '#fca5a5' : '#a7f3d0'}
+                      fontSize="8"
+                      fontWeight="extrabold"
+                      fontFamily="sans-serif"
+                    >
+                      {harmonicLabel}
+                    </text>
+                  )}
+                </>
+              ) : harmonicLabel ? (
+                <text
+                  x={x}
+                  y={y + 4}
+                  textAnchor="middle"
+                  fill="#6ee7b7"
+                  fontSize="11"
+                  fontWeight="extrabold"
+                  fontFamily="sans-serif"
+                >
+                  {harmonicLabel}
+                </text>
+              ) : showFingerNumbers && finger ? (
                 <text
                   x={x}
                   y={y + 4.5}
@@ -356,7 +514,20 @@ export const FretboardDiagram: React.FC<FretboardDiagramProps> = ({
                 >
                   {finger}
                 </text>
-              )}
+              ) : onStringTargetClick ? (
+                <text
+                  x={x}
+                  y={y + 4}
+                  textAnchor="middle"
+                  fill="#ffffff"
+                  fontSize="10"
+                  opacity="0.8"
+                  fontWeight="bold"
+                  fontFamily="sans-serif"
+                >
+                  ?
+                </text>
+              ) : null}
             </g>
           );
         })}
@@ -410,8 +581,8 @@ export const FretboardDiagram: React.FC<FretboardDiagramProps> = ({
           })}
 
         {/* Root String Indicator badge (R) below bottom wire */}
-        {targetChord && (
-          <g>
+        {targetChord && showRootIndicator && (
+          <g data-testid="root-string-indicator">
             <circle
               cx={STRING_X[targetChord.rootString]}
               cy="271"

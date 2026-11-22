@@ -26,7 +26,10 @@ export function parseChordTrainerParams(
   const langParam = getParam('lang') || getParam('locale');
 
   const mode: PracticeMode =
-    modeParam === 'draw' || modeParam === 'identify' || modeParam === 'alternate'
+    modeParam === 'draw' ||
+    modeParam === 'identify' ||
+    modeParam === 'alternate' ||
+    modeParam === 'chord-notes'
       ? modeParam
       : 'alternate';
 

@@ -1,14 +1,14 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version Change: 1.2.0 -> 1.3.0
-Bump Rationale: MINOR - Added Core Principle VII (Domain-Agnostic, Embeddable & URL-Driven Quiz Engine) and corresponding technical and quality requirements for quiz-based learning systems.
+Version Change: 1.3.0 -> 1.4.0
+Bump Rationale: MINOR - Added Core Principle VIII (Notación Musical Dual y Fundamentos Teóricos / Dual Musical Notation & Theoretical Foundations) and corresponding technical and pedagogical requirements for dual notation (letters/solfege) and interval training.
 Modified Principles: None
 Added Principles:
-  - VII. Motor de Cuestionarios Agnóstico, Embebible y Guiado por URL (Domain-Agnostic, Embeddable & URL-Driven Quiz Engine)
+  - VIII. Notación Musical Dual y Fundamentos Teóricos (Dual Musical Notation & Theoretical Foundations)
 Added Sections / Requirements:
-  - Requisitos Técnicos y Arquitectónicos: Arquitectura de Cuestionarios Desacoplada
-  - Criterios de Calidad y Flujo de Trabajo: Validación de Cuestionarios y Parámetros
+  - Requisitos Técnicos y Arquitectónicos: Soporte Estricto de Notación Dual e Intervalos
+  - Criterios de Calidad y Flujo de Trabajo: Consistencia Notacional y Didáctica de Ejercicios
 Removed Sections: None
 Follow-up TODOs: None
 -->
@@ -81,6 +81,17 @@ El sistema de aprendizaje basado en cuestionarios DEBE estructurarse como un mot
   - Los parámetros de URL DEBEN ser serializables, sanitizados y validados de forma estricta, contando siempre con valores de respaldo (*fallbacks*) seguros y predecibles ante parámetros inválidos o ausentes.
 *Rationale*: Diseñar el sistema de cuestionarios desacoplado de la temática de guitarra asegura la reutilización futura de la plataforma educativa en múltiples disciplinas. Priorizar la compatibilidad con webviews y la configuración mediante URLs permite integrar los cuestionarios sin esfuerzo en aplicaciones móviles nativas o plataformas externas mediante enlaces directos autocontenidos y parametrizables.
 
+### VIII. Notación Musical Dual y Fundamentos Teóricos (Dual Musical Notation & Theoretical Foundations)
+Todo módulo o ejercicio orientado al aprendizaje de notas, acordes, intervalos o armonía DEBE soportar y tratar como ciudadanos de primer nivel tanto el sistema de notación anglosajón por letras (C, D, E, F, G, A, B) como el sistema tradicional de solfeo latino (Do, Re, Mi, Fa, Sol, La, Si).
+- **Paridad y Segregación Notacional (Notation Parity & Strict Filtering)**:
+  - Los ejercicios y bancos de preguntas DEBEN proporcionar contenido equivalente tanto para letras como para solfeo.
+  - Cuando el usuario o la URL configuren una preferencia de notación (`notation=letters` o `notation=solfege`), el sistema DEBE segregar estrictamente los enunciados, opciones y ayudas visuales para ajustarse al sistema seleccionado, evitando la mezcla inadvertida de sistemas salvo en modos explícitos de traducción o notación dual.
+- **Fundamentos de Intervalos y Construcción Armónica**:
+  - El sistema pedagógico de notas DEBE incluir el entrenamiento explícito de intervalos musicales (unísonos, segundas, terceras mayores/menores, cuartas justas/aumentadas, quintas justas/disminuidas, sextas, séptimas y octavas).
+  - Las preguntas DEBEN evaluar bidireccionalmente el conocimiento intervalar: tanto la identificación del intervalo entre dos notas dadas como el cálculo de la nota resultante a partir de una nota raíz e intervalo objetivo.
+  - Las pistas y explicaciones (*remediation*) de intervalos y acordes DEBEN fundamentarse en distancias en semitonos y fórmulas de escalas/acordes, nunca en trucos puramente empíricos sin base teórica.
+*Rationale*: Los guitarristas y estudiantes de música provienen de diversas tradiciones pedagógicas (notación moderna anglosajona en tabs/cifrado americano y solfeo clásico hispanohablante/europeo). Garantizar paridad estricta y entrenamiento sistemático de intervalos asegura una comprensión teórica profunda y universal.
+
 ## Requisitos Técnicos y Arquitectónicos
 
 - **Estrategia de Renderizado y Framework**: Se DEBE utilizar una tecnología web moderna que soporte SSR/SSG nativo para cumplir simultáneamente con los objetivos de SEO y rendimiento de las múltiples aplicaciones.
@@ -88,6 +99,7 @@ El sistema de aprendizaje basado en cuestionarios DEBE estructurarse como un mot
 - **Estrategia de Estilos Responsivos**: Los componentes DEBEN construirse siguiendo convenciones utilitarias o modulares con enfoque Mobile-First estricto, evitando dependencias pesadas de UI que comprometan el bundle móvil.
 - **Abstracción de Almacenamiento Local**: La persistencia de datos del usuario anónimo DEBE implementarse mediante adaptadores desacoplados que faciliten una futura transición o sincronización con bases de datos en la nube una vez que el módulo de autenticación sea incorporado.
 - **Arquitectura de Cuestionarios Desacoplada**: El motor de cuestionarios DEBE separar estrictamente el estado del runner de evaluación de los esquemas de preguntas. Los componentes DEBEN operar como componentes puros o controlados mediante configuración derivada de URL y props, permitiendo su renderizado aislado en vistas embebidas y webviews sin requerir acceso a contextos globales de la plataforma.
+- **Soporte Estricto de Notación Dual e Intervalos**: Las estructuras de datos para notas, acordes e intervalos DEBEN mapear inequívocamente el identificador de nota/acorde tanto a su símbolo anglosajón (`symbol` / `letter`) como a su equivalente en solfeo (`solfegeName` / `solfege`). Las utilidades de cálculo armónico deben permitir la resolución y transposición intervalar de forma pura e independiente de la vista.
 
 ## Criterios de Calidad y Flujo de Trabajo
 
@@ -96,6 +108,7 @@ El sistema de aprendizaje basado en cuestionarios DEBE estructurarse como un mot
 - **Auditoría de SEO y Accesibilidad**: Las vistas públicas de cada aplicación DEBEN validar periódicamente su marcado semántico, títulos, metadatos y accesibilidad básica (WCAG AA).
 - **Rigor en Dependencias**: Toda nueva dependencia que afecte el tamaño del bundle global DEBE ser evaluada y justificada.
 - **Validación de Cuestionarios y Parámetros**: Toda implementación de cuestionario DEBE validar rigurosamente los query params de entrada mediante esquemas tipados (por ejemplo Zod o validadores equivalentes) y probarse en resoluciones embebidas típicas de webview sin dependencias del shell de la aplicación.
+- **Consistencia Notacional y Didáctica de Ejercicios**: Las pruebas automatizadas deben verificar que ningún ejercicio en modo `letters` exponga nombres en solfeo (y viceversa) y que las respuestas correctas de intervalos concuerden rigurosamente con la teoría musical estándar (temperamento igual de 12 tonos).
 
 ## Governance
 
@@ -107,4 +120,4 @@ El sistema de aprendizaje basado en cuestionarios DEBE estructurarse como un mot
   - **PATCH**: Correcciones ortográficas, mejoras de redacción, precisiones terminológicas o refinamientos no semánticos.
 - **Revisiones de Cumplimiento**: Todas las especificaciones, planes y revisiones de código DEBEN validar activamente la conformidad con las directrices aquí ratificadas.
 
-**Version**: 1.3.0 | **Ratified**: 2026-10-31 | **Last Amended**: 2026-11-02
+**Version**: 1.4.0 | **Ratified**: 2026-10-31 | **Last Amended**: 2026-11-17

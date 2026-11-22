@@ -8,6 +8,7 @@ import { useReducer, useEffect, useCallback, useMemo } from 'react';
 import {
   ChallengeEvaluation,
   ChallengeStatus,
+  ChallengeType,
   ChordDefinition,
   PracticeChallenge,
   PracticeMode,
@@ -59,6 +60,7 @@ export type ChordTrainerAction =
   | { type: 'CHECK_ANSWER' }
   | { type: 'SKIP_CHALLENGE' }
   | { type: 'SELECT_IDENTIFY_OPTION'; chord: ChordDefinition }
+  | { type: 'COMPLETE_CHORD_NOTES' }
   | { type: 'NEXT_CHALLENGE' }
   | { type: 'RESET_SESSION'; config?: Partial<TrainerConfig> }
   | { type: 'UPDATE_CONFIG'; config: Partial<TrainerConfig> };
@@ -81,14 +83,15 @@ export function createInitialChordSessionState(
   const mode: PracticeMode = config?.mode || 'alternate';
   const chordPool = resolveChordPool(config?.chords);
 
-  // Initial card: if mode is identify, start with identify; otherwise start with draw
-  const initialType = mode === 'identify' ? 'identify' : 'draw';
+  // Initial card: if mode is chord-notes or identify, use generator; otherwise start with draw
   const targetChord = chordPool[Math.floor(Math.random() * chordPool.length)] || chordPool[0];
 
   const challenge: PracticeChallenge =
-    initialType === 'draw'
-      ? generateDrawChallenge(targetChord)
-      : generateNextChallenge('identify', undefined, chordPool);
+    mode === 'chord-notes'
+      ? generateNextChallenge('chord-notes', undefined, chordPool)
+      : mode === 'identify'
+      ? generateNextChallenge('identify', undefined, chordPool)
+      : generateDrawChallenge(targetChord);
 
   return {
     challenge,
@@ -186,7 +189,10 @@ export function chordTrainerSessionReducer(
     }
 
     case 'SKIP_CHALLENGE': {
-      if (state.status !== 'PENDING' || state.challenge.type !== 'draw') {
+      if (
+        state.status !== 'PENDING' ||
+        (state.challenge.type !== 'draw' && state.challenge.type !== 'chord-notes')
+      ) {
         return state;
       }
 
@@ -210,6 +216,30 @@ export function chordTrainerSessionReducer(
           ...state.metrics,
           skipped: state.metrics.skipped + 1,
           currentStreak: 0,
+          totalCompleted: state.metrics.totalCompleted + 1,
+        },
+      };
+    }
+
+    case 'COMPLETE_CHORD_NOTES': {
+      if (state.status !== 'PENDING' || state.challenge.type !== 'chord-notes') {
+        return state;
+      }
+
+      const newHits = state.metrics.hits + 1;
+      const newStreak = state.metrics.currentStreak + 1;
+      const newBestStreak = Math.max(state.metrics.bestStreak, newStreak);
+      const newAccuracy = calculateChordAccuracy(newHits, state.metrics.misses);
+
+      return {
+        ...state,
+        status: 'EVALUATED_CORRECT',
+        metrics: {
+          ...state.metrics,
+          hits: newHits,
+          currentStreak: newStreak,
+          bestStreak: newBestStreak,
+          accuracy: newAccuracy,
           totalCompleted: state.metrics.totalCompleted + 1,
         },
       };
@@ -309,7 +339,7 @@ export function useChordTrainerSession(
   config?: Partial<TrainerConfig>,
   onAnswerEvaluated?: (data: {
     challengeId: string;
-    mode: 'draw' | 'identify';
+    mode: ChallengeType;
     chordSymbol: string;
     chordSolfege: string;
     isCorrect: boolean;
@@ -376,6 +406,10 @@ export function useChordTrainerSession(
     dispatch({ type: 'SKIP_CHALLENGE' });
   }, []);
 
+  const handleChordNotesComplete = useCallback(() => {
+    dispatch({ type: 'COMPLETE_CHORD_NOTES' });
+  }, []);
+
   const handleSelectOption = useCallback((chord: ChordDefinition) => {
     dispatch({ type: 'SELECT_IDENTIFY_OPTION', chord });
   }, []);
@@ -409,6 +443,7 @@ export function useChordTrainerSession(
     handleBarreClick,
     handleCheck,
     handleSkip,
+    handleChordNotesComplete,
     handleSelectOption,
     handleNext,
     resetSession,

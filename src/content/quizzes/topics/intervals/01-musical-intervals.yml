@@ -1,0 +1,551 @@
+- id: q-interval-c-p5-letters
+  familyIds:
+    - family-interval-c-p5
+  type: single-choice
+  course: 2
+  difficulty: beginner
+  topics:
+    - intervals
+    - theory
+  notation: letters
+  prompt:
+    en: What is the Perfect 5th of C?
+    es: ¿Cuál es la 5ª Justa de C?
+  subPrompt:
+    en: Calculate the note 7 semitones above C.
+    es: Calcula la nota 7 semitonos por encima de C.
+  options:
+    - id: opt-c-p5-g
+      label:
+        en: G
+        es: G
+    - id: opt-c-p5-f
+      label:
+        en: F
+        es: F
+    - id: opt-c-p5-d
+      label:
+        en: D
+        es: D
+    - id: opt-c-p5-a
+      label:
+        en: A
+        es: A
+  correctAnswer:
+    - opt-c-p5-g
+  remediation:
+    explanation:
+      en: The Perfect 5th of C is G (7 semitones / 3 and a half steps).
+      es: La 5ª Justa de C es G (7 semitonos / 3 tonos y medio).
+    hint:
+      en: Count 7 frets up from C or think of the open G string.
+      es: Cuenta 7 trastes desde C o piensa en la cuerda Sol al aire.
+    mnemonic:
+      en: C to G is the cornerstone interval of guitar power chords (C5).
+      es: De C a G es la base de los acordes de quinta (C5) en la guitarra.
+
+- id: q-interval-c-p5-solfege
+  familyIds:
+    - family-interval-c-p5
+  type: single-choice
+  course: 2
+  difficulty: beginner
+  topics:
+    - intervals
+    - theory
+  notation: solfege
+  prompt:
+    en: What is the Perfect 5th of Do?
+    es: ¿Cuál es la 5ª Justa de Do?
+  subPrompt:
+    en: Calculate the note 7 semitones above Do.
+    es: Calcula la nota a 7 semitonos por encima de Do.
+  options:
+    - id: opt-do-p5-sol
+      label:
+        en: Sol
+        es: Sol
+    - id: opt-do-p5-fa
+      label:
+        en: Fa
+        es: Fa
+    - id: opt-do-p5-re
+      label:
+        en: Re
+        es: Re
+    - id: opt-do-p5-la
+      label:
+        en: La
+        es: La
+  correctAnswer:
+    - opt-do-p5-sol
+  remediation:
+    explanation:
+      en: The Perfect 5th of Do is Sol (7 semitones / 3 and a half steps).
+      es: La 5ª Justa de Do es Sol (7 semitonos / 3 tonos y medio).
+    hint:
+      en: Do, Re, Mi, Fa, Sol (5 degrees, 7 semitones).
+      es: Do, Re, Mi, Fa, Sol (5 grados diatónicos, 7 semitonos).
+    mnemonic:
+      en: Do-Sol forms the quintessential consonant fifth.
+      es: Do y Sol forman el intervalo de quinta por excelencia.
+
+- id: q-interval-c-m3-letters
+  familyIds:
+    - family-interval-c-m3
+  type: single-choice
+  course: 2
+  difficulty: beginner
+  topics:
+    - intervals
+    - theory
+  notation: letters
+  prompt:
+    en: What is the Major 3rd of C?
+    es: ¿Cuál es la 3ª Mayor de C?
+  subPrompt:
+    en: Calculate the note 4 semitones (2 whole steps) above C.
+    es: Calcula la nota a 4 semitonos (2 tonos) por encima de C.
+  options:
+    - id: opt-c-m3-e
+      label:
+        en: E
+        es: E
+    - id: opt-c-m3-d
+      label:
+        en: D
+        es: D
+    - id: opt-c-m3-f
+      label:
+        en: F
+        es: F
+    - id: opt-c-m3-eb
+      label:
+        en: Eb
+        es: Eb
+  correctAnswer:
+    - opt-c-m3-e
+  remediation:
+    explanation:
+      en: The Major 3rd of C is E (4 semitones / 2 whole steps).
+      es: La 3ª Mayor de C es E (4 semitonos / 2 tonos).
+    hint:
+      en: A major third consists of exactly 2 whole steps (4 semitones).
+      es: Una tercera mayor consta de exactamente 2 tonos enteros (4 semitonos).
+    mnemonic:
+      en: C-E-G forms the major triad; E is the happy major 3rd.
+      es: C-E-G forma la tríada mayor; E define el carácter alegre mayor.
+
+- id: q-interval-c-m3-solfege
+  familyIds:
+    - family-interval-c-m3
+  type: single-choice
+  course: 2
+  difficulty: beginner
+  topics:
+    - intervals
+    - theory
+  notation: solfege
+  prompt:
+    en: What is the Major 3rd of Do?
+    es: ¿Cuál es la 3ª Mayor de Do?
+  subPrompt:
+    en: Calculate the note 4 semitones (2 whole steps) above Do.
+    es: Calcula la nota a 4 semitonos (2 tonos) por encima de Do.
+  options:
+    - id: opt-do-m3-mi
+      label:
+        en: Mi
+        es: Mi
+    - id: opt-do-m3-re
+      label:
+        en: Re
+        es: Re
+    - id: opt-do-m3-fa
+      label:
+        en: Fa
+        es: Fa
+    - id: opt-do-m3-mib
+      label:
+        en: Mib
+        es: Mib
+  correctAnswer:
+    - opt-do-m3-mi
+  remediation:
+    explanation:
+      en: The Major 3rd of Do is Mi (4 semitones / 2 whole steps).
+      es: La 3ª Mayor de Do es Mi (4 semitonos / 2 tonos).
+    hint:
+      en: De Do a Re hay 1 tono, y de Re a Mi hay otro tono (2 tonos en total).
+      es: De Do a Re hay 1 tono, y de Re a Mi hay otro tono (2 tonos en total).
+    mnemonic:
+      en: Do-Mi defines the warm major sound.
+      es: Do-Mi define la sonoridad brillante del acorde mayor.
+
+- id: q-interval-a-min3-letters
+  familyIds:
+    - family-interval-a-min3
+  type: single-choice
+  course: 2
+  difficulty: beginner
+  topics:
+    - intervals
+    - theory
+  notation: letters
+  prompt:
+    en: What is the Minor 3rd of A?
+    es: ¿Cuál es la 3ª menor de A?
+  subPrompt:
+    en: Calculate the note 3 semitones (1 step and a half) above A.
+    es: Calcula la nota a 3 semitonos (1 tono y medio) por encima de A.
+  options:
+    - id: opt-a-min3-c
+      label:
+        en: C
+        es: C
+    - id: opt-a-min3-b
+      label:
+        en: B
+        es: B
+    - id: opt-a-min3-csharp
+      label:
+        en: C#
+        es: C#
+    - id: opt-a-min3-d
+      label:
+        en: D
+        es: D
+  correctAnswer:
+    - opt-a-min3-c
+  remediation:
+    explanation:
+      en: The Minor 3rd of A is C (3 semitones / 1 and a half steps).
+      es: La 3ª menor de A es C (3 semitonos / 1 tono y medio).
+    hint:
+      en: A minor third is 3 frets up; from A to B is 2 semitones, B to C is 1 semitone.
+      es: Una tercera menor son 3 semitonos; de A a B hay 2 semitonos y de B a C hay 1 semitono.
+    mnemonic:
+      en: A-C-E forms the classic open A minor chord (Am).
+      es: A-C-E forma el acorde abierto de La menor (Am); C le da su carácter melancólico.
+
+- id: q-interval-a-min3-solfege
+  familyIds:
+    - family-interval-a-min3
+  type: single-choice
+  course: 2
+  difficulty: beginner
+  topics:
+    - intervals
+    - theory
+  notation: solfege
+  prompt:
+    en: What is the Minor 3rd of La?
+    es: ¿Cuál es la 3ª menor de La?
+  subPrompt:
+    en: Calculate the note 3 semitones (1 step and a half) above La.
+    es: Calcula la nota a 3 semitonos (1 tono y medio) por encima de La.
+  options:
+    - id: opt-la-min3-do
+      label:
+        en: Do
+        es: Do
+    - id: opt-la-min3-si
+      label:
+        en: Si
+        es: Si
+    - id: opt-la-min3-dosharp
+      label:
+        en: Do#
+        es: Do#
+    - id: opt-la-min3-re
+      label:
+        en: Re
+        es: Re
+  correctAnswer:
+    - opt-la-min3-do
+  remediation:
+    explanation:
+      en: The Minor 3rd of La is Do (3 semitones / 1 and a half steps).
+      es: La 3ª menor de La es Do (3 semitonos / 1 tono y medio).
+    hint:
+      en: De La a Si hay 1 tono y de Si a Do hay medio tono (3 semitonos).
+      es: De La a Si hay 1 tono y de Si a Do hay medio tono (3 semitonos).
+    mnemonic:
+      en: La-Do-Mi forms the natural minor triad.
+      es: La-Do-Mi forma la tríada menor natural.
+
+- id: q-interval-d-maj3-letters
+  familyIds:
+    - family-interval-d-maj3
+  type: single-choice
+  course: 2
+  difficulty: intermediate
+  topics:
+    - intervals
+    - theory
+  notation: letters
+  prompt:
+    en: What is the Major 3rd of D?
+    es: ¿Cuál es la 3ª Mayor de D?
+  subPrompt:
+    en: Calculate the note 4 semitones (2 whole steps) above D.
+    es: Calcula la nota a 4 semitonos (2 tonos) por encima de D.
+  options:
+    - id: opt-d-maj3-fsharp
+      label:
+        en: F#
+        es: F#
+    - id: opt-d-maj3-f
+      label:
+        en: F
+        es: F
+    - id: opt-d-maj3-g
+      label:
+        en: G
+        es: G
+    - id: opt-d-maj3-e
+      label:
+        en: E
+        es: E
+  correctAnswer:
+    - opt-d-maj3-fsharp
+  remediation:
+    explanation:
+      en: The Major 3rd of D is F# (4 semitones / 2 whole steps).
+      es: La 3ª Mayor de D es F# (4 semitonos / 2 tonos).
+    hint:
+      en: From D to E is 2 semitones, and E to F# is 2 semitones (4 semitones total).
+      es: De D a E hay 2 semitonos, y de E a F# hay otros 2 semitonos (4 en total).
+    mnemonic:
+      en: D-F#-A creates the bright open D major chord on guitar.
+      es: D-F#-A forma el acorde brillante de Re Mayor abierto.
+
+- id: q-interval-d-maj3-solfege
+  familyIds:
+    - family-interval-d-maj3
+  type: single-choice
+  course: 2
+  difficulty: intermediate
+  topics:
+    - intervals
+    - theory
+  notation: solfege
+  prompt:
+    en: What is the Major 3rd of Re?
+    es: ¿Cuál es la 3ª Mayor de Re?
+  subPrompt:
+    en: Calculate the note 4 semitones (2 whole steps) above Re.
+    es: Calcula la nota a 4 semitonos (2 tonos) por encima de Re.
+  options:
+    - id: opt-re-maj3-fasharp
+      label:
+        en: Fa#
+        es: Fa#
+    - id: opt-re-maj3-fa
+      label:
+        en: Fa
+        es: Fa
+    - id: opt-re-maj3-sol
+      label:
+        en: Sol
+        es: Sol
+    - id: opt-re-maj3-mi
+      label:
+        en: Mi
+        es: Mi
+  correctAnswer:
+    - opt-re-maj3-fasharp
+  remediation:
+    explanation:
+      en: The Major 3rd of Re is Fa# (4 semitones / 2 whole steps).
+      es: La 3ª Mayor de Re es Fa# (4 semitonos / 2 tonos).
+    hint:
+      en: Recuerda que de Mi a Fa hay medio tono natural, por eso se necesita Fa#.
+      es: Recuerda que de Mi a Fa hay medio tono natural, por eso se necesita Fa#.
+    mnemonic:
+      en: Re-Fa# defines the key of D major.
+      es: Re a Fa# es la tercera característica de Re Mayor.
+
+- id: q-interval-identify-c-g-letters
+  familyIds:
+    - family-interval-identify-c-g
+  type: single-choice
+  course: 2
+  difficulty: beginner
+  topics:
+    - intervals
+    - theory
+  notation: letters
+  prompt:
+    en: What interval is G from C?
+    es: ¿Qué intervalo hay de C a G?
+  subPrompt:
+    en: Identify the harmonic distance between the two notes.
+    es: Identifica la distancia armónica entre ambas notas.
+  options:
+    - id: opt-id-p5
+      label:
+        en: Perfect 5th
+        es: 5ª Justa
+    - id: opt-id-p4
+      label:
+        en: Perfect 4th
+        es: 4ª Justa
+    - id: opt-id-maj3
+      label:
+        en: Major 3rd
+        es: 3ª Mayor
+    - id: opt-id-maj6
+      label:
+        en: Major 6th
+        es: 6ª Mayor
+  correctAnswer:
+    - opt-id-p5
+  remediation:
+    explanation:
+      en: From C to G is a Perfect 5th (7 semitones / 3 and a half steps).
+      es: De C a G hay una 5ª Justa (7 semitonos / 3 tonos y medio).
+    hint:
+      en: C (1) - D (2) - E (3) - F (4) - G (5) spans 5 scale degrees and 7 semitones.
+      es: C (1) - D (2) - E (3) - F (4) - G (5) abarca 5 grados y 7 semitonos.
+    mnemonic:
+      en: C-G is the fundamental fifth interval.
+      es: C-G es el intervalo de quinta fundamental.
+
+- id: q-interval-identify-c-g-solfege
+  familyIds:
+    - family-interval-identify-c-g
+  type: single-choice
+  course: 2
+  difficulty: beginner
+  topics:
+    - intervals
+    - theory
+  notation: solfege
+  prompt:
+    en: What interval is Sol from Do?
+    es: ¿Qué intervalo hay de Do a Sol?
+  subPrompt:
+    en: Identify the harmonic distance between the two notes.
+    es: Identifica la distancia armónica entre ambas notas.
+  options:
+    - id: opt-id-sol-p5
+      label:
+        en: Perfect 5th
+        es: 5ª Justa
+    - id: opt-id-sol-p4
+      label:
+        en: Perfect 4th
+        es: 4ª Justa
+    - id: opt-id-sol-maj3
+      label:
+        en: Major 3rd
+        es: 3ª Mayor
+    - id: opt-id-sol-maj6
+      label:
+        en: Major 6th
+        es: 6ª Mayor
+  correctAnswer:
+    - opt-id-sol-p5
+  remediation:
+    explanation:
+      en: From Do to Sol is a Perfect 5th (7 semitones / 3 and a half steps).
+      es: De Do a Sol hay una 5ª Justa (7 semitonos / 3 tonos y medio).
+    hint:
+      en: "Do, Re, Mi, Fa, Sol: abarca 5 grados diatónicos y 7 semitonos."
+      es: "Do, Re, Mi, Fa, Sol: abarca 5 grados diatónicos y 7 semitonos."
+    mnemonic:
+      en: Do y Sol forman una quinta justa perfecta.
+      es: Do y Sol forman una quinta justa perfecta.
+
+- id: q-interval-identify-c-e-letters
+  familyIds:
+    - family-interval-identify-c-e
+  type: single-choice
+  course: 2
+  difficulty: beginner
+  topics:
+    - intervals
+    - theory
+  notation: letters
+  prompt:
+    en: What interval is E from C?
+    es: ¿Qué intervalo hay de C a E?
+  subPrompt:
+    en: Identify the harmonic relationship.
+    es: Identifica la relación armónica.
+  options:
+    - id: opt-id-ce-maj3
+      label:
+        en: Major 3rd
+        es: 3ª Mayor
+    - id: opt-id-ce-min3
+      label:
+        en: Minor 3rd
+        es: 3ª menor
+    - id: opt-id-ce-p4
+      label:
+        en: Perfect 4th
+        es: 4ª Justa
+    - id: opt-id-ce-maj2
+      label:
+        en: Major 2nd
+        es: 2ª Mayor
+  correctAnswer:
+    - opt-id-ce-maj3
+  remediation:
+    explanation:
+      en: From C to E is a Major 3rd (4 semitones / 2 whole steps).
+      es: De C a E hay una 3ª Mayor (4 semitonos / 2 tonos).
+    hint:
+      en: C to D is 2 semitones, D to E is 2 semitones (4 semitones).
+      es: De C a D hay 2 semitonos, y de D a E hay 2 semitonos (4 en total).
+    mnemonic:
+      en: C-E gives the major chord its bright character.
+      es: C-E le da al acorde mayor su carácter brillante.
+
+- id: q-interval-identify-c-e-solfege
+  familyIds:
+    - family-interval-identify-c-e
+  type: single-choice
+  course: 2
+  difficulty: beginner
+  topics:
+    - intervals
+    - theory
+  notation: solfege
+  prompt:
+    en: What interval is Mi from Do?
+    es: ¿Qué intervalo hay de Do a Mi?
+  subPrompt:
+    en: Identify the harmonic relationship.
+    es: Identifica la relación armónica.
+  options:
+    - id: opt-id-domi-maj3
+      label:
+        en: Major 3rd
+        es: 3ª Mayor
+    - id: opt-id-domi-min3
+      label:
+        en: Minor 3rd
+        es: 3ª menor
+    - id: opt-id-domi-p4
+      label:
+        en: Perfect 4th
+        es: 4ª Justa
+    - id: opt-id-domi-maj2
+      label:
+        en: Major 2nd
+        es: 2ª Mayor
+  correctAnswer:
+    - opt-id-domi-maj3
+  remediation:
+    explanation:
+      en: From Do to Mi is a Major 3rd (4 semitones / 2 whole steps).
+      es: De Do a Mi hay una 3ª Mayor (4 semitonos / 2 tonos).
+    hint:
+      en: 2 tonos enteros de distancia separan Do de Mi.
+      es: 2 tonos enteros de distancia separan Do de Mi.
+    mnemonic:
+      en: Do-Mi es la tercera mayor que define el acorde de Do Mayor.
+      es: Do-Mi es la tercera mayor que define el acorde de Do Mayor.

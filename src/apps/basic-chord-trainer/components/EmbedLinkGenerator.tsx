@@ -69,8 +69,8 @@ export const EmbedLinkGenerator: React.FC<EmbedLinkGeneratorProps> = ({
           <label className="block text-xs font-semibold text-slate-300 mb-1.5">
             {lang === 'es' ? 'Modo de Entrenamiento' : 'Practice Mode'}
           </label>
-          <div className="grid grid-cols-3 gap-1 bg-slate-800/80 p-1 rounded-xl border border-slate-700/60">
-            {(['alternate', 'draw', 'identify'] as const).map((m) => (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 bg-slate-800/80 p-1 rounded-xl border border-slate-700/60">
+            {(['alternate', 'draw', 'identify', 'chord-notes'] as const).map((m) => (
               <button
                 key={m}
                 type="button"
@@ -89,9 +89,13 @@ export const EmbedLinkGenerator: React.FC<EmbedLinkGeneratorProps> = ({
                   ? lang === 'es'
                     ? 'Dibuja'
                     : 'Draw'
+                  : m === 'identify'
+                  ? lang === 'es'
+                    ? 'Identifica'
+                    : 'Identify'
                   : lang === 'es'
-                  ? 'Identifica'
-                  : 'Identify'}
+                  ? 'Notas'
+                  : 'Notes'}
               </button>
             ))}
           </div>

@@ -22,13 +22,24 @@ export interface ChromaticNoteInfo {
 
 // --- Question & Flashcard Entities ---
 
-export type QuestionCategory = 'translation' | 'accidentals' | 'sequence';
+export type QuestionCategory = 'translation' | 'accidentals' | 'sequence' | 'intervals';
 
 export type DifficultyLevel = 'beginner' | 'intermediate' | 'advanced';
 
-export type TrainerMode = 'translation' | 'accidentals' | 'mixed';
+export type TrainerMode = 'translation' | 'accidentals' | 'mixed' | 'intervals';
 
 export type TranslationDirection = 'letters-to-solfege' | 'solfege-to-letters' | 'both';
+
+export type IntervalDirection = 'calculate-note' | 'identify-interval';
+
+export interface IntervalDefinition {
+  id: string;
+  semitones: number;
+  degree: number;
+  shortName: string;
+  nameEn: string;
+  nameEs: string;
+}
 
 export interface FlashcardQuestion {
   id: string;

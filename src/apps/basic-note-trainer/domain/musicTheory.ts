@@ -9,6 +9,7 @@ import {
   NaturalLetter,
   SolfegeNote,
   ChromaticNoteInfo,
+  IntervalDefinition,
 } from '../types';
 
 export const NATURAL_LETTERS: readonly NaturalLetter[] = ['C', 'D', 'E', 'F', 'G', 'A', 'B'] as const;
@@ -173,4 +174,148 @@ export function getPreviousChromatic(index: number): ChromaticPitch {
  */
 export function getChromaticIndex(letter: NaturalLetter): number {
   return CHROMATIC_NOTE_INFOS[letter].chromaticIndex;
+}
+
+// --- Musical Intervals Engine & Diatonic Transposition ---
+
+export const INTERVAL_DEFINITIONS: readonly IntervalDefinition[] = [
+  { id: 'unison', semitones: 0, degree: 1, shortName: 'P1', nameEn: 'Perfect Unison', nameEs: 'Unísono' },
+  { id: 'minor-2nd', semitones: 1, degree: 2, shortName: 'm2', nameEn: 'Minor 2nd', nameEs: '2ª menor' },
+  { id: 'major-2nd', semitones: 2, degree: 2, shortName: 'M2', nameEn: 'Major 2nd', nameEs: '2ª Mayor' },
+  { id: 'minor-3rd', semitones: 3, degree: 3, shortName: 'm3', nameEn: 'Minor 3rd', nameEs: '3ª menor' },
+  { id: 'major-3rd', semitones: 4, degree: 3, shortName: 'M3', nameEn: 'Major 3rd', nameEs: '3ª Mayor' },
+  { id: 'perfect-4th', semitones: 5, degree: 4, shortName: 'P4', nameEn: 'Perfect 4th', nameEs: '4ª Justa' },
+  { id: 'tritone', semitones: 6, degree: 4, shortName: 'TT', nameEn: 'Tritone', nameEs: 'Tritono' },
+  { id: 'perfect-5th', semitones: 7, degree: 5, shortName: 'P5', nameEn: 'Perfect 5th', nameEs: '5ª Justa' },
+  { id: 'minor-6th', semitones: 8, degree: 6, shortName: 'm6', nameEn: 'Minor 6th', nameEs: '6ª menor' },
+  { id: 'major-6th', semitones: 9, degree: 6, shortName: 'M6', nameEn: 'Major 6th', nameEs: '6ª Mayor' },
+  { id: 'minor-7th', semitones: 10, degree: 7, shortName: 'm7', nameEn: 'Minor 7th', nameEs: '7ª menor' },
+  { id: 'major-7th', semitones: 11, degree: 7, shortName: 'M7', nameEn: 'Major 7th', nameEs: '7ª Mayor' },
+  { id: 'perfect-octave', semitones: 12, degree: 8, shortName: 'P8', nameEn: 'Perfect Octave', nameEs: 'Octava' },
+] as const;
+
+/**
+ * Parses a note string in either Anglo-Saxon or Solfège format.
+ * Examples: 'C', 'F#', 'Eb', 'Do', 'Fa#', 'Mib', 'Sol'.
+ */
+export function parseNote(noteStr: string): {
+  baseLetter: NaturalLetter;
+  accidental: string;
+  pitchIndex: number;
+} {
+  const trimmed = noteStr.trim();
+  let baseLetter: NaturalLetter;
+  let accidental = '';
+
+  if (trimmed.startsWith('Sol')) {
+    baseLetter = 'G';
+    accidental = trimmed.slice(3);
+  } else if (/^(Do|Re|Mi|Fa|La|Si)/.test(trimmed)) {
+    const solfegePrefix = trimmed.slice(0, 2) as SolfegeNote;
+    baseLetter = SOLFEGE_TO_LETTER[solfegePrefix] ?? 'C';
+    accidental = trimmed.slice(2);
+  } else {
+    baseLetter = (trimmed[0].toUpperCase() as NaturalLetter) ?? 'C';
+    accidental = trimmed.slice(1);
+  }
+
+  let pitch = CHROMATIC_NOTE_INFOS[baseLetter]?.chromaticIndex ?? 0;
+  if (accidental === '#') pitch = (pitch + 1) % 12;
+  else if (accidental === '##') pitch = (pitch + 2) % 12;
+  else if (accidental === 'b') pitch = (pitch - 1 + 12) % 12;
+  else if (accidental === 'bb') pitch = (pitch - 2 + 12) % 12;
+
+  return {
+    baseLetter,
+    accidental,
+    pitchIndex: pitch,
+  };
+}
+
+/**
+ * Formats semitone distances with step and tone explanations.
+ */
+export function formatSemitonesText(semitones: number, lang: 'en' | 'es' = 'en'): string {
+  if (lang === 'es') {
+    if (semitones === 1) return '1 semitono (medio tono)';
+    if (semitones === 2) return '2 semitonos (1 tono)';
+    if (semitones % 2 === 0) return `${semitones} semitonos (${semitones / 2} tonos)`;
+    return `${semitones} semitonos (${(semitones - 1) / 2} tonos y medio)`;
+  }
+  if (semitones === 1) return '1 semitone (half step)';
+  if (semitones === 2) return '2 semitones (1 whole step)';
+  if (semitones % 2 === 0) return `${semitones} semitones (${semitones / 2} whole steps)`;
+  return `${semitones} semitones (${(semitones - 1) / 2} and a half steps)`;
+}
+
+/**
+ * Calculates the exact diatonic target note for a given root and interval.
+ * Strictly respects letter notation or solfege notation according to requested format.
+ */
+export function calculateIntervalTargetNote(
+  rootNote: string,
+  interval: IntervalDefinition,
+  notation: 'letters' | 'solfege'
+): string {
+  const { baseLetter, pitchIndex: rootPitch } = parseNote(rootNote);
+  const naturalLetters: readonly NaturalLetter[] = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+
+  const baseLetterIndex = naturalLetters.indexOf(baseLetter);
+  const targetDegree = interval.degree;
+  const targetLetterIndex = (baseLetterIndex + (targetDegree - 1)) % 7;
+  const targetNaturalLetter = naturalLetters[targetLetterIndex];
+
+  const targetNaturalPitch = CHROMATIC_NOTE_INFOS[targetNaturalLetter].chromaticIndex;
+  const targetPitchNeeded = (rootPitch + interval.semitones) % 12;
+  const diff = ((targetPitchNeeded - targetNaturalPitch) % 12 + 12) % 12;
+
+  let accidental = '';
+  if (diff === 0) accidental = '';
+  else if (diff === 1) accidental = '#';
+  else if (diff === 2) accidental = '##';
+  else if (diff === 11) accidental = 'b';
+  else if (diff === 10) accidental = 'bb';
+
+  if (notation === 'solfege') {
+    const solfegeBase = LETTER_TO_SOLFEGE[targetNaturalLetter];
+    return `${solfegeBase}${accidental}`;
+  }
+
+  return `${targetNaturalLetter}${accidental}`;
+}
+
+/**
+ * Identifies the interval relationship between a root note and a target note.
+ */
+export function identifyInterval(
+  rootNote: string,
+  targetNote: string
+): IntervalDefinition | null {
+  const root = parseNote(rootNote);
+  const target = parseNote(targetNote);
+  const naturalLetters: readonly NaturalLetter[] = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+
+  const rIdx = naturalLetters.indexOf(root.baseLetter);
+  const tIdx = naturalLetters.indexOf(target.baseLetter);
+  let degree = ((tIdx - rIdx + 7) % 7) + 1;
+  const semitones = ((target.pitchIndex - root.pitchIndex + 12) % 12);
+
+  // Distinguish unison vs octave if degree is 1
+  if (degree === 1 && semitones === 0) {
+    // Return unison as default for same pitch class and degree 1
+    return INTERVAL_DEFINITIONS.find((i) => i.id === 'unison') ?? null;
+  }
+
+  // Handle tritone (degree 4 Augmented 4th vs degree 5 Diminished 5th)
+  if (semitones === 6) {
+    return INTERVAL_DEFINITIONS.find((i) => i.id === 'tritone') ?? null;
+  }
+
+  return (
+    INTERVAL_DEFINITIONS.find(
+      (i) => i.degree === degree && i.semitones === semitones
+    ) ??
+    INTERVAL_DEFINITIONS.find((i) => i.semitones === semitones) ??
+    null
+  );
 }

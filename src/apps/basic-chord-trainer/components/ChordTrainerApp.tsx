@@ -6,7 +6,8 @@ import { useChordTrainerSession } from '../hooks/useChordTrainerSession';
 import { useChordPostMessage } from '../hooks/useChordPostMessage';
 import { DrawChallenge } from './DrawChallenge';
 import { IdentifyChallenge } from './IdentifyChallenge';
-import { Flame, Target, CheckCircle2, RotateCcw, Shuffle, Edit3, Eye } from 'lucide-react';
+import { ChordNotesChallenge } from './ChordNotesChallenge';
+import { Flame, Target, CheckCircle2, RotateCcw, Shuffle, Edit3, Eye, Sparkles } from 'lucide-react';
 
 interface ChordTrainerAppProps {
   config: TrainerConfig;
@@ -58,6 +59,7 @@ export const ChordTrainerApp: React.FC<ChordTrainerAppProps> = ({
     handleBarreClick,
     handleCheck,
     handleSkip,
+    handleChordNotesComplete,
     handleSelectOption,
     handleNext,
     resetSession,
@@ -86,7 +88,7 @@ export const ChordTrainerApp: React.FC<ChordTrainerAppProps> = ({
             e.preventDefault();
             handleSelectOption(challenge.options[digit - 1]);
           }
-        } else if (challenge.type === 'draw') {
+        } else if (challenge.type === 'draw' || challenge.type === 'chord-notes') {
           // Enter checks, 's' skips
           if (e.key === 'Enter') {
             e.preventDefault();
@@ -113,7 +115,9 @@ export const ChordTrainerApp: React.FC<ChordTrainerAppProps> = ({
   }, [handleKeyDown]);
 
   const modeIcon =
-    mode === 'draw' ? (
+    mode === 'chord-notes' ? (
+      <Sparkles className="w-3.5 h-3.5" />
+    ) : mode === 'draw' ? (
       <Edit3 className="w-3.5 h-3.5" />
     ) : mode === 'identify' ? (
       <Eye className="w-3.5 h-3.5" />
@@ -122,7 +126,11 @@ export const ChordTrainerApp: React.FC<ChordTrainerAppProps> = ({
     );
 
   const modeLabel =
-    mode === 'draw'
+    mode === 'chord-notes'
+      ? lang === 'es'
+        ? 'Notas del Acorde'
+        : 'Chord Notes'
+      : mode === 'draw'
       ? lang === 'es'
         ? 'Dibuja'
         : 'Draw'
@@ -194,7 +202,17 @@ export const ChordTrainerApp: React.FC<ChordTrainerAppProps> = ({
 
       {/* Main Challenge Area */}
       <main className="w-full">
-        {challenge.type === 'draw' ? (
+        {challenge.type === 'chord-notes' ? (
+          <ChordNotesChallenge
+            challenge={challenge}
+            status={status}
+            onComplete={handleChordNotesComplete}
+            onNext={handleNext}
+            onSkip={handleSkip}
+            lang={lang}
+            compact={isCompact}
+          />
+        ) : challenge.type === 'draw' ? (
           <DrawChallenge
             challenge={challenge}
             userState={userState}

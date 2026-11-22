@@ -42,7 +42,10 @@ export function parseTrainerParams(searchParams?: RawSearchParams): TrainerConfi
   const compactParam = getParamValue(searchParams, 'compact');
 
   const mode: TrainerMode =
-    modeParam === 'translation' || modeParam === 'accidentals' || modeParam === 'mixed'
+    modeParam === 'translation' ||
+    modeParam === 'accidentals' ||
+    modeParam === 'mixed' ||
+    modeParam === 'intervals'
       ? modeParam
       : 'mixed';
 

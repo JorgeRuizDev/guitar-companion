@@ -5,13 +5,13 @@
  */
 
 import { useCallback } from 'react';
-import { SessionMetrics } from '../types';
+import { ChallengeType, SessionMetrics } from '../types';
 
 export const CHORD_TRAINER_SOURCE = 'guitar-companion-chord-trainer';
 
 export interface ChordTrainerAnswerPayload {
   challengeId: string;
-  mode: 'draw' | 'identify';
+  mode: ChallengeType;
   chordSymbol: string;
   chordSolfege: string;
   isCorrect: boolean;

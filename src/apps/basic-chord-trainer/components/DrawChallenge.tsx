@@ -127,6 +127,7 @@ export const DrawChallenge: React.FC<DrawChallengeProps> = ({
         evaluation={evaluation}
         isInteractive={isPending}
         showFingerNumbers={!isPending}
+        showRootIndicator={!isPending || showHintPending}
         compact={compact}
         onFretClick={onFretClick}
         onNutClick={onNutToggle}

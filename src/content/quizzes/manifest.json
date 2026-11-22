@@ -27,6 +27,15 @@
       "topics": ["chords", "open-chords"],
       "questionCount": 88,
       "supportedNotations": ["letters", "solfege"]
+    },
+    {
+      "packId": "intervals",
+      "dirPath": "src/content/quizzes/topics/intervals",
+      "filePath": "src/content/quizzes/topics/intervals",
+      "course": 2,
+      "topics": ["intervals", "theory"],
+      "questionCount": 12,
+      "supportedNotations": ["letters", "solfege"]
     }
   ]
 }

@@ -11,6 +11,7 @@ import {
   PracticeMode,
 } from '../types';
 import { CHORD_CATALOG } from './chordCatalog';
+import { getChordHarmonicAnalysis } from './harmonicAnalysis';
 
 /**
  * Generates an "Identify the Chord" challenge with exactly 4 unique options including the target.
@@ -67,7 +68,27 @@ export function generateDrawChallenge(
 }
 
 /**
- * Generates the next challenge according to practice mode ('alternate', 'draw', 'identify')
+ * Generates a "Chord Notes Drag-and-Drop" challenge for the given target chord.
+ */
+export function generateChordNotesChallenge(
+  targetChord: ChordDefinition,
+  notation?: ChallengeNotation
+): PracticeChallenge {
+  const chosenNotation = notation ?? (Math.random() < 0.5 ? 'letters' : 'solfege');
+  const harmonicAnalysis = getChordHarmonicAnalysis(targetChord);
+
+  return {
+    id: `chord-notes-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+    type: 'chord-notes',
+    notation: chosenNotation,
+    familyId: `family-chord-${targetChord.id}`,
+    targetChord,
+    harmonicAnalysis,
+  };
+}
+
+/**
+ * Generates the next challenge according to practice mode ('alternate', 'draw', 'identify', 'chord-notes')
  * and an optional chord pool. Avoids repeating recently seen chord families if pool size > 1.
  */
 export function generateNextChallenge(
@@ -96,6 +117,12 @@ export function generateNextChallenge(
     eligibleChords[Math.floor(Math.random() * eligibleChords.length)] ||
     pool[0];
 
+  const chosenNotation = notation ?? (Math.random() < 0.5 ? 'letters' : 'solfege');
+
+  if (mode === 'chord-notes') {
+    return generateChordNotesChallenge(targetChord, chosenNotation);
+  }
+
   let nextType: ChallengeType;
 
   if (mode === 'draw') {
@@ -106,8 +133,6 @@ export function generateNextChallenge(
     // Mode is 'alternate': default starts with draw, then flips
     nextType = lastChallengeType === 'draw' ? 'identify' : 'draw';
   }
-
-  const chosenNotation = notation ?? (Math.random() < 0.5 ? 'letters' : 'solfege');
 
   if (nextType === 'identify') {
     return generateIdentifyChallenge(targetChord, pool, chosenNotation);
